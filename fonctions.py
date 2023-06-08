@@ -1,5 +1,6 @@
 import requests
 
+'''
 def get_windy_data(lat , lon):
     url_base = "https://node.windy.com/forecast/meteogram/ecmwf/"
     url_request = url_base + str(lat) + "/" + str(lon)
@@ -9,3 +10,9 @@ def get_windy_data(lat , lon):
     print(data)
 
 get_windy_data(45.00 ,45.00)
+'''
+
+
+def range():
+    
+    return
