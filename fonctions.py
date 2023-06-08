@@ -13,6 +13,6 @@ get_windy_data(45.00 ,45.00)
 '''
 
 
-def range():
-    
-    return
+def range(lat, lon, finesse, altitude, hauteur_aerodrome):
+    range = (altitude - hauteur_aerodrome) * finesse
+    return range
