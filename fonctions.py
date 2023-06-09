@@ -19,8 +19,7 @@ get_windy_data(45.00 ,45.00)
 
 def range_plane(finesse, altitude, hauteur_aerodrome):  # calcul du range
     range_theorique_plane = (altitude - hauteur_aerodrome) * finesse # on ne sait pas encore si on aura les altitudes des aerodromes
-    return range_theorique_plane
-
+    return range_theorique_plane 
 def conso_vitesse(vitesse_avion):
     gph = 0.00160782 * vitesse_avion **(2) - 0.205136 * vitesse_avion + 9.88425
     return gph
@@ -37,7 +36,6 @@ def corriger_distance_franchissable(range_theorique, vitesse_avion, vitesse_vent
     vitesse_relative = math.sqrt((vitesse_avion - vent_x)**2 + vent_y**2)
     range_corrige = (range_theorique / vitesse_avion) * vitesse_relative
     return range_corrige
-
 
 def distance_entre_2_points(lat1, lon1, lat2, lon2):
     # Convertir les coordonnées degrés en radians
