@@ -18,18 +18,18 @@ get_windy_data(45.00 ,45.00)
 # -----peut etre definir une class pour le calcul GPS---------
 
 def range_plane(finesse, altitude, hauteur_aerodrome):  # calcul du range
-    range_theorique_plane = (altitude - hauteur_aerodrome) * finesse # on ne sait pas encore si on aura les altitudes des aerodromes
-    return range_theorique_plane 
+    range_theorique_plane = (altitude - hauteur_aerodrome) * finesse / 6076.12 # on ne sait pas encore si on aura les altitudes des aerodromes
+    return range_theorique_plane # en [nm]
 def conso_vitesse(vitesse_avion):
-    gph = 0.00160782 * vitesse_avion **(2) - 0.205136 * vitesse_avion + 9.88425
+    gph = 0.00160782 * vitesse_avion **(2) - 0.205136 * vitesse_avion + 9.88425 #exemple pour un cessna-152 entre 6000ft et 8000ft
     return gph
 
 def range_moteur(vitesse_avion , carburant_restant): # range = (gph / carburant restsant) * vitesse
     gph = conso_vitesse(vitesse_avion)
-    range_theorique = (gph / carburant_restant) * vitesse_avion # il vaut mieux utiliser les unités en Kts nm pck generalement les données sont dans ces unitées
+    range_theorique = (carburant_restant / gph) * vitesse_avion # il vaut mieux utiliser les unités en Kts nm pck generalement les données sont dans ces unitées
     return range_theorique
 
-def corriger_distance_franchissable(range_theorique, vitesse_avion, vitesse_vent, direction_vent):
+def correction_range(range_theorique, vitesse_avion, vitesse_vent, direction_vent):
     vent_x = vitesse_vent * math.cos(math.radians(direction_vent))
     vent_y = vitesse_vent * math.sin(math.radians(direction_vent))
 
