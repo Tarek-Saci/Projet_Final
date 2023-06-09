@@ -1,12 +1,16 @@
 # --------------------------------------valeurs de test input------------------------------------------
-
+moteur_avion = True
+carburant_restant = 15.7 # en gallons [gal]
+finesse = 12
 lat = 45.805
 lon = 47.555
-vitesse_avion = 200  # homogène au reste
-
+vitesse_avion = 150  # homogène au reste de preference en [Kts]
+altitude_avion = 6500 # en [ft]
+cap_avion = 32 # en [deg˚]
 # --------------------------------------valeurs de test windy------------------------------------------
 
-vitesse_vent = 20  # homogène au reste
+vitesse_vent = 20  # homogène au reste de preference en [Kts]
 direction_vent = 57  # Direction du vent en degrés
+hauteur_aerodrome = 423
 
 # -----------------------------------------------------------------------------------------------------
