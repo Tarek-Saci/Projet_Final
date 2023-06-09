@@ -21,6 +21,10 @@ def range_plane(finesse, altitude, hauteur_aerodrome):  # calcul du range
     range_theorique_plane = (altitude - hauteur_aerodrome) * finesse # on ne sait pas encore si on aura les altitudes des aerodromes
     return range_theorique_plane
 
+def range_moteur():
+    
+    return
+
 def corriger_distance_franchissable(range_theorique, vitesse_avion, vitesse_vent, direction_vent):
     vent_x = vitesse_vent * math.cos(math.radians(direction_vent))
     vent_y = vitesse_vent * math.sin(math.radians(direction_vent))
