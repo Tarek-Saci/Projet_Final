@@ -27,7 +27,7 @@ def conso_vitesse(vitesse_avion):
 
 def range_moteur(vitesse_avion , carburant_restant): # range = (gph / carburant restsant) * vitesse
     gph = conso_vitesse(vitesse_avion)
-    range_theorique = (gph / carburant_restant) * vitesse_avion # il vaut mieux utiliser les unités en Kts nm pck generalement les données sont dans ces unitées
+    range_theorique = (gph / carburant_restant) * vitesse_avion # il vaut mieux utiliser les unités en Kts nm pck generalement les données sont dans ses unitées
     return range_theorique
 
 def corriger_distance_franchissable(range_theorique, vitesse_avion, vitesse_vent, direction_vent):
