@@ -1,7 +1,7 @@
 from fonctions import *
 from deck import *
 
-#moteur_avion = False
+moteur_avion = False
 if moteur_avion:
     range_theorique = range_moteur(vitesse_avion,carburant_restant)
     print(f'range avec moteurs : {range_theorique} [nm]')
