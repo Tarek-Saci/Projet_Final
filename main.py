@@ -1,6 +1,22 @@
+# Importation des fichiers
 from fonctions import *
 from deck import *
+import Donnees as data
+from lecture_yaml import LecteurYAML
+from fonctions import *
 
+#-----------lecture du fichier des paramètres d'entrée-----------#
+
+# Création de l'objet YAML qui lit le fichier "deck.yamL"
+parser = LecteurYAML('deck.yaml')
+# Lecture du fichier avec la fonction read_yaml()
+parametres_init = parser.read_yaml()
+# On imprime le contenu qui a été lu
+print("Données brutes\n:" + str(parametres_init) + "\n")
+print("Types des données lues:\n" + str(type(parametres_init)) + "\n")
+print(parametres_init["position"]["latitude"])
+
+#-----------zone de test des fonctions-----------#
 moteur_avion = False
 if moteur_avion:
     range_theorique = range_moteur(vitesse_avion,carburant_restant)
