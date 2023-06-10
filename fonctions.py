@@ -13,7 +13,12 @@ def get_windy_data(lat , lon):
 
 get_windy_data(45.00 ,45.00)
 '''
-
+'''
+Prendre en entrée le nombre de point de cercle,
+pour chcun des points on a des coordonnées,
+recup les données du vent aux coordonnées voulues
+calculer pour chaque point la valeur de la range corrigée
+'''
 
 # -----peut etre definir une class pour le calcul GPS---------
 
