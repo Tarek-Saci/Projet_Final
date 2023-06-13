@@ -11,7 +11,7 @@ cap: 32
 vitesse: 150
 
 # Probleme du Moteur, oui (True) non (False)
-probleme_moteur: False
+moteur_avion: True
 
 # Quantite de carburant restant en gallons
 carburant_restant: 15.7
