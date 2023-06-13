@@ -1,7 +1,7 @@
 # Importation des fichiers
 import Donnees as data
 from LectureYAML import LecteurYAML
-from fonctions import *
+from fonction_range import *
 
 #-----------lecture du fichier des paramètres d'entrée-----------#
 
