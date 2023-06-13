@@ -51,6 +51,13 @@ class Performance:
     def range_plane(self, altitude, hauteur_aerodrome):  # calcul du range
         # --------de 0ft à 4000ft--------
         range_theorique_plane = (altitude - hauteur_aerodrome) * self.finesse / 6076.12 # on ne sait pas encore si on aura les altitudes des aerodromes
+        # --------de 4000ft à 6000ft--------
+
+        # --------de 6000ft à 8000ft--------
+
+        # --------de 8000ft à 10000ft--------
+
+        # --------de 10000ft à 12000ft--------
 
         return round(range_theorique_plane,3) # en [nm]
     def conso_vitesse(self):
