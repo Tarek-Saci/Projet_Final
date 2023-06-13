@@ -26,9 +26,9 @@ if moteur_avion:
     range_corrige = performence.correction_range()
     print(f'range corrigé : {range_corrige} [nm]')
 else:
-    range_theorique = range_plane(finesse,altitude_avion,hauteur_aerodrome)
+    range_theorique = performence.range_plane()
     print(f'range sans moteurs : {range_theorique} [nm]')
-    range_corrige = correction_range(range_theorique,vitesse_avion,vitesse_vent,direction_vent)
+    range_corrige = performence.correction_range()
     print(f'range corrigé : {range_corrige} [nm]')
 
 
