@@ -63,15 +63,27 @@ class Performance:
 
         elif 4000 <= self.altitude < 6000:
             gph = 0.00153755 * self.vitesse ** (2) - 0.182342 * self.vitesse + 8.56135
-            
+
         # --------de 6000ft à 8000ft--------
-        gph = 0.00160782 * self.vitesse ** (2) - 0.205136 * self.vitesse + 9.88425
+
+        elif 6000 <= self.altitude < 8000:
+            gph = 0.00160782 * self.vitesse ** (2) - 0.205136 * self.vitesse + 9.88425
+
         # --------de 8000ft à 10000ft--------
-        gph = 0.00168283 * self.vitesse ** (2) − 0.2278 * self.vitesse + 11.2253
+
+        elif 8000 <= self.altitude < 10000:
+            gph = 0.00168283 * self.vitesse ** (2) - 0.2278 * self.vitesse + 11.2253
+
         # --------de 10000ft à 12000ft--------
-        gph = 0.00211899 * self.vitesse ** (2) - 0.320033 * self.vitesse + 15.9161
+
+        elif 10000 <= self.altitude < 12000:
+            gph = 0.00211899 * self.vitesse ** (2) - 0.320033 * self.vitesse + 15.9161
+
         # --------de 12000ft à 14000ft--------
-        gph = 0.00101772 * self.vitesse ** (2) − 0.120151 * self.vitesse + 6.85233
+
+        elif 12000 <= self.altitude :
+            gph = 0.00101772 * self.vitesse ** (2) - 0.120151 * self.vitesse + 6.85233
+            
         return round(gph,3)
 
 
