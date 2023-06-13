@@ -49,20 +49,22 @@ class Performance:
         self.probleme_moteur = probleme_moteur
 
     def range_plane(self, altitude, hauteur_aerodrome):  # calcul du range
-        # --------de 0ft à 4000ft--------
         range_theorique_plane = (altitude - hauteur_aerodrome) * self.finesse / 6076.12 # on ne sait pas encore si on aura les altitudes des aerodromes
-        # --------de 4000ft à 6000ft--------
 
+        return round(range_theorique_plane,3) # en [nm]
+    def conso_vitesse(self):
+        # --------de 0ft à 4000ft--------
+        gph = 0.00160782 * self.vitesse **(2) - 0.205136 * self.vitesse + 9.88425 #exemple pour un cessna-152 entre 6000ft et 8000ft
+        0.00321894 * x ** (2) - 0.470747 * x + 20.9657
+        # --------de 4000ft à 6000ft--------
+        0.00153755 * x ** (2) - 0.182342 * x + 8.56135
         # --------de 6000ft à 8000ft--------
 
         # --------de 8000ft à 10000ft--------
 
         # --------de 10000ft à 12000ft--------
-
-        return round(range_theorique_plane,3) # en [nm]
-    def conso_vitesse(self):
-        gph = 0.00160782 * self.vitesse **(2) - 0.205136 * self.vitesse + 9.88425 #exemple pour un cessna-152 entre 6000ft et 8000ft
         return round(gph,3)
+
 
     def range_moteur(self): # range = (gph / carburant restsant) * vitesse
         gph = self.conso_vitesse(self.vitesse)
