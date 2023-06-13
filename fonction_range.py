@@ -41,9 +41,10 @@ class GPS:
         return round(distance,3)
 
 class Performance:
-    def __init__(self, finesse, vitesse, dist_roulage_mini,carburant_restant, probleme_moteur):
+    def __init__(self, finesse, vitesse, altitude, dist_roulage_mini,carburant_restant, probleme_moteur):
         self.finesse = finesse
         self.vitesse = vitesse
+        self.altitude = altitude
         self.dist_roulage_mini = dist_roulage_mini
         self.carburant = carburant_restant
         self.probleme_moteur = probleme_moteur
@@ -54,18 +55,23 @@ class Performance:
         return round(range_theorique_plane,3) # en [nm]
     def conso_vitesse(self):
         # --------de 0ft à 4000ft--------
-        gph = 0.00160782 * self.vitesse **(2) - 0.205136 * self.vitesse + 9.88425 #exemple pour un cessna-152 entre 6000ft et 8000ft
-        0.00321894 * x ** (2) - 0.470747 * x + 20.9657
+
+        if self.altitude < 4000:
+            gph = 0.00321894 * self.vitesse ** (2) - 0.470747 * self.vitesse + 20.9657
+
         # --------de 4000ft à 6000ft--------
-        0.00153755 * x ** (2) - 0.182342 * x + 8.56135
+
+        elif 4000 <= self.altitude < 6000:
+            gph = 0.00153755 * self.vitesse ** (2) - 0.182342 * self.vitesse + 8.56135
+            
         # --------de 6000ft à 8000ft--------
-        0.00160782 * x ** (2) - 0.205136 * x + 9.88425
+        gph = 0.00160782 * self.vitesse ** (2) - 0.205136 * self.vitesse + 9.88425
         # --------de 8000ft à 10000ft--------
-        0.00168283 * x ** (2)−0.2278 * x + 11.2253
+        gph = 0.00168283 * self.vitesse ** (2) − 0.2278 * self.vitesse + 11.2253
         # --------de 10000ft à 12000ft--------
-        0.00211899 * x ** (2) - 0.320033 * x + 15.9161
+        gph = 0.00211899 * self.vitesse ** (2) - 0.320033 * self.vitesse + 15.9161
         # --------de 12000ft à 14000ft--------
-        
+        gph = 0.00101772 * self.vitesse ** (2) − 0.120151 * self.vitesse + 6.85233
         return round(gph,3)
 
 
