@@ -1,6 +1,7 @@
-import requests
+import Requete_api
 import math
-from deck import *
+import numpy as np
+from deck_windy import *
 
 '''
 def get_windy_data(lat , lon):
@@ -12,8 +13,8 @@ def get_windy_data(lat , lon):
     print(data)
 
 get_windy_data(45.00 ,45.00)
-'''
-'''
+
+
 Prendre en entrée le nombre de point de cercle,
 pour chcun des points on a des coordonnées,
 recup les données du vent aux coordonnées voulues
@@ -22,12 +23,15 @@ calculer pour chaque point la valeur de la range corrigée
 
 # -----peut etre definir une class pour le calcul GPS---------
 
+
 def range_plane(finesse, altitude, hauteur_aerodrome):  # calcul du range
     range_theorique_plane = (altitude - hauteur_aerodrome) * finesse / 6076.12 # on ne sait pas encore si on aura les altitudes des aerodromes
     return range_theorique_plane # en [nm]
+
 def conso_vitesse(vitesse_avion):
     gph = 0.00160782 * vitesse_avion **(2) - 0.205136 * vitesse_avion + 9.88425 #exemple pour un cessna-152 entre 6000ft et 8000ft
     return gph
+
 
 def range_moteur(vitesse_avion , carburant_restant): # range = (gph / carburant restsant) * vitesse
     gph = conso_vitesse(vitesse_avion)
@@ -35,10 +39,10 @@ def range_moteur(vitesse_avion , carburant_restant): # range = (gph / carburant 
     return range_theorique
 
 def correction_range(range_theorique, vitesse_avion, vitesse_vent, direction_vent):
-    vent_x = vitesse_vent * math.cos(math.radians(direction_vent))
-    vent_y = vitesse_vent * math.sin(math.radians(direction_vent))
+    vent_x = vitesse_vent * np.cos(np.radians(direction_vent))
+    vent_y = vitesse_vent * np.sin(np.radians(direction_vent))
 
-    vitesse_relative = math.sqrt((vitesse_avion - vent_x)**2 + vent_y**2)
+    vitesse_relative = np.sqrt((vitesse_avion - vent_x)**2 + vent_y**2)
     range_corrige = (range_theorique / vitesse_avion) * vitesse_relative
     return range_corrige
 
