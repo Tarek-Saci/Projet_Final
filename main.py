@@ -1,7 +1,7 @@
 # Importation des fichiers
 import Donnees as data
 from LectureYAML import LecteurYAML
-from fonction_range import *
+from fonction_range import Performance
 
 #-----------lecture du fichier des paramètres d'entrée-----------#
 
@@ -16,11 +16,14 @@ print(parametres_init["position"]["latitude"])
 
 #-----------test de fonctions------------#
 
+performence = Performance()
+
+
 moteur_avion = False
 if moteur_avion:
-    range_theorique = range_moteur(vitesse_avion,carburant_restant)
+    range_theorique = performence.range_moteur()
     print(f'range avec moteurs : {range_theorique} [nm]')
-    range_corrige = correction_range(range_theorique,vitesse_avion,vitesse_vent,direction_vent)
+    range_corrige = performence.correction_range()
     print(f'range corrigé : {range_corrige} [nm]')
 else:
     range_theorique = range_plane(finesse,altitude_avion,hauteur_aerodrome)
