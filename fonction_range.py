@@ -83,7 +83,7 @@ class Performance:
 
         elif 12000 <= self.altitude :
             gph = 0.00101772 * self.vitesse ** (2) - 0.120151 * self.vitesse + 6.85233
-            
+
         return round(gph,3)
 
 
