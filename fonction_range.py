@@ -89,7 +89,7 @@ class Performance:
 
     def range_moteur(self): # range = (gph / carburant restsant) * vitesse
         gph = self.conso_vitesse(self.vitesse)
-        range_theorique = (self.carburant / gph) * self.vitesse # il vaut mieux utiliser les unités en Kts nm pck generalement les données sont dans ces unitées
+        range_theorique = (self.carburant / gph) * self.vitesse # il vaut mieux utiliser les unités en Kts et nm pck generalement les données sont dans ces unitées
         return round(range_theorique,3)
 
     def correction_range(self, range_theorique, vitesse_vent, direction_vent):
