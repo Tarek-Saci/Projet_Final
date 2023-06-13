@@ -1,4 +1,5 @@
 import Requete_api
+import numpy as np
 import math
 from Donnees import *
 
@@ -13,8 +14,10 @@ def get_windy_data(lat , lon):
 
 get_windy_data(45.00 ,45.00)
 '''
+
+
 class GPS:
-    def __init__(self, latitude,longitude,altitude,cap):
+    def __init__(self, latitude, longitude, altitude, cap):
         self.latitude = latitude
         self.longitude = longitude
         self.altitude = altitude
@@ -36,12 +39,13 @@ class GPS:
         # Calcul de la distance
         a = math.sin(diff_lat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(diff_lon / 2) ** 2
         c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
-        distance = self.rayon_terre * c * 0.001 # *1000 pour avoir des kilomètres
+        distance = self.rayon_terre * c * 0.001  # *1000 pour avoir des kilomètres
 
-        return round(distance,3)
+        return round(distance, 3)
+
 
 class Performance:
-    def __init__(self, finesse, vitesse, altitude, dist_roulage_mini,carburant_restant, probleme_moteur):
+    def __init__(self, finesse, vitesse, altitude, dist_roulage_mini, carburant_restant, probleme_moteur):
         self.finesse = finesse
         self.vitesse = vitesse
         self.altitude = altitude
@@ -50,9 +54,10 @@ class Performance:
         self.probleme_moteur = probleme_moteur
 
     def range_plane(self, altitude, hauteur_aerodrome):  # calcul du range
-        range_theorique_plane = (altitude - hauteur_aerodrome) * self.finesse / 6076.12 # on ne sait pas encore si on aura les altitudes des aerodromes
+        range_theorique_plane = (altitude - hauteur_aerodrome) * self.finesse / 6076.12  # on ne sait pas encore si on aura les altitudes des aerodromes
 
-        return round(range_theorique_plane,3) # en [nm]
+        return round(range_theorique_plane, 3)  # en [nm]
+
     def conso_vitesse(self):
         # --------de 0ft à 4000ft--------
 
@@ -84,21 +89,16 @@ class Performance:
         elif 12000 <= self.altitude:
             gph = 0.00101772 * self.vitesse ** (2) - 0.120151 * self.vitesse + 6.85233
 
-        return round(gph,3) # en gallon par heure
+        return round(gph, 3)  # en gallon par heure
 
+    def range_moteur(self):  # range = (gph / carburant restsant) * vitesse
+        gph = self.conso_vitesse()
+        range_theorique = (
+                                      self.carburant / gph) * self.vitesse  # il vaut mieux utiliser les unités en Kts et nm pck generalement les données sont dans ces unitées
+        return range_theorique
 
-    def range_moteur(self): # range = (gph / carburant restsant) * vitesse
-        gph = self.conso_vitesse(self.vitesse)
-        range_theorique = (self.carburant / gph) * self.vitesse # il vaut mieux utiliser les unités en Kts et nm pck generalement les données sont dans ces unitées
-        return round(range_theorique,3)
-
-    def correction_range(self, range_theorique, vitesse_vent, direction_vent):
-        vent_x = vitesse_vent * math.cos(math.radians(direction_vent))
-        vent_y = vitesse_vent * math.sin(math.radians(direction_vent))
-
-        vitesse_relative = math.sqrt((self.vitesse - vent_x)**2 + vent_y**2)
+    def correction_range(self, range_theorique, vents):
+        #                                           vent x              vent y
+        vitesse_relative = np.sqrt((self.vitesse - vents[:, 0]) ** 2 + vents[:, 1] ** 2)
         range_corrige = (range_theorique / self.vitesse) * vitesse_relative
-        return round(range_corrige,3)
-
-
-
+        return range_corrige
