@@ -1,8 +1,8 @@
 # Position GPS de l'avion
-position:
- latitude: 45.805
- longitude: 47.555
- altitude: 6500
+
+latitude: 45.805 #(°)
+longitude: 47.555 #(°)
+altitude: 6500 #ft
 
 # Cap en degrés
 cap: 32
