@@ -81,10 +81,10 @@ class Performance:
 
         # --------de 12000ft à 14000ft--------
 
-        elif 12000 <= self.altitude :
+        elif 12000 <= self.altitude:
             gph = 0.00101772 * self.vitesse ** (2) - 0.120151 * self.vitesse + 6.85233
 
-        return round(gph,3)
+        return round(gph,3) # en gallon par heure
 
 
     def range_moteur(self): # range = (gph / carburant restsant) * vitesse
