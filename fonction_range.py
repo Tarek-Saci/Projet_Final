@@ -98,30 +98,33 @@ class Performance:
         return round(gph, 3)  # en gallon par heure
 
     def angle_cap_vent(self, vecteur_vent, vecteur_theta):  # il faut essayer de vectoriser avec les tab numpy
-        norme_vent = math.sqrt(vecteur_vent[0] ** 2 + vecteur_vent[1] ** 2)
-        norme_theta = math.sqrt(vecteur_theta[0] ** 2 + vecteur_theta[1] ** 2)
-        produit_scalaire = vecteur_vent[0] * vecteur_theta[0] + vecteur_vent[1] * vecteur_theta[1]
-        angle_cap_vent_rad = math.acos(produit_scalaire / (norme_vent * norme_theta))
-        angle_cap_vent_deg = math.degrees(angle_cap_vent_rad)  # just au cas ou
+        norme_vent = np.sqrt(vecteur_vent[:,0] ** 2 + vecteur_vent[:,1] ** 2)
+        norme_theta = np.sqrt(vecteur_theta[:,0] ** 2 + vecteur_theta[:,1] ** 2)
+        produit_scalaire = vecteur_vent[:,0] * vecteur_theta[:,0] + vecteur_vent[:,1] * vecteur_theta[:,1]
+        angle_cap_vent_rad = np.arccos(produit_scalaire / (norme_vent * norme_theta))
+        angle_cap_vent_deg = np.rad2deg(angle_cap_vent_rad)  # just au cas ou
 
         return angle_cap_vent_rad
 
     def range_plane_reel(self,vecteur_vent, vecteur_theta):  # apres vctorisation de angle_cap_vent il faut transformer angle_cap_vent_rad en self.
-        vitesse_vent = math.sqrt(vecteur_vent[0] ** 2 + vecteur_vent[1] ** 2)
+        vitesse_vent = np.sqrt(vecteur_vent[:,0] ** 2 + vecteur_vent[:,1] ** 2)
+        print(vitesse_vent.shape)
         angle_cap_vent_rad = self.angle_cap_vent(vecteur_vent, vecteur_theta)
+        #print(f'angle cap vent rad : {angle_cap_vent_rad}')
         vitesse_sol = self.vitesse_plane + vitesse_vent * np.cos(angle_cap_vent_rad)  # il faut calculer le module du vecteur pour le remplacer dans vitese_vent
-        temps_vol = self.range_plane_theorique() / vitesse_sol
+        #print('vitesse sol : ',vitesse_sol)
+        temps_vol = self.range_plane_theorique() / self.vitesse_plane
+        #print(f'temps vol : {temps_vol}')
         range_plane_reel = vitesse_sol * temps_vol
         return range_plane_reel
 
     def range_moteur_reel(self,vecteur_vent, vecteur_theta):  # apres vctorisation de angle_cap_vent il faut transformer angle_cap_vent_rad en self.
         angle_cap_vent_rad = self.angle_cap_vent(vecteur_vent , vecteur_theta)
-        vitesse_vent = math.sqrt(vecteur_vent[0]**2 + vecteur_vent[1]**2 )
-        print(f'angle cap vent rad : {angle_cap_vent_rad}')
+        print(nombre_points)
+        vitesse_vent = np.sqrt(vecteur_vent[:,0]**2 + vecteur_vent[:,1]**2 )
         vitesse_sol = self.vitesse + vitesse_vent * np.cos(angle_cap_vent_rad)  # il faut calculer le module du vecteur pour le remplacer dans vitese_vent
-        print(f'vitesse sol : {vitesse_sol}')
         temps_vol = self.carburant / self.conso_vitesse()
-        print(f'temps vol : {temps_vol}')
+
         range_moteur_reel = vitesse_sol * temps_vol
         return range_moteur_reel
 
