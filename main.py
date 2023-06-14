@@ -12,7 +12,7 @@ parametres_init = parser.read_yaml()
 
 # ---------- INFORMATIONS AEROPORT.CSV ---------- #
 
-df = pd.read_csv("C:\\Users\\natha\\PycharmProjects\\test_cartopy\\Aeroport.csv")
+df = pd.read_csv("Aeroport.csv")
 colonnes_souhaitees = ['objectid', 'nomcarto', 'codeindic', 'typeinfras', 'nbrpiste', 'longpiste2',
                        'surface', 'latitude', 'longitude', 'acces']
 df_colonnes = df[colonnes_souhaitees]

@@ -163,7 +163,7 @@ def cercle_range(range_avion,avion):
     rayon_deg = range_avion / conversion_kilometre_degre
     print(f'Rayon : {rayon_deg}')
     angles_degrees = []
-    nombre_segments = 9
+    nombre_segments = 20
     nombre_points = nombre_segments - 1
     # Génération des points le long du cercle
     angles = np.linspace(0, 2 * np.pi, nombre_segments)
