@@ -4,13 +4,16 @@ from vent import get_windy_data
 from transforme_data import flatten_json
 from altitude_pression import calcul_altitude_pression
 
-# Fonction permettant de déterminer le vecteur vitesse du vent à une position et une altitude donnée
-# L'altitude doit être entrée en mètres
-# La position géographique doit être repérée par des coordonnées GPS (latitude, longitude).
-# La latitude doit être un flottant compris entre -89.99° et 90° tandis que la longitude peut être un flottant quelconque
-
 def calcul_vent(lat, lon, altitude):
+    """Cette fonction permet de déterminer le vecteur vitesse du vent en un point précis du globe (coordonnées GPS et altitude) en temps réel
 
+    Paramètres d'entrée:
+    lat -- latitude du point recherché : flottant compris entre -89.99° et 90°
+    lon -- longitude du point recherché : flottant quelconque
+    altitude -- altitude du point recherché (en m) : flottant positif
+
+    Renvoie un vecteur vent avec une composante horizontale et une composante verticale
+    """
     # Récupération des données dans la base de données de Windy
     meteo = get_windy_data(lat, lon)
 

@@ -1,5 +1,12 @@
 # recursive function to flatten nested fields
 def flatten_json(data, prefix=''):
+    """Cette fonction permet d'applatir la base de données
+
+    Keyword arguments:
+    data -- base de données au format json non applatie
+
+    Renvoie une base de données applatie
+    """
     if isinstance(data, dict):
         flattened = {}
         for key, value in data.items():

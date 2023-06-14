@@ -1,7 +1,14 @@
-#Ce programme permet d'obtenir en temps réel les données météorologiques en un point donné
-#Ce point doit être repéré par ses coordonnées GPS (latitude, longitude). La latitude doit être un flottant
-# compris entre -89.99° et 90° tandis que la longitude peut être un flottant quelconque
+
 def get_windy_data(lat, lon):
+    """Cette fonction permet d'obtenir en temps réel les données
+    météorologiques en un point donné à partir du site Windy.com.
+
+    Keyword arguments:
+    lat -- latitude du point recherché : flottant compris entre -89.99° et 90°
+    lon -- longitude du point recherché : flottant quelconque
+
+    Renvoie une base de données météorologiques
+    """
     url_base = "https://node.windy.com/forecast/meteogram/ecmwf/"
     url_request = url_base + str(lat) + "/" + str(lon)
     import urllib.request, json
