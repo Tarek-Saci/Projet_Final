@@ -1,0 +1,23 @@
+# Position GPS de l'avion
+
+latitude: 49.916964 #(°)
+longitude: -69.838681 #(°)
+altitude: 16404.2 #ft
+
+# Cap en degrés
+cap: 32
+
+# Vitesse en noeuds
+vitesse: 150
+
+# Probleme du Moteur, oui (True) non (False)
+moteur_avion: True
+
+# Quantite de carburant restant en gallons
+carburant_restant: 15.7
+
+# Distance de roulage minimum en pied (ft)
+dist_roulage_mini: 5000
+
+# Finesse de l'avion
+finesse: 12
