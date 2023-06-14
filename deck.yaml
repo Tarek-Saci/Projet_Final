@@ -10,6 +10,9 @@ cap: 32
 # Vitesse en noeuds
 vitesse: 150
 
+# Vitesse de vol plané
+vitesse_plane: 65
+
 # Probleme du Moteur, oui (True) non (False)
 moteur_avion: True
 

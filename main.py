@@ -2,6 +2,7 @@
 import Donnees
 from LectureYAML import LecteurYAML
 from fonction_range import Performance
+import numpy as np
 
 #-----------lecture du fichier des paramètres d'entrée-----------#
 

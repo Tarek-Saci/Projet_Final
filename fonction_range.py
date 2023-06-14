@@ -45,18 +45,26 @@ class GPS:
 
 
 class Performance:
-    def __init__(self, finesse, vitesse, altitude, dist_roulage_mini, carburant_restant, probleme_moteur):
+    def __init__(self, finesse, vitesse, vitesse_plane, altitude, dist_roulage_mini, carburant_restant,
+                 probleme_moteur):
         self.finesse = finesse
         self.vitesse = vitesse
         self.altitude = altitude
         self.dist_roulage_mini = dist_roulage_mini
         self.carburant = carburant_restant
         self.probleme_moteur = probleme_moteur
+        self.vitesse_plane = vitesse_plane
+        self.vitesse_vent = vitesse_vent
 
-    def range_plane(self, altitude, hauteur_aerodrome):  # calcul du range
-        range_theorique_plane = (altitude - hauteur_aerodrome) * self.finesse / 6076.12  # on ne sait pas encore si on aura les altitudes des aerodromes
-
+    def range_plane_theorique(self):  # calcul du range
+        range_theorique_plane = self.altitude * self.finesse / 6076.12  # on ne sait pas encore si on aura les altitudes des aerodromes
         return round(range_theorique_plane, 3)  # en [nm]
+
+    def range_moteur_theorique(self):  # range = (gph / carburant restsant) * vitesse
+        gph = self.conso_vitesse()
+        range_theorique = (
+                                      self.carburant / gph) * self.vitesse  # il vaut mieux utiliser les unités en Kts et nm pck generalement les données sont dans ces unitées
+        return range_theorique
 
     def conso_vitesse(self):
         # --------de 0ft à 4000ft--------
@@ -91,14 +99,33 @@ class Performance:
 
         return round(gph, 3)  # en gallon par heure
 
-    def range_moteur(self):  # range = (gph / carburant restsant) * vitesse
-        gph = self.conso_vitesse()
-        range_theorique = (
-                                      self.carburant / gph) * self.vitesse  # il vaut mieux utiliser les unités en Kts et nm pck generalement les données sont dans ces unitées
-        return range_theorique
+    def angle_cap_vent(self, vecteur_vent, vecteur_theta):  # il faut essayer de vectoriser avec les tab numpy
+        norme_vent = math.sqrt(vecteur_vent[0] ** 2 + vecteur_vent[1] ** 2)
+        norme_theta = math.sqrt(vecteur_theta[0] ** 2 + vecteur_theta[1] ** 2)
+        produit_scalaire = vecteur_vent[0] * vecteur_theta[0] + vecteur_vent[1] * vecteur_theta[1]
+        angle_cap_vent_rad = math.acos(produit_scalaire / (norme_vent * norme_theta))
+        angle_cap_vent_deg = math.degrees(angle_cap_vent_rad)  # just au cas ou
 
+        return angle_cap_vent_rad
+
+    def range_plane_reel(self,angle_cap_vent_rad):  # apres vctorisation de angle_cap_vent il faut transformer angle_cap_vent_rad en self.
+        vitesse_sol = self.vitesse_plane - self.vitesse_vent * np.cos(angle_cap_vent_rad)  # il faut calculer le module du vecteur pour le remplacer dans vitese_vent
+        temps_vol = self.range_plane_theorique() / vitesse_sol
+        range_plane_reel = vitesse_sol * temps_vol
+        return range_plane_reel
+
+    def range_moteur_reel(self,angle_cap_vent_rad):  # apres vctorisation de angle_cap_vent il faut transformer angle_cap_vent_rad en self.
+        vitesse_sol = self.vitesse - self.vitesse_vent * np.cos(angle_cap_vent_rad)  # il faut calculer le module du vecteur pour le remplacer dans vitese_vent
+        temps_vol = self.conso_vitesse()/self.carburant
+        range_moteur_reel = vitesse_sol * temps_vol
+        return range_moteur_reel
+
+
+"""
     def correction_range(self, range_theorique, vents):
         #                                           vent x              vent y
         vitesse_relative = np.sqrt((self.vitesse - vents[:, 0]) ** 2 + vents[:, 1] ** 2)
         range_corrige = (range_theorique / self.vitesse) * vitesse_relative
+
         return range_corrige
+"""
