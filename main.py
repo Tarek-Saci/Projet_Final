@@ -1,5 +1,5 @@
 # Importation des fichiers
-import Donnees
+from Donnees import*
 from LectureYAML import LecteurYAML
 from fonction_range import Performance
 import numpy as np
@@ -25,12 +25,12 @@ performence = Performance(params["finesse"],params["vitesse"],params["vitesse_pl
 if params["moteur_avion"]:
     range_theorique = performence.range_moteur_theorique()
     print(f'range avec moteurs : {range_theorique} [nm]')
-    range_corrige = performence.range_moteur_reel([-10,-10],[50,50])
+    range_corrige = performence.range_moteur_reel(vents,theta)
     print(f'range corrigé : {range_corrige} [nm]')
 else:
-    range_theorique = performence.range_plane()
+    range_theorique = performence.range_plane_theorique()
     print(f'range sans moteurs : {range_theorique} [nm]')
-    range_corrige = performence.correction_range(range_theorique,Donnees.vents)
+    range_corrige = performence.range_plane_reel(vents ,theta)
     print(f'range corrigé : {range_corrige} [nm]')
 
 
