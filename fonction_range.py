@@ -45,16 +45,15 @@ class GPS:
 
 
 class Performance:
-    def __init__(self, finesse, vitesse, vitesse_plane, altitude, dist_roulage_mini, carburant_restant,
-                 probleme_moteur):
+    def __init__(self, finesse, vitesse, vitesse_plane, altitude, dist_roulage_mini, carburant_restant, moteur_avion):
         self.finesse = finesse
         self.vitesse = vitesse
         self.altitude = altitude
         self.dist_roulage_mini = dist_roulage_mini
         self.carburant = carburant_restant
-        self.probleme_moteur = probleme_moteur
+        self.moteur_avion = moteur_avion
         self.vitesse_plane = vitesse_plane
-        self.vitesse_vent = vitesse_vent
+
 
     def range_plane_theorique(self):  # calcul du range
         range_theorique_plane = self.altitude * self.finesse / 6076.12  # on ne sait pas encore si on aura les altitudes des aerodromes
@@ -62,8 +61,7 @@ class Performance:
 
     def range_moteur_theorique(self):  # range = (gph / carburant restsant) * vitesse
         gph = self.conso_vitesse()
-        range_theorique = (
-                                      self.carburant / gph) * self.vitesse  # il vaut mieux utiliser les unités en Kts et nm pck generalement les données sont dans ces unitées
+        range_theorique = (self.carburant / gph) * self.vitesse  # il vaut mieux utiliser les unités en Kts et nm pck generalement les données sont dans ces unitées
         return range_theorique
 
     def conso_vitesse(self):
@@ -108,15 +106,22 @@ class Performance:
 
         return angle_cap_vent_rad
 
-    def range_plane_reel(self,angle_cap_vent_rad):  # apres vctorisation de angle_cap_vent il faut transformer angle_cap_vent_rad en self.
-        vitesse_sol = self.vitesse_plane - self.vitesse_vent * np.cos(angle_cap_vent_rad)  # il faut calculer le module du vecteur pour le remplacer dans vitese_vent
+    def range_plane_reel(self,vecteur_vent, vecteur_theta):  # apres vctorisation de angle_cap_vent il faut transformer angle_cap_vent_rad en self.
+        vitesse_vent = math.sqrt(vecteur_vent[0] ** 2 + vecteur_vent[1] ** 2)
+        angle_cap_vent_rad = self.angle_cap_vent(vecteur_vent, vecteur_theta)
+        vitesse_sol = self.vitesse_plane + vitesse_vent * np.cos(angle_cap_vent_rad)  # il faut calculer le module du vecteur pour le remplacer dans vitese_vent
         temps_vol = self.range_plane_theorique() / vitesse_sol
         range_plane_reel = vitesse_sol * temps_vol
         return range_plane_reel
 
-    def range_moteur_reel(self,angle_cap_vent_rad):  # apres vctorisation de angle_cap_vent il faut transformer angle_cap_vent_rad en self.
-        vitesse_sol = self.vitesse - self.vitesse_vent * np.cos(angle_cap_vent_rad)  # il faut calculer le module du vecteur pour le remplacer dans vitese_vent
-        temps_vol = self.conso_vitesse()/self.carburant
+    def range_moteur_reel(self,vecteur_vent, vecteur_theta):  # apres vctorisation de angle_cap_vent il faut transformer angle_cap_vent_rad en self.
+        angle_cap_vent_rad = self.angle_cap_vent(vecteur_vent , vecteur_theta)
+        vitesse_vent = math.sqrt(vecteur_vent[0]**2 + vecteur_vent[1]**2 )
+        print(f'angle cap vent rad : {angle_cap_vent_rad}')
+        vitesse_sol = self.vitesse + vitesse_vent * np.cos(angle_cap_vent_rad)  # il faut calculer le module du vecteur pour le remplacer dans vitese_vent
+        print(f'vitesse sol : {vitesse_sol}')
+        temps_vol = self.carburant / self.conso_vitesse()
+        print(f'temps vol : {temps_vol}')
         range_moteur_reel = vitesse_sol * temps_vol
         return range_moteur_reel
 
