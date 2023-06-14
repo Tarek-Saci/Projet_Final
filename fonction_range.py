@@ -1,19 +1,8 @@
-import Requete_api
+
 import numpy as np
 import math
 from Donnees import *
 
-'''
-def get_windy_data(lat , lon):
-    url_base = "https://node.windy.com/forecast/meteogram/ecmwf/"
-    url_request = url_base + str(lat) + "/" + str(lon)
-    import urllib.request, json
-    with urllib.requete_api.urlopen(url_request) as url:
-        data = json.load(url)
-    print(data)
-
-get_windy_data(45.00 ,45.00)
-'''
 
 
 class GPS:
@@ -128,12 +117,3 @@ class Performance:
         range_moteur_reel = vitesse_sol * temps_vol
         return range_moteur_reel
 
-
-"""
-    def correction_range(self, range_theorique, vents):
-        #                                           vent x              vent y
-        vitesse_relative = np.sqrt((self.vitesse - vents[:, 0]) ** 2 + vents[:, 1] ** 2)
-        range_corrige = (range_theorique / self.vitesse) * vitesse_relative
-
-        return range_corrige
-"""
