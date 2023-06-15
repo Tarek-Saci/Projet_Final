@@ -1,7 +1,8 @@
 # Position GPS de l'avion
 
-latitude: 46.916964 #(°)
-longitude: -70.838681 #(°)
+latitude: 49.826251 #(°)
+longitude: -72.142587 #(°)
+
 altitude: 16404.2 #ft
 
 # Cap en degrés
@@ -9,6 +10,9 @@ cap: 23
 
 # Vitesse en noeuds
 vitesse: 150
+
+# Vitesse de vol plané
+vitesse_plane: 65
 
 # Probleme du Moteur, oui (True) non (False)
 moteur_avion: False
