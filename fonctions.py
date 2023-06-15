@@ -5,6 +5,7 @@ import math
 import pandas as pd
 import datetime
 import re
+from Donnees import*
 
 #Ce programme permet d'obtenir en temps réel les données météorologiques en un point donné
 #Ce point doit être repéré par ses coordonnées GPS (latitude, longitude). La latitude doit être un flottant
@@ -104,9 +105,11 @@ def calcul_vent(lat, lon, altitude):
 
     return vecteur_vent
 
-print('Vecteur vent : ', calcul_vent(-23,204,8000))
-
-def affichage_carte(aerodromes,avion,lons,lats,lons_in_range,lats_in_range,lons_in_range_in_size,lats_in_range_in_size):
+def affichage_carte(aerodromes,avion,parametres_init,lons,lats,
+                    lons_in_range,lats_in_range,
+                    lons_in_range_in_size,lats_in_range_in_size,
+                    lons_reel,lats_reel,
+                    lon_aerodrome_plus_proche,lat_aerodrome_plus_proche):
 
     # Création de la carte
     m = Basemap(projection='merc', llcrnrlat=44, urcrnrlat=65, llcrnrlon=-82, urcrnrlon=-54, resolution='i')
@@ -131,14 +134,37 @@ def affichage_carte(aerodromes,avion,lons,lats,lons_in_range,lats_in_range,lons_
     x_in_range_in_size, y_in_range_in_size = m(lons_in_range_in_size,lats_in_range_in_size)
     m.plot(x_in_range_in_size, y_in_range_in_size, 'go', markersize=3)
 
+    m.drawgreatcircle(avion.longitude, avion.latitude, lon_aerodrome_plus_proche, lat_aerodrome_plus_proche, linewidth=1, color='m')
+
+    x_aerodrome_plus_proche, y_aerodrome_plus_proche = m(lon_aerodrome_plus_proche, lat_aerodrome_plus_proche)
+    m.plot(x_aerodrome_plus_proche, y_aerodrome_plus_proche, 'mo', markersize=3)
+
     x_avion, y_avion = m(avion.longitude, avion.latitude)
     m.plot(x_avion, y_avion, 'yo', markersize=5)
 
     # Conversion des coordonnées en coordonnées de la carte
     x, y = m(lons,lats)
 
+    lons_reel = np.concatenate((lons_reel, np.array([lons_reel[0]])))
+    lats_reel = np.concatenate((lats_reel, np.array([lats_reel[0]])))
+
+    x_reel,y_reel = m(lons_reel,lats_reel)
+
+    # Tracé du cercle reel sur la carte
+    m.plot(x_reel,y_reel, 'g-', linewidth=1)
     # Tracé du cercle sur la carte
     m.plot(x, y, 'b-', linewidth=1)
+
+
+    """lon_depart, lat_depart = avion.longitude, avion.latitude
+    norme = 0.0001
+    angle_rad = np.radians(45)
+    dx = norme * np.cos(angle_rad)
+    dy = norme * np.sin(angle_rad)
+    x_depart, y_depart = m(lon_depart, lat_depart)
+    x_arrow = x_depart + dx
+    y_arrow = y_depart + dy
+    plt.arrow(x_depart, y_depart, x_arrow,y_arrow, color='red', width=1)"""
 
     plt.show()
 
@@ -158,15 +184,14 @@ def calcul_entre_deux_coordonnees(point1,lat2,lon2):
 
 def cercle_range(range_avion,avion):
     # Conversion du rayon en degrés approximatifs (à une latitude moyenne)
-    conversion_kilometre_degre = 111  # Approximation pour une latitude moyenne
 
-    rayon_deg = range_avion / conversion_kilometre_degre
-    print(f'Rayon : {rayon_deg}')
+    conversion_kilometre_degre = 111  # Approximation pour une latitude moyenne
+    rayon_kilometre = range_avion * 1.852
+    rayon_deg = rayon_kilometre / conversion_kilometre_degre
+    print(f'Rayon : {rayon_kilometre}')
     angles_degrees = []
-    nombre_segments = 9
-    nombre_points = nombre_segments - 1
+
     # Génération des points le long du cercle
-    angles = np.linspace(0, 2 * np.pi, nombre_segments)
     for i in range (0,len(angles)):
         angles_degrees.append(math.degrees(angles[i]))
 
@@ -174,9 +199,28 @@ def cercle_range(range_avion,avion):
     lats = avion.latitude + rayon_deg * np.sin(angles)
     print(f'Lats : {lats}')
     print(f'Lons : {lons}')
-    coordonnes_sur_cercle = zip(lats, lons)
 
-    return coordonnes_sur_cercle,lons,lats
+    return lons,lats
+
+def cercle_range_reel(range_avion_reel,avion):
+    # Conversion du rayon en degrés approximatifs (à une latitude moyenne)
+
+    conversion_kilometre_degre = 111  # Approximation pour une latitude moyenne
+    rayon_kilometre = range_avion_reel * 1.852
+    rayon_deg = rayon_kilometre / conversion_kilometre_degre
+    print(f'Rayon : {rayon_kilometre}')
+    angles_degrees = []
+
+    # Génération des points le long du cercle
+    for i in range (0,len(angles)):
+        angles_degrees.append(math.degrees(angles[i]))
+
+    lons_reel = avion.longitude + rayon_deg * np.cos(angles_points)
+    lats_reel = avion.latitude + rayon_deg * np.sin(angles_points)
+    print(f'Lats : {lons_reel}')
+    print(f'Lons : {lats_reel}')
+
+    return lons_reel,lats_reel
 
 def is_left(a, b, c):
     return (b[0] - a[0]) * (c[1] - a[1]) - (c[0] - a[0]) * (b[1] - a[1])
