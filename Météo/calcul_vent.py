@@ -2,7 +2,7 @@ import pandas as pd
 import datetime
 from vent import get_windy_data
 from transforme_data import flatten_json
-from altitude_pression import calcul_altitude_pression
+from Météo.altitude_pression import calcul_altitude_pression
 
 # Fonction permettant de déterminer le vecteur vitesse du vent à une position et une altitude donnée
 # L'altitude doit être entrée en mètres
