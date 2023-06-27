@@ -185,7 +185,7 @@ def calcul_entre_deux_coordonnees(point1,lat2,lon2):
 def cercle_range(range_avion,avion):
     # Conversion du rayon en degrés approximatifs (à une latitude moyenne)
 
-    conversion_kilometre_degre = 111  # Approximation pour une latitude moyenne
+    conversion_kilometre_degre = 78.567  # Approximation pour une latitude moyenne
     rayon_kilometre = range_avion * 1.852
     rayon_deg = rayon_kilometre / conversion_kilometre_degre
     print(f'Rayon : {rayon_kilometre}')
@@ -205,7 +205,7 @@ def cercle_range(range_avion,avion):
 def cercle_range_reel(range_avion_reel,avion):
     # Conversion du rayon en degrés approximatifs (à une latitude moyenne)
 
-    conversion_kilometre_degre = 111  # Approximation pour une latitude moyenne
+    conversion_kilometre_degre = 78.567  # Approximation pour une latitude moyenne
     rayon_kilometre = range_avion_reel * 1.852
     rayon_deg = rayon_kilometre / conversion_kilometre_degre
     print(f'Rayon : {rayon_kilometre}')
