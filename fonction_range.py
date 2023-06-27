@@ -4,11 +4,12 @@ import math
 from Donnees import *
 
 class GPS:
-    def __init__(self, latitude, longitude, altitude, cap):
+    def __init__(self, latitude, longitude, altitude, cap, temperature): #-------il faut ajouter la temperature a la position de l'avion---
         self.latitude = latitude
         self.longitude = longitude
         self.altitude = altitude
         self.cap = math.radians(cap)
+        self.temperature = temperature # la temperature en temps reel de windy a la position de l'avion
         # Rayon de la Terre en mètres
         self.rayon_terre = 6371 * 1000  # En mètres
 
@@ -51,10 +52,10 @@ class Performance:
         return range_theorique
 
     def conso_vitesse(self):
-        temperature = 20 # la temperature que temps reel de windy
-        temperature_standard = 20 # la temperature de l'atmosphere standard a l'altitude de l'avion (il faut faire une fonction qui la calcule)
 
-        if temperature <= temperature_standard - 20:
+        temperature_standard = 15 - ((self.altitude)/1000) * 1.98 # la temperature de l'atmosphere standard a l'altitude de l'avion
+
+        if self.temperature <= temperature_standard - 20:
             # --------de 0ft à 4000ft--------
             if self.altitude < 4000:
                 gph = 0.0026818 * self.vitesse ** (2) - 0.375808 * self.vitesse + 16.9344
@@ -75,7 +76,7 @@ class Performance:
                 gph = 0.00143385 * self.vitesse ** (2) - 0.190828 * self.vitesse + 9.90546
 
 
-        elif temperature >= temperature_standard +20:
+        elif self.temperature >= temperature_standard +20:
             # --------de 0ft à 4000ft--------
             if self.altitude < 4000:
                 gph = 0.00114547 * self.vitesse ** (2) - 0.119198 * self.vitesse + 6.06263
