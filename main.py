@@ -39,7 +39,9 @@ aerodromes = vecteur_creer_aerodrome(objectid_array, nomcarto_array, codeindic_a
                                      surface_array, latitude_array, longitude_array, acces_array)
 
 # ---------- CALCUL PERFORMANCE DE L'AVION ---------- #
+
 air = Air(parametres_init["latitude"],parametres_init["longitude"],parametres_init["altitude"])
+
 performance = Performance(parametres_init["finesse"],parametres_init["vitesse"],
                           parametres_init["vitesse_plane"],parametres_init["altitude"],
                           parametres_init["dist_roulage_mini"],parametres_init["carburant_restant"],

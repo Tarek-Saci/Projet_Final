@@ -13,8 +13,10 @@ vitesse: 150
 # Vitesse de vol plané
 vitesse_plane: 65
 
-# Moteur encore disponible, oui (True) non (False)
-moteur_avion: False
+
+# Probleme du Moteur, oui (True) non (False)
+moteur_avion: True
+
 
 
 # Quantite de carburant restant en gallons
