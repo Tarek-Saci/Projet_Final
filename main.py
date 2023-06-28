@@ -118,8 +118,7 @@ if len(distance) != 0:
     print(new_cap)
 else:
     print("VOUS ETES DANS UNE SITUATION DELICATE ! :'(")
-    lon_aerodrome_plus_proche = avion.longitude
-    lat_aerodrome_plus_proche = avion.latitude
+
 # ---------- AFFICHAGE DE LA CARTE FINALE ---------- #
 
 SolutionAtterrissage.affichage_carte(aerodromes,avion,parametres_init,
