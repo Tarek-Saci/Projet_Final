@@ -123,7 +123,7 @@ def calcul_temperature(lat, lon, altitude):
     # flatten the JSON
     flattened = flatten_json(meteo)
     df = pd.DataFrame([flattened])
-
+    #print(df.loc[:, ['wind_u-250h_2']])
     # Détermination de l'heure répertoriée la plus proche de l'heure actuelle
     data_hours = df.filter(like="data_hours")
 
@@ -155,11 +155,13 @@ def calcul_temperature(lat, lon, altitude):
 
     # Récupération des données recherchées dans la database
     if altitude_database != 1013.25:
-        temperature = df[f'temp-{altitude_database}h_{i}']
+        temperature = df[f'data_temp-{altitude_database}h_{i}']
     else:
-        temperature = df[f'temp-surface_{i}']
+        temperature = df[f'data_temp-surface_{i}']
 
-    return temperature
+    temperature_vrai=temperature.iloc[0]
+
+    return temperature_vrai
 
 print('Vecteur vent : ', calcul_vent(-23,204,8000))
 
@@ -283,3 +285,6 @@ def calcul_new_cap (lat_avion, longi_avion, lat_aerodrome,longi_aerodrome) :
     azimut_deg = azimut_rad*(180/np.pi)
 
     return azimut_deg
+
+
+print(calcul_temperature(10,20,10000))
