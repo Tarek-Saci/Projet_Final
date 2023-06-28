@@ -270,3 +270,4 @@ def calcul_new_cap (lat_avion, longi_avion, lat_aerodrome,longi_aerodrome) :
     azimut_deg = azimut_rad*(180/np.pi)
 
     return azimut_deg
+
