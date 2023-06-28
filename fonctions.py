@@ -1,5 +1,5 @@
 from mpl_toolkits.basemap import Basemap
-import numpy as np
+from shapely.geometry import LineString
 import matplotlib.pyplot as plt
 import math
 import pandas as pd
@@ -109,10 +109,30 @@ def affichage_carte(aerodromes,avion,parametres_init,lons,lats,
                     lons_in_range,lats_in_range,
                     lons_in_range_in_size,lats_in_range_in_size,
                     lons_reel,lats_reel,
-                    lon_aerodrome_plus_proche,lat_aerodrome_plus_proche):
+                    lon_aerodrome_plus_proche,lat_aerodrome_plus_proche,new_cap):
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
+
+    if avion.longitude != lon_aerodrome_plus_proche :
+        ax1.text(0, 0.9, f'Latitude avion =  {avion.latitude} ', fontsize=11, color='goldenrod')
+        ax1.text(0, 0.85, f'Longitude avion = {avion.longitude} ', fontsize=11, color='goldenrod')
+        ax1.text(0, 0.75, 'Aérodromes hors de portée', fontsize=11, color='red')
+        ax1.text(0, 0.65, 'Aérodromes à portée', fontsize=11, color='blue')
+        ax1.text(0, 0.55, 'Aérodromes à portée et avec une piste ', fontsize=11, color='green')
+        ax1.text(0, 0.50, "d'atterrissage suffisamment longue", fontsize=11, color='green')
+        ax1.text(0, 0.40, f'Latitude aéroport le plus proche = {lat_aerodrome_plus_proche} ', fontsize=11, color='darkmagenta')
+        ax1.text(0, 0.35, f'Longitude aéroport le plus proche = {lon_aerodrome_plus_proche} ', fontsize=11, color='darkmagenta')
+        ax1.text(0, 0.25, f'Nouveau cap à prendre = {new_cap} ', fontsize=11, color='darkmagenta')
+    else:
+        ax1.text(0, 0.9, f'Latitude avion =  {avion.latitude} ', fontsize=11, color='goldenrod')
+        ax1.text(0, 0.85, f'Longitude avion = {avion.longitude} ', fontsize=11, color='goldenrod')
+        ax1.text(0, 0.75, 'Aérodromes hors de portée', fontsize=11, color='red')
+        ax1.text(0, 0.65,"Il n'y a pas d'aérodrome à votre portée où", fontsize=11, color='black')
+        ax1.text(0, 0.60,"vous pouvez atterrir en toute sécurité.", fontsize=11, color='black')
+    ax1.axis('off')  # Désactiver les axes
 
     # Création de la carte
-    m = Basemap(projection='merc', llcrnrlat=44, urcrnrlat=65, llcrnrlon=-82, urcrnrlon=-54, resolution='i')
+    m = Basemap(ax = ax2, projection='merc', llcrnrlat=44, urcrnrlat=63, llcrnrlon=-82, urcrnrlon=-54, resolution='i')
     m.drawcoastlines()
     m.fillcontinents(color='peachpuff',lake_color='skyblue')
     # Affichage de la carte
@@ -134,7 +154,8 @@ def affichage_carte(aerodromes,avion,parametres_init,lons,lats,
     x_in_range_in_size, y_in_range_in_size = m(lons_in_range_in_size,lats_in_range_in_size)
     m.plot(x_in_range_in_size, y_in_range_in_size, 'go', markersize=3)
 
-    m.drawgreatcircle(avion.longitude, avion.latitude, lon_aerodrome_plus_proche, lat_aerodrome_plus_proche, linewidth=1, color='m')
+    if avion.longitude != lon_aerodrome_plus_proche :
+        m.drawgreatcircle(avion.longitude, avion.latitude, lon_aerodrome_plus_proche, lat_aerodrome_plus_proche, linewidth=1, color='m')
 
     x_aerodrome_plus_proche, y_aerodrome_plus_proche = m(lon_aerodrome_plus_proche, lat_aerodrome_plus_proche)
     m.plot(x_aerodrome_plus_proche, y_aerodrome_plus_proche, 'mo', markersize=3)
@@ -155,17 +176,6 @@ def affichage_carte(aerodromes,avion,parametres_init,lons,lats,
     # Tracé du cercle sur la carte
     m.plot(x, y, 'b-', linewidth=1)
 
-
-    """lon_depart, lat_depart = avion.longitude, avion.latitude
-    norme = 0.0001
-    angle_rad = np.radians(45)
-    dx = norme * np.cos(angle_rad)
-    dy = norme * np.sin(angle_rad)
-    x_depart, y_depart = m(lon_depart, lat_depart)
-    x_arrow = x_depart + dx
-    y_arrow = y_depart + dy
-    plt.arrow(x_depart, y_depart, x_arrow,y_arrow, color='red', width=1)"""
-
     plt.show()
 
 def calcul_entre_deux_coordonnees(point1,lat2,lon2):
@@ -185,10 +195,9 @@ def calcul_entre_deux_coordonnees(point1,lat2,lon2):
 def cercle_range(range_avion,avion):
     # Conversion du rayon en degrés approximatifs (à une latitude moyenne)
 
-    conversion_kilometre_degre = 111  # Approximation pour une latitude moyenne
+    conversion_kilometre_degre = 78.567  # Approximation pour une latitude moyenne
     rayon_kilometre = range_avion * 1.852
     rayon_deg = rayon_kilometre / conversion_kilometre_degre
-    print(f'Rayon : {rayon_kilometre}')
     angles_degrees = []
 
     # Génération des points le long du cercle
@@ -197,18 +206,16 @@ def cercle_range(range_avion,avion):
 
     lons = avion.longitude + rayon_deg * np.cos(angles)
     lats = avion.latitude + rayon_deg * np.sin(angles)
-    print(f'Lats : {lats}')
-    print(f'Lons : {lons}')
 
     return lons,lats
 
 def cercle_range_reel(range_avion_reel,avion):
     # Conversion du rayon en degrés approximatifs (à une latitude moyenne)
 
-    conversion_kilometre_degre = 111  # Approximation pour une latitude moyenne
+    conversion_kilometre_degre = 78.567  # Approximation pour une latitude moyenne
     rayon_kilometre = range_avion_reel * 1.852
     rayon_deg = rayon_kilometre / conversion_kilometre_degre
-    print(f'Rayon : {rayon_kilometre}')
+    print(f'Range en kilomètre : {rayon_kilometre}')
     angles_degrees = []
 
     # Génération des points le long du cercle
@@ -217,8 +224,6 @@ def cercle_range_reel(range_avion_reel,avion):
 
     lons_reel = avion.longitude + rayon_deg * np.cos(angles_points)
     lats_reel = avion.latitude + rayon_deg * np.sin(angles_points)
-    print(f'Lats : {lons_reel}')
-    print(f'Lons : {lats_reel}')
 
     return lons_reel,lats_reel
 
@@ -263,10 +268,30 @@ def calcul_new_cap (lat_avion, longi_avion, lat_aerodrome,longi_aerodrome) :
     longi_avion_rad = longi_avion * (np.pi / 180)
     longi_aerodrome_rad = longi_aerodrome * (np.pi / 180)
 
-    diff_longi =  longi_aerodrome_rad - longi_avion_rad
-    # l'azimut entre 2 point correspond à l'angle formé par la droite passant par ces 2 points et la ligne passant par le nord et sud géographique
+    diff_longi = longi_aerodrome_rad - longi_avion_rad
 
     azimut_rad = np.arctan2(math.sin(diff_longi) *np.cos(lat_aerodrome_rad), np.cos(lat_avion_rad) *np.sin(lat_aerodrome_rad) - np.sin(lat_avion_rad) *np.cos(lat_aerodrome_rad) *np.cos(diff_longi))
     azimut_deg = azimut_rad*(180/np.pi)
 
     return azimut_deg
+
+def calcul_coordonnees_vents_trajet(n,coordonnees_avion,latitude_point,longitude_point):
+
+    point1 = (coordonnees_avion[1], coordonnees_avion[0])
+    point2 = (longitude_point, latitude_point)
+
+    line = LineString([point1, point2])
+
+    points_interieurs = [line.interpolate(i / (n + 1), normalized=True) for i in range(1, n + 1)]
+
+    coordonnees_points_interieurs = [(point.y, point.x) for point in points_interieurs]
+
+    return coordonnees_points_interieurs
+
+def calcul_moyenne_vents_trajet(vents_a_moyenner):
+
+    moyenne_vent_x = np.mean(vents_a_moyenner[:,0])
+    moyenne_vent_y = np.mean(vents_a_moyenner[:,1])
+
+    return (moyenne_vent_x,moyenne_vent_y)
+

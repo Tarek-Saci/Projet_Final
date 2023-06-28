@@ -1,4 +1,3 @@
-import numpy as np
 import pandas as pd
 import fonctions as fc
 import classes
@@ -50,10 +49,10 @@ performence = Performance(parametres_init["finesse"],parametres_init["vitesse"],
 
 if parametres_init["moteur_avion"]:
     range_theorique = performence.range_moteur_theorique()
-    print(f'range avec moteurs : {range_theorique} [nm]')
+    print(f'Range avec moteurs en mille nautique : {range_theorique} [nm]')
 else:
     range_theorique = performence.range_plane_theorique()
-    print(f'range sans moteurs : {range_theorique} [nm]')
+    print(f'Range sans moteurs en mille nautique : {range_theorique} [nm]')
 
 # ---------- CREATION DE L'AVION ---------- #
 
@@ -65,20 +64,37 @@ lons,lats = fc.cercle_range(range_theorique,avion)
 list_coordonnes_sur_cercle = np.column_stack((lats, lons))
 
 # ---------- CREATION DES VENTS DES POINTS DU CERCLE ---------- #
+
+vents = np.zeros((nombre_points,discretisation+1,2))
+coordonnees = np.zeros((nombre_points,discretisation+1,2))
+
+for i in range(0,nombre_points):
+    coordonnees_points_interieurs = fc.calcul_coordonnees_vents_trajet(discretisation,coordonnees_avion,list_coordonnes_sur_cercle[i][0],list_coordonnes_sur_cercle[i][1])
+    for y in range(0,discretisation):
+        coordonnees[i,y] = coordonnees_points_interieurs[y]
+    coordonnees[i,discretisation] = (list_coordonnes_sur_cercle[i,0],list_coordonnes_sur_cercle[i,1])
+
+for i in range(0,nombre_points):
+    for y in range(0,discretisation):
+        vents[i][y] = fc.calcul_vent(coordonnees[i][y][0], coordonnees[i][y][1],parametres_init["altitude"])
+    vents[i,discretisation] = fc.calcul_vent(coordonnees[i][discretisation][0], coordonnees[i][discretisation][1],parametres_init["altitude"])
+
 list_vents = []
-for i in range(0,len(lons)-1):
-    list_vents.append(fc.calcul_vent(list_coordonnes_sur_cercle[i][0],list_coordonnes_sur_cercle[i][1],parametres_init["altitude"]))
-print(f' LISTE VENT : {list_vents}')
+
+for i in range(0,nombre_points):
+    vent1 = fc.calcul_moyenne_vents_trajet(vents[i,:])
+    list_vents.append(vent1)
+
 list_vents_array = np.array(list_vents)
 
 # ---------- CALCUL RANGE REEL ---------- #
 
 if parametres_init["moteur_avion"]:
     range_corrige = performence.range_moteur_reel(list_vents_array,vecteur_angle)
-    print(f'range corrigé : {range_corrige} [nm]')
+    print(f'Range avec moteurs corrigée en mille nautique : {range_corrige} [nm]')
 else:
     range_corrige = performence.range_plane_reel(list_vents_array,vecteur_angle)
-    print(f'range corrigé : {range_corrige} [nm]')
+    print(f'Range sans moteurs corrigée en mille nautique : {range_corrige} [nm]')
 
 # ---------- CALCUL RANGE AVEC VENT ---------- #
 
@@ -86,7 +102,6 @@ lons_reel,lats_reel = fc.cercle_range_reel(range_corrige,avion)
 
 list_coordonnes_sur_cercle_reel = np.column_stack((lats_reel, lons_reel))
 list_coordonnes_sur_cercle_reel = np.concatenate((list_coordonnes_sur_cercle_reel, np.column_stack((lats_reel[0], lons_reel[0]))))
-print(f'list_coordonnes_sur_cercle_reel : {list_coordonnes_sur_cercle_reel}')
 
 # ---------- CREATION DES AERODROMES DANS LA RANGE AVEC VENT ---------- #
 
@@ -118,9 +133,10 @@ if len(distance) != 0:
     lat_aerodrome_plus_proche = aerodromes_in_range_right_size[min_index].latitude
     lon_aerodrome_plus_proche = aerodromes_in_range_right_size[min_index].longitude
     new_cap = fc.calcul_new_cap(avion.latitude,avion.longitude,lat_aerodrome_plus_proche,lon_aerodrome_plus_proche)
-    print(new_cap)
 else:
-    print("VOUS ETES DANS UNE SITUATION DELICATE ! :'(")
+    lat_aerodrome_plus_proche = avion.latitude
+    lon_aerodrome_plus_proche = avion.longitude
+    new_cap = 0
 
 # ---------- AFFICHAGE DE LA CARTE FINALE ---------- #
 
@@ -129,4 +145,4 @@ fc.affichage_carte(aerodromes,avion,parametres_init,
                    lons_in_range,lats_in_range,
                    lons_in_range_in_size,lats_in_range_in_size,
                    lons_reel,lats_reel,
-                   lon_aerodrome_plus_proche,lat_aerodrome_plus_proche)
+                   lon_aerodrome_plus_proche,lat_aerodrome_plus_proche,new_cap)

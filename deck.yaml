@@ -2,7 +2,7 @@
 
 latitude: 49.826251 #(°)
 longitude: -72.142587 #(°)
-altitude: 16404.2 #ft
+altitude: 16000 #ft
 
 # Cap en degrés
 cap: 32
@@ -13,7 +13,7 @@ vitesse: 150
 # Vitesse de vol plané
 vitesse_plane: 65
 
-# Probleme du Moteur, oui (True) non (False)
+# Moteur encore disponible, oui (True) non (False)
 moteur_avion: True
 
 # Quantite de carburant restant en gallons

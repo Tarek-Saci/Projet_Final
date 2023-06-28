@@ -36,7 +36,6 @@ class Aerodrome:
                 longeur.append(resultat_longeur[0])
         elif len(resultat_longeur) > nbrpiste:
             for i in range(0, len(resultat_longeur)):
-                print(i)
                 longeur.append(resultat_longeur[i])
         else:
             for i in range(0, int(nbrpiste)):

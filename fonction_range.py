@@ -13,6 +13,7 @@ class GPS:
         self.rayon_terre = 6371 * 1000  # En mètres
 
     def distance_entre_2_points(self, lat2, lon2):
+
         # Convertir les coordonnées degrés en radians
         lat1 = math.radians(self.latitude)
         lon1 = math.radians(self.longitude)
@@ -39,7 +40,6 @@ class Performance:
         self.carburant = carburant_restant
         self.moteur_avion = moteur_avion
         self.vitesse_plane = vitesse_plane
-
 
     def range_plane_theorique(self):  # calcul du range
         range_theorique_plane = self.altitude * self.finesse / 6076.12  # on ne sait pas encore si on aura les altitudes des aerodromes
@@ -89,13 +89,11 @@ class Performance:
         produit_scalaire = vecteur_vent[:,0] * vecteur_theta[:,0] + vecteur_vent[:,1] * vecteur_theta[:,1]
         angle_cap_vent_rad = np.arccos(produit_scalaire / (norme_vent * norme_theta))
         angle_cap_vent_deg = np.rad2deg(angle_cap_vent_rad)  # just au cas ou
-        print(f' angle_cap_vent_rad {angle_cap_vent_rad}')
 
         return angle_cap_vent_rad
 
     def range_plane_reel(self,vecteur_vent, vecteur_theta):  # apres vctorisation de angle_cap_vent il faut transformer angle_cap_vent_rad en self.
         vitesse_vent = np.sqrt(vecteur_vent[:,0] ** 2 + vecteur_vent[:,1] ** 2)
-        print(vitesse_vent.shape)
         angle_cap_vent_rad = self.angle_cap_vent(vecteur_vent, vecteur_theta)
         #print(f'angle cap vent rad : {angle_cap_vent_rad}')
         vitesse_sol = self.vitesse_plane + vitesse_vent * np.cos(angle_cap_vent_rad)  # il faut calculer le module du vecteur pour le remplacer dans vitese_vent
