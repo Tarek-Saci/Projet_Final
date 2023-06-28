@@ -2,7 +2,9 @@
 import numpy as np
 import math
 from Donnees import *
-from classes import Avion
+from fonctions import *
+import datetime
+import pandas as pd
 
 class GPS:
     def __init__(self, latitude, longitude, altitude, cap): #-------il faut ajouter la temperature a la position de l'avion---
@@ -31,11 +33,74 @@ class GPS:
         distance = self.rayon_terre * c * 0.001  # *1000 pour avoir des kilomètres
 
         return round(distance, 3)
+class Air:
+    def __init__(self,latitude,longitude, altitude):
+        self.latitude = latitude
+        self.longitude = longitude
+        self.altitude = altitude
+
+    def temperature(self):
+
+        # Récupération des données dans la base de données de Windy
+        meteo = get_windy_data(self.latitude, self.longitude)
+
+        # Détermination de l'heure de la requête
+        # En format POSIX
+        posix_time = datetime.datetime.now().timestamp()
+        # print(posix_time)
+        # En format classique
+        classical_time = datetime.datetime.fromtimestamp(posix_time)
+        # print(classical_time)
+
+        # Transformation du JSON en dataframe
+        # flatten the JSON
+        flattened = flatten_json(meteo)
+        df = pd.DataFrame([flattened])
+        #print(df)
+
+        # Détermination de l'heure répertoriée la plus proche de l'heure actuelle
+        data_hours = df.filter(like="data_hours")
+
+        i = 0
+        # print(data_hours.iloc[0, i] / 1000)
+        while posix_time > data_hours.iloc[0, i] / 1000:
+            i += 1
+        # print(i)
+        if abs(posix_time - data_hours.iloc[0, i]) > abs(posix_time - data_hours.iloc[0, i - 1]):
+            i -= 1
+
+        # Liste des altitudes pour lesquelles les données sont recensées
+        liste_altitude_pression = [150, 200, 250, 300, 400, 500, 600, 700, 800, 850, 900, 925, 950, 1000, 1013.25]
+
+        # Calcul de l'altitude pression de l'avion
+        altitude_pression_avion = calcul_altitude_pression(self.altitude)
+
+        # Détermination de l'altitude recensée la plus proche de l'altitude de l'avion
+        j = 0
+        while altitude_pression_avion > liste_altitude_pression[j]:
+            j += 1
+        # print(j)
+        if abs(altitude_pression_avion - liste_altitude_pression[j]) > abs(
+                altitude_pression_avion - liste_altitude_pression[j - 1]):
+            altitude_database = liste_altitude_pression[j - 1]
+        else:
+            altitude_database = liste_altitude_pression[j]
+        #print(altitude_database)
+
+        # Récupération des données recherchées dans la database
+        if altitude_database != 1013.25:
+            temperature = df[f'data_temp-{altitude_database}h_{i}']
+        else:
+            temperature = df[f'data_temp-surface_{i}']
+
+        temperature_vraie = temperature.iloc[0]
+        return temperature_vraie
 
 class Performance:
-    def __init__(self, finesse, vitesse, vitesse_plane, altitude, dist_roulage_mini, carburant_restant, moteur_avion):
+    def __init__(self, finesse, vitesse, vitesse_plane, altitude, dist_roulage_mini, carburant_restant, moteur_avion, air):
         self.finesse = finesse
         self.vitesse = vitesse
+        self.air = air
         self.altitude = altitude
         self.dist_roulage_mini = dist_roulage_mini
         self.carburant = carburant_restant
@@ -52,11 +117,10 @@ class Performance:
         return range_theorique
 
     def conso_vitesse(self):
-
         temperature_standard = 15 - ((self.altitude)/1000) * 1.98 # la temperature de l'atmosphere standard a l'altitude de l'avion
-        temperature = -15
-        #if Avion.temperature() <= temperature_standard - 20:
-        if temperature <= temperature_standard -20:
+
+        if self.air.temperature() <= temperature_standard - 20:
+
             # --------de 0ft à 4000ft--------
             if self.altitude < 4000:
                 gph = 0.0026818 * self.vitesse ** (2) - 0.375808 * self.vitesse + 16.9344
@@ -77,8 +141,8 @@ class Performance:
                 gph = 0.00143385 * self.vitesse ** (2) - 0.190828 * self.vitesse + 9.90546
 
 
-        #elif Avion.temperature() >= temperature_standard +20:
-        elif temperature >= temperature_standard +20:
+        elif self.air.temperature() >= temperature_standard +20:
+
             # --------de 0ft à 4000ft--------
             if self.altitude < 4000:
                 gph = 0.00114547 * self.vitesse ** (2) - 0.119198 * self.vitesse + 6.06263

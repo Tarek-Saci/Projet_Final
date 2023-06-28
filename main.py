@@ -2,7 +2,7 @@ import pandas as pd
 import fonctions as fc
 import classes
 from Donnees import*
-from fonction_range import Performance
+from fonction_range import *
 
 # ---------- YAML ---------- #
 
@@ -40,10 +40,12 @@ aerodromes = vecteur_creer_aerodrome(objectid_array, nomcarto_array, codeindic_a
 
 # ---------- CALCUL PERFORMANCE DE L'AVION ---------- #
 
+air = Air(parametres_init["latitude"],parametres_init["longitude"],parametres_init["altitude"])
+
 performance = Performance(parametres_init["finesse"],parametres_init["vitesse"],
                           parametres_init["vitesse_plane"],parametres_init["altitude"],
                           parametres_init["dist_roulage_mini"],parametres_init["carburant_restant"],
-                          parametres_init["moteur_avion"])
+                          parametres_init["moteur_avion"],air)
 
 # ---------- CALCUL RANGE THEORIQUE ---------- #
 
