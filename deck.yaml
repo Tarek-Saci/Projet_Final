@@ -15,7 +15,7 @@ vitesse: 150
 vitesse_plane: 65
 
 # Probleme du Moteur, oui (True) non (False)
-moteur_avion: False
+moteur_avion: True
 
 # Quantite de carburant restant en gallons
 carburant_restant: 15.7

@@ -1,6 +1,6 @@
 import numpy as np 
 
-nombre_points = 40
+nombre_points = 8
 nombre_segments = nombre_points+1
 vitesse_vent = np.random.uniform(0,100,nombre_points)  # homogène au reste de preference en [Kts]
 direction_vent = np.random.uniform(0,360,nombre_points)  # Direction du vent en degrés
