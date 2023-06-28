@@ -2,14 +2,14 @@
 import numpy as np
 import math
 from Donnees import *
+from classes import Avion
 
 class GPS:
-    def __init__(self, latitude, longitude, altitude, cap, temperature): #-------il faut ajouter la temperature a la position de l'avion---
+    def __init__(self, latitude, longitude, altitude, cap): #-------il faut ajouter la temperature a la position de l'avion---
         self.latitude = latitude
         self.longitude = longitude
         self.altitude = altitude
         self.cap = math.radians(cap)
-        self.temperature = temperature # la temperature en temps reel de windy a la position de l'avion
         # Rayon de la Terre en mètres
         self.rayon_terre = 6371 * 1000  # En mètres
 
@@ -40,7 +40,7 @@ class Performance:
         self.carburant = carburant_restant
         self.moteur_avion = moteur_avion
         self.vitesse_plane = vitesse_plane
-
+        #self.temperature = temperature  # la temperature en temps reel de windy a la position de l'avion
 
     def range_plane_theorique(self):  # calcul du range
         range_theorique_plane = self.altitude * self.finesse / 6076.12  # on ne sait pas encore si on aura les altitudes des aerodromes
@@ -55,7 +55,7 @@ class Performance:
 
         temperature_standard = 15 - ((self.altitude)/1000) * 1.98 # la temperature de l'atmosphere standard a l'altitude de l'avion
 
-        if self.temperature <= temperature_standard - 20:
+        if Avion.temperature() <= temperature_standard - 20:
             # --------de 0ft à 4000ft--------
             if self.altitude < 4000:
                 gph = 0.0026818 * self.vitesse ** (2) - 0.375808 * self.vitesse + 16.9344
@@ -76,7 +76,7 @@ class Performance:
                 gph = 0.00143385 * self.vitesse ** (2) - 0.190828 * self.vitesse + 9.90546
 
 
-        elif self.temperature >= temperature_standard +20:
+        elif Avion.temperature() >= temperature_standard +20:
             # --------de 0ft à 4000ft--------
             if self.altitude < 4000:
                 gph = 0.00114547 * self.vitesse ** (2) - 0.119198 * self.vitesse + 6.06263
