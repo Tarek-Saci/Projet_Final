@@ -40,7 +40,7 @@ aerodromes = vecteur_creer_aerodrome(objectid_array, nomcarto_array, codeindic_a
 
 # ---------- CALCUL PERFORMANCE DE L'AVION ---------- #
 
-performence = Performance(parametres_init["finesse"],parametres_init["vitesse"],
+performance = Performance(parametres_init["finesse"],parametres_init["vitesse"],
                           parametres_init["vitesse_plane"],parametres_init["altitude"],
                           parametres_init["dist_roulage_mini"],parametres_init["carburant_restant"],
                           parametres_init["moteur_avion"])
@@ -48,16 +48,16 @@ performence = Performance(parametres_init["finesse"],parametres_init["vitesse"],
 # ---------- CALCUL RANGE THEORIQUE ---------- #
 
 if parametres_init["moteur_avion"]:
-    range_theorique = performence.range_moteur_theorique()
+    range_theorique = performance.range_moteur_theorique()
     print(f'Range avec moteurs en mille nautique : {range_theorique} [nm]')
 else:
-    range_theorique = performence.range_plane_theorique()
+    range_theorique = performance.range_plane_theorique()
     print(f'Range sans moteurs en mille nautique : {range_theorique} [nm]')
 
 # ---------- CREATION DE L'AVION ---------- #
 
 coordonnees_avion = (parametres_init["latitude"],parametres_init["longitude"])
-avion = classes.Avion(coordonnees_avion,range_theorique)
+avion = classes.Avion(coordonnees_avion,range_theorique,parametres_init["altitude"])
 
 lons,lats = fc.cercle_range(range_theorique,avion)
 
@@ -90,10 +90,10 @@ list_vents_array = np.array(list_vents)
 # ---------- CALCUL RANGE REEL ---------- #
 
 if parametres_init["moteur_avion"]:
-    range_corrige = performence.range_moteur_reel(list_vents_array,vecteur_angle)
+    range_corrige = performance.range_moteur_reel(list_vents_array,vecteur_angle)
     print(f'Range avec moteurs corrigée en mille nautique : {range_corrige} [nm]')
 else:
-    range_corrige = performence.range_plane_reel(list_vents_array,vecteur_angle)
+    range_corrige = performance.range_plane_reel(list_vents_array,vecteur_angle)
     print(f'Range sans moteurs corrigée en mille nautique : {range_corrige} [nm]')
 
 # ---------- CALCUL RANGE AVEC VENT ---------- #

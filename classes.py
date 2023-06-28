@@ -72,6 +72,7 @@ class Avion:
             temperature = df[f'temp-{altitude_database}h_{i}']
         else:
             temperature = df[f'temp-surface_{i}']
+        #temperature += 273.15
 
         return temperature
 class Piste:

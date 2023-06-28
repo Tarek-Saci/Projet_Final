@@ -54,8 +54,9 @@ class Performance:
     def conso_vitesse(self):
 
         temperature_standard = 15 - ((self.altitude)/1000) * 1.98 # la temperature de l'atmosphere standard a l'altitude de l'avion
-
-        if Avion.temperature() <= temperature_standard - 20:
+        temperature = -15
+        #if Avion.temperature() <= temperature_standard - 20:
+        if temperature <= temperature_standard -20:
             # --------de 0ft à 4000ft--------
             if self.altitude < 4000:
                 gph = 0.0026818 * self.vitesse ** (2) - 0.375808 * self.vitesse + 16.9344
@@ -76,7 +77,8 @@ class Performance:
                 gph = 0.00143385 * self.vitesse ** (2) - 0.190828 * self.vitesse + 9.90546
 
 
-        elif Avion.temperature() >= temperature_standard +20:
+        #elif Avion.temperature() >= temperature_standard +20:
+        elif temperature >= temperature_standard +20:
             # --------de 0ft à 4000ft--------
             if self.altitude < 4000:
                 gph = 0.00114547 * self.vitesse ** (2) - 0.119198 * self.vitesse + 6.06263
@@ -95,7 +97,6 @@ class Performance:
             # --------de 12000ft à 14000ft--------
             elif 12000 <= self.altitude:
                 gph = 0.000524196 * self.vitesse ** (2) - 0.0387971 * self.vitesse + 3.49808
-
 
         else:
             # --------de 0ft à 4000ft--------
@@ -144,7 +145,7 @@ class Performance:
         vitesse_vent = np.sqrt(vecteur_vent[:,0]**2 + vecteur_vent[:,1]**2 )
         vitesse_sol = self.vitesse + vitesse_vent * np.cos(angle_cap_vent_rad)  # il faut calculer le module du vecteur pour le remplacer dans vitese_vent
         temps_vol = self.carburant / self.conso_vitesse()
-
+        print(f'Temps vol : {temps_vol}')
         range_moteur_reel = vitesse_sol * temps_vol
         return range_moteur_reel
 
