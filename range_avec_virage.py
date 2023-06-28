@@ -21,7 +21,7 @@ def distance_avec_virage(vitesse, x_avion, y_avion, x_aero, y_aero, cap):
     print(vect_av_aero)
 
     #Calcul de l'angle entre le cap et l'aéroport
-    angle_cap_aero = math.degrees(math.acos(vect_av_aero[0]/(vect_av_aero[0]**2+vect_av_aero[1]**2)**0.5))#-angle_cap
+    angle_cap_aero = angle_cap - math.degrees(math.acos(vect_av_aero[0]/(vect_av_aero[0]**2+vect_av_aero[1]**2)**0.5))
     print('angle cap aero', angle_cap_aero)
 
     #Calcul du rayon minimal de virage (le facteur de charge maximale pour un avion civil est généralement n=1.19)
@@ -65,4 +65,4 @@ def distance_avec_virage(vitesse, x_avion, y_avion, x_aero, y_aero, cap):
 
     return distance_reelle
 
-print(distance_avec_virage(100,-72.142587,49.826251,-68.28109779,49.826251,130))
+print(distance_avec_virage(100,-72.142587,49.826251,-68.28109779,49.826251,-90))
