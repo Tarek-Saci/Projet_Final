@@ -5,7 +5,7 @@ longitude: -72.142587 #(°)
 altitude: 16000 #ft
 
 # Cap en degrés
-cap: 32
+cap: 23
 
 # Vitesse en noeuds
 vitesse: 150
@@ -15,6 +15,9 @@ vitesse_plane: 65
 
 # Moteur encore disponible, oui (True) non (False)
 moteur_avion: True
+
+# Probleme du Moteur, oui (True) non (False)
+moteur_avion: False
 
 # Quantite de carburant restant en gallons
 carburant_restant: 15.7

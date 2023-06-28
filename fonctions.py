@@ -294,4 +294,3 @@ def calcul_moyenne_vents_trajet(vents_a_moyenner):
     moyenne_vent_y = np.mean(vents_a_moyenner[:,1])
 
     return (moyenne_vent_x,moyenne_vent_y)
-

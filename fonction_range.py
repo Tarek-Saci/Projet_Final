@@ -2,9 +2,10 @@
 import numpy as np
 import math
 from Donnees import *
+from classes import Avion
 
 class GPS:
-    def __init__(self, latitude, longitude, altitude, cap):
+    def __init__(self, latitude, longitude, altitude, cap): #-------il faut ajouter la temperature a la position de l'avion---
         self.latitude = latitude
         self.longitude = longitude
         self.altitude = altitude
@@ -51,35 +52,70 @@ class Performance:
         return range_theorique
 
     def conso_vitesse(self):
-        # --------de 0ft à 4000ft--------
 
-        if self.altitude < 4000:
-            gph = 0.00321894 * self.vitesse ** (2) - 0.470747 * self.vitesse + 20.9657
+        temperature_standard = 15 - ((self.altitude)/1000) * 1.98 # la temperature de l'atmosphere standard a l'altitude de l'avion
 
-        # --------de 4000ft à 6000ft--------
+        if Avion.temperature() <= temperature_standard - 20:
+            # --------de 0ft à 4000ft--------
+            if self.altitude < 4000:
+                gph = 0.0026818 * self.vitesse ** (2) - 0.375808 * self.vitesse + 16.9344
+            # --------de 4000ft à 6000ft--------
+            elif 4000 <= self.altitude < 6000:
+                gph = 0.00100511 * self.vitesse ** (2) - 0.0798947 * self.vitesse + 3.79205
+            # --------de 6000ft à 8000ft--------
+            elif 6000 <= self.altitude < 8000:
+                gph = 0.00100511 * self.vitesse ** (2) - 0.0798947 * self.vitesse + 3.79205
+            # --------de 8000ft à 10000ft--------
+            elif 8000 <= self.altitude < 10000:
+                gph = 0.00205106 * self.vitesse ** (2) - 0.288049 * self.vitesse + 13.8229
+            # --------de 10000ft à 12000ft--------
+            elif 10000 <= self.altitude < 12000:
+                gph = 0.0013621 * self.vitesse ** (2) - 0.171143 * self.vitesse + 8.7924
+            # --------de 12000ft à 14000ft--------
+            elif 12000 <= self.altitude:
+                gph = 0.00143385 * self.vitesse ** (2) - 0.190828 * self.vitesse + 9.90546
 
-        elif 4000 <= self.altitude < 6000:
-            gph = 0.00153755 * self.vitesse ** (2) - 0.182342 * self.vitesse + 8.56135
 
-        # --------de 6000ft à 8000ft--------
+        elif Avion.temperature() >= temperature_standard +20:
+            # --------de 0ft à 4000ft--------
+            if self.altitude < 4000:
+                gph = 0.00114547 * self.vitesse ** (2) - 0.119198 * self.vitesse + 6.06263
+            # --------de 4000ft à 6000ft--------
+            elif 4000 <= self.altitude < 6000:
+                gph = 0.00161198 * self.vitesse ** (2) - 0.207903 * self.vitesse + 10.107
+            # --------de 6000ft à 8000ft--------
+            elif 6000 <= self.altitude < 8000:
+                gph = 0.00110775 * self.vitesse ** (2) - 0.122567 * self.vitesse + 6.46578
+            # --------de 8000ft à 10000ft--------
+            elif 8000 <= self.altitude < 10000:
+                gph = 0.00110546 * self.vitesse ** (2) - 0.13064 * self.vitesse + 7.11786
+            # --------de 10000ft à 12000ft--------
+            elif 10000 <= self.altitude < 12000:
+                gph = 0.000753369 * self.vitesse ** (2) - 0.0730225 * self.vitesse + 4.74902
+            # --------de 12000ft à 14000ft--------
+            elif 12000 <= self.altitude:
+                gph = 0.000524196 * self.vitesse ** (2) - 0.0387971 * self.vitesse + 3.49808
 
-        elif 6000 <= self.altitude < 8000:
-            gph = 0.00160782 * self.vitesse ** (2) - 0.205136 * self.vitesse + 9.88425
 
-        # --------de 8000ft à 10000ft--------
-
-        elif 8000 <= self.altitude < 10000:
-            gph = 0.00168283 * self.vitesse ** (2) - 0.2278 * self.vitesse + 11.2253
-
-        # --------de 10000ft à 12000ft--------
-
-        elif 10000 <= self.altitude < 12000:
-            gph = 0.00211899 * self.vitesse ** (2) - 0.320033 * self.vitesse + 15.9161
-
-        # --------de 12000ft à 14000ft--------
-
-        elif 12000 <= self.altitude:
-            gph = 0.00101772 * self.vitesse ** (2) - 0.120151 * self.vitesse + 6.85233
+        else:
+            # --------de 0ft à 4000ft--------
+            if self.altitude < 4000:
+                gph = 0.00321894 * self.vitesse ** (2) - 0.470747 * self.vitesse + 20.9657
+            # --------de 4000ft à 6000ft--------
+            elif 4000 <= self.altitude < 6000:
+                gph = 0.00153755 * self.vitesse ** (2) - 0.182342 * self.vitesse + 8.56135
+            # --------de 6000ft à 8000ft--------
+            elif 6000 <= self.altitude < 8000:
+                gph = 0.00160782 * self.vitesse ** (2) - 0.205136 * self.vitesse + 9.88425
+            # --------de 8000ft à 10000ft--------
+            elif 8000 <= self.altitude < 10000:
+                gph = 0.00168283 * self.vitesse ** (2) - 0.2278 * self.vitesse + 11.2253
+            # --------de 10000ft à 12000ft--------
+            elif 10000 <= self.altitude < 12000:
+                gph = 0.00211899 * self.vitesse ** (2) - 0.320033 * self.vitesse + 15.9161
+            # --------de 12000ft à 14000ft--------
+            elif 12000 <= self.altitude:
+                gph = 0.00101772 * self.vitesse ** (2) - 0.120151 * self.vitesse + 6.85233
 
         return round(gph, 3)  # en gallon par heure
 
