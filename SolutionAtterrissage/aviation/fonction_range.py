@@ -1,7 +1,7 @@
 
 import numpy as np
 import math
-from Donnees import *
+from .Donnees import *
 
 class GPS:
     def __init__(self, latitude, longitude, altitude, cap):

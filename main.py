@@ -1,20 +1,17 @@
-import numpy as np
 import pandas as pd
-import fonctions as fc
-import classes
-from Donnees import*
-from fonction_range import Performance
+import numpy as np
+import SolutionAtterrissage
 
 # ---------- YAML ---------- #
 
 # Création de l'objet YAML qui lit le fichier "deck.yamL"
-parser = classes.LecteurYAML('deck.yaml')
+parser = SolutionAtterrissage.LecteurYAML('SolutionAtterrissage/aviation/deck.yaml')
 # Lecture du fichier avec la fonction read_yaml()
 parametres_init = parser.read_yaml()
 
 # ---------- INFORMATIONS AEROPORT.CSV ---------- #
 
-df = pd.read_csv("Aeroport.csv")
+df = pd.read_csv("SolutionAtterrissage/aerodrome/Aeroport.csv")
 colonnes_souhaitees = ['objectid', 'nomcarto', 'codeindic', 'typeinfras', 'nbrpiste', 'longpiste2',
                        'surface', 'latitude', 'longitude', 'acces']
 df_colonnes = df[colonnes_souhaitees]
@@ -33,7 +30,7 @@ acces_array = df_final['acces'].to_numpy()
 
 # ---------- CREATION DES AERODROMES ---------- #
 
-vecteur_creer_aerodrome = np.vectorize(classes.creer_aerodrome)
+vecteur_creer_aerodrome = np.vectorize(SolutionAtterrissage.creer_aerodrome)
 
 aerodromes = vecteur_creer_aerodrome(objectid_array, nomcarto_array, codeindic_array,
                                      typeinfras_array, nbrpiste_array, longpiste2_array,
@@ -41,7 +38,7 @@ aerodromes = vecteur_creer_aerodrome(objectid_array, nomcarto_array, codeindic_a
 
 # ---------- CALCUL PERFORMANCE DE L'AVION ---------- #
 
-performence = Performance(parametres_init["finesse"],parametres_init["vitesse"],
+performence = SolutionAtterrissage.Performance(parametres_init["finesse"],parametres_init["vitesse"],
                           parametres_init["vitesse_plane"],parametres_init["altitude"],
                           parametres_init["dist_roulage_mini"],parametres_init["carburant_restant"],
                           parametres_init["moteur_avion"])
@@ -58,31 +55,31 @@ else:
 # ---------- CREATION DE L'AVION ---------- #
 
 coordonnees_avion = (parametres_init["latitude"],parametres_init["longitude"])
-avion = classes.Avion(coordonnees_avion,range_theorique)
+avion = SolutionAtterrissage.Avion(coordonnees_avion, range_theorique)
 
-lons,lats = fc.cercle_range(range_theorique,avion)
+lons,lats = SolutionAtterrissage.cercle_range(range_theorique,avion)
 
 list_coordonnes_sur_cercle = np.column_stack((lats, lons))
 
 # ---------- CREATION DES VENTS DES POINTS DU CERCLE ---------- #
 list_vents = []
 for i in range(0,len(lons)-1):
-    list_vents.append(fc.calcul_vent(list_coordonnes_sur_cercle[i][0],list_coordonnes_sur_cercle[i][1],parametres_init["altitude"]))
+    list_vents.append(SolutionAtterrissage.calcul_vent(list_coordonnes_sur_cercle[i][0],list_coordonnes_sur_cercle[i][1],parametres_init["altitude"]))
 print(f' LISTE VENT : {list_vents}')
 list_vents_array = np.array(list_vents)
 
 # ---------- CALCUL RANGE REEL ---------- #
 
 if parametres_init["moteur_avion"]:
-    range_corrige = performence.range_moteur_reel(list_vents_array,vecteur_angle)
+    range_corrige = performence.range_moteur_reel(list_vents_array,SolutionAtterrissage.vecteur_angle)
     print(f'range corrigé : {range_corrige} [nm]')
 else:
-    range_corrige = performence.range_plane_reel(list_vents_array,vecteur_angle)
+    range_corrige = performence.range_plane_reel(list_vents_array,SolutionAtterrissage.vecteur_angle)
     print(f'range corrigé : {range_corrige} [nm]')
 
 # ---------- CALCUL RANGE AVEC VENT ---------- #
 
-lons_reel,lats_reel = fc.cercle_range_reel(range_corrige,avion)
+lons_reel,lats_reel = SolutionAtterrissage.cercle_range_reel(range_corrige,avion)
 
 list_coordonnes_sur_cercle_reel = np.column_stack((lats_reel, lons_reel))
 list_coordonnes_sur_cercle_reel = np.concatenate((list_coordonnes_sur_cercle_reel, np.column_stack((lats_reel[0], lons_reel[0]))))
@@ -92,7 +89,7 @@ print(f'list_coordonnes_sur_cercle_reel : {list_coordonnes_sur_cercle_reel}')
 
 aerodromes_in_range = []
 for aerodrome in aerodromes:
-    wn = fc.winding_number((aerodrome.latitude,aerodrome.longitude), list_coordonnes_sur_cercle_reel)
+    wn = SolutionAtterrissage.winding_number((aerodrome.latitude,aerodrome.longitude), list_coordonnes_sur_cercle_reel)
     if wn != 0:
         aerodromes_in_range.append(aerodrome)
 
@@ -102,7 +99,7 @@ lats_in_range = np.array([aerodrome.latitude for aerodrome in aerodromes_in_rang
 aerodromes_in_range_right_size = []
 
 for aerodrome in aerodromes_in_range:
-    resultat,numero_pistes = fc.cherche_longueur_piste(aerodrome,parametres_init["dist_roulage_mini"])
+    resultat,numero_pistes = SolutionAtterrissage.cherche_longueur_piste(aerodrome,parametres_init["dist_roulage_mini"])
     if resultat == True:
         aerodromes_in_range_right_size.append(aerodrome)
 
@@ -111,20 +108,21 @@ lats_in_range_in_size = np.array([aerodrome.latitude for aerodrome in aerodromes
 
 # ---------- AERODROME LE PLUS PROCHE ---------- #
 
-distance = np.array(fc.calcul_entre_deux_coordonnees(coordonnees_avion,lats_in_range_in_size,lons_in_range_in_size))
+distance = np.array(SolutionAtterrissage.calcul_entre_deux_coordonnees(coordonnees_avion,lats_in_range_in_size,lons_in_range_in_size))
 if len(distance) != 0:
     min_value = np.min(distance)
     min_index = np.argmin(distance)
     lat_aerodrome_plus_proche = aerodromes_in_range_right_size[min_index].latitude
     lon_aerodrome_plus_proche = aerodromes_in_range_right_size[min_index].longitude
-    new_cap = fc.calcul_new_cap(avion.latitude,avion.longitude,lat_aerodrome_plus_proche,lon_aerodrome_plus_proche)
+    new_cap = SolutionAtterrissage.calcul_new_cap(avion.latitude,avion.longitude,lat_aerodrome_plus_proche,lon_aerodrome_plus_proche)
     print(new_cap)
 else:
     print("VOUS ETES DANS UNE SITUATION DELICATE ! :'(")
-
+    lon_aerodrome_plus_proche = avion.longitude
+    lat_aerodrome_plus_proche = avion.latitude
 # ---------- AFFICHAGE DE LA CARTE FINALE ---------- #
 
-fc.affichage_carte(aerodromes,avion,parametres_init,
+SolutionAtterrissage.affichage_carte(aerodromes,avion,parametres_init,
                    lons,lats,
                    lons_in_range,lats_in_range,
                    lons_in_range_in_size,lats_in_range_in_size,

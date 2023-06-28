@@ -5,7 +5,7 @@ import math
 import pandas as pd
 import datetime
 import re
-from Donnees import*
+from .Donnees import *
 
 #Ce programme permet d'obtenir en temps réel les données météorologiques en un point donné
 #Ce point doit être repéré par ses coordonnées GPS (latitude, longitude). La latitude doit être un flottant
