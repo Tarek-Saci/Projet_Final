@@ -149,7 +149,7 @@ fc.affichage_carte(aerodromes,avion,parametres_init,
                    lons_in_range,lats_in_range,
                    lons_in_range_in_size,lats_in_range_in_size,
                    lons_reel,lats_reel,
-                   lon_aerodrome_plus_proche,lat_aerodrome_plus_proche)
+                   lon_aerodrome_plus_proche,lat_aerodrome_plus_proche,new_cap)
 
 distance_reelle, angle_cap_aero = range_avec_virage.distance_avec_virage(parametres_init["vitesse"],avion.longitude,avion.latitude,-68.79560969 ,53.17322831,parametres_init["cap"])
 print('angle', distance_reelle, angle_cap_aero)

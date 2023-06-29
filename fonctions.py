@@ -273,6 +273,8 @@ def calcul_new_cap (lat_avion, longi_avion, lat_aerodrome,longi_aerodrome) :
 
     azimut_rad = np.arctan2(math.sin(diff_longi) *np.cos(lat_aerodrome_rad), np.cos(lat_avion_rad) *np.sin(lat_aerodrome_rad) - np.sin(lat_avion_rad) *np.cos(lat_aerodrome_rad) *np.cos(diff_longi))
     azimut_deg = azimut_rad*(180/np.pi)
+    if azimut_deg < 0 :
+        azimut_deg += 360
 
     return azimut_deg
 
