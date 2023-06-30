@@ -5,7 +5,7 @@ Projet Final
 ***
 ## Table des matières
 1. [Informations générales](#informations-générales)
-2. [Installation et execution du projet](#installation-et-execution-du-projet)
+2. [Installation et execution de l'application](#installation-et-execution-de l'application)
 3. [Options ajoutées](#options-ajoutées)
 4. [Méthodes d'utilisation du fichier](#méthode-d'utilisation-du-fichier)
 5. [Méthodes d'utilisation des options](#méthode-d'utilisation-des-options)
@@ -21,7 +21,30 @@ Pour cela, différents types de paramètres sont pris en compte :
 - Les paramètres des aéroports québécois.
 - Certains paramètres météorologiques.
 
-Les paramètres utilisateurs sont les suivants : 
+Vous retrouverez, dans ce fichier, une description des fonctionnalités qu'il présente, des données prises en compte, des hypothèses faites ainsi que la méthode de détermination des résultats.
+***
+### Installation et execution de l'application
+***
+Dans ce dépôt, vous pouvez retrouver différents fichiers qui seront indispensables au bon fonctionnement de l'application :
+
+* Un fichier README.md, décrivant le projet et la méthode d'utilisation (que vous êtes en train de lire actuellement). 
+* Un dossier SolutionAtterrissage contenant tous les modules nécessaires pour l'utilisation du programme
+* Un fichier main.py faisant appel aux modules contenus dans le dossier SolutionAtterrissage permettant d'exécuter le programme
+* Un fichier requirements.txt répertoriant toutes les librairies utilisées par l'application
+* Un fichier LICENSE.md décrivant les conditions de la license 'MIT License' choisie
+
+Le projet a été réalisé et testé avec la version 3.9 de Python. Pour utiliser l'application, il faut suivre les étapes suivantes. 
+* Il faudra dans un premier temps créer un environnement virtuel avec Python 3.9 ou ultérieur.
+* Une fois l'environnement virtuel créé, exécutez la commande `pip install -r requirements.txt` dans le terminal afin d'installer les librairies utilisées par le programme.
+* Exécutez ensuite la commande `python main.py` dans le terminal pour lancer l'application.
+
+***
+
+### Détails des paramètres d'entrée et des résultats fournis
+***
+Afin de fonctionner, ce programme utilise différents types de données. Il s'agit de bases de données ainsi que des paramètres utilisateurs intrinsèques à l'avion et à la situation. Pour faciliter l'utilisation, les paramètres utilisateurs seront à entrer par l'utilisateur dans un fichier YAML, dont l'utilisation est intuitive. 
+
+Ces paramètres sont les suivants : 
 - La position GPS et l'altitude de l'avion
 - Le cap suivi
 - La vitesse
@@ -31,21 +54,9 @@ Les paramètres utilisateurs sont les suivants :
 - La distance de roulage minimum à l'atterrissage
 - La finesse de l'avion
 
-
-Vous retrouverez, dans ce fichier, une description des fonctionnalités qu'il présente, des données prises en compte, des hypothèses faites ainsi que la méthode de détermination des résultats.
-***
-### Installation et execution du projet
-***
-"""Dans ce dépôt, vous pouvez retrouver différents fichiers qui seront indispensables pour faire fonctionner ce projet :
-
-* Un fichier README.md, décrivant le projet et la méthode d'utilisation (que vous êtes en train de lire actuellement). 
-* Un dossier SolutionAtterrissage contenant tous les modules nécessaires pour l'utilisation du programme
-* Un fichier main.py faisant appel aux modules contenus dans le dossier SolutionAtterrissage permettant d'exécuter le programme
-
-Le projet a été réalisé et testé avec la version 3.9 de Python. 
-* Il faudra dans un premier temps créer un environnement virtuel avec Python 3.9 ou ultérieur.
-* Une fois l'environnement virtuel créé, exécutez la commande `pip install -r requirements.txt` dans le terminal afin d'installer les librairies utilisées par le programme.
-* Exécutez ensuite la commande `python main.py` dans le terminal pour lancer l'application.
+Les bases de données sont les suivantes : 
+- l'une contenant de nombreuses informations météorologiques en un point précis du globe généré par le site Windy.com
+- l'autre contenant de nombreuses informations sur tous les aérodromes du Québec obtenue sur le site donneesquebec.ca
 
 
 
