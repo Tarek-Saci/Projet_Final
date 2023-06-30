@@ -258,6 +258,19 @@ def cherche_longueur_piste(aeroport,dist_roulage_mini):
     return  resultat,numero_pistes"""
 
 def calcul_new_cap (lat_avion, longi_avion, lat_aerodrome,longi_aerodrome) :
+    """Défini la valeur du nouveau cap que doit suivre l'avion pour atteindre l'aéroport le plus proche.
+
+    Paramètres d'entrée:
+    lat_avion -- latitude de l'avion
+    longi_avion -- longitude de l'avion
+    lat_aerodrome -- latitude de l'aérodrome le plus proche
+    longi_aerodrome -- longitude de l'aérodrome le plus proche
+
+    Utilise la méthode de calcul de l'azimut afin de calculer un angle à suivre par rapport au nord géographique à partir de 2 positions géographiques
+    Convertit au format de cap 0°-360° dans le cas d'un angle négatif
+
+    Return la valeur du nouveau cap à suivre en degrés
+    """
     lat_avion_rad = lat_avion * (np.pi / 180)
     lat_aerodrome_rad = lat_aerodrome * (np.pi / 180)
     longi_avion_rad = longi_avion * (np.pi / 180)
@@ -273,6 +286,11 @@ def calcul_new_cap (lat_avion, longi_avion, lat_aerodrome,longi_aerodrome) :
     return azimut_deg
 
 def distance_avec_virage(vitesse, x_avion, y_avion, x_aero, y_aero, cap):
+    """
+
+    A COMMENTER EN SPHINX
+
+    """
     #Angle du cap par rapport à l'horizontal en degré
 
     if 180>cap>90:
