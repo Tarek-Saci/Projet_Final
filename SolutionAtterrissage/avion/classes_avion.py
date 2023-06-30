@@ -71,7 +71,7 @@ class Performance:
         return range_theorique
 
     def conso_vitesse(self):
-        """Calcule la consommation de carburant par l'avion si ces moteurs sont fonctionnels.
+        """Calcule la consommation de carburant de l'avion si ces moteurs sont fonctionnels.
 
         Paramètres d'entrée:
         self.altitude
@@ -83,7 +83,6 @@ class Performance:
 
         La méthode se base sur une table de données qui donne des paramètres de calcul de consommation suivant l'altitude et la température
         Elle compare la température de l'air avec la température de l'atmosphère standard
-        Puis elle evalue l'altitude
         Suivant ces deux paramètres,la formule de la consommation change donc le résultat varie
 
         Return la valeur de la consommation de l'avion en gallon/heure
@@ -156,9 +155,15 @@ class Performance:
         return round(gph, 3)  # en gallon par heure
 
     def angle_cap_vent(self, vecteur_vent, vecteur_theta):
-        """
-        A COMMENTER
+        """Calcule l'angle entre le cap de l'avion et le vecteur vent.
 
+        Paramètres d'entrée:
+        vecteur_vent -- vecteur vent en coordonnées cartesiennes (direction du vent par rapport au nord)
+        vecteur_theta -- vecteur en coordonnées cartesiennes (vecteur ayant pour module la range et pour direction de l'avion vers le point du cercle considéré)
+
+        la méthode prend les deux vecteurs en coordonnées cartesiennes pour calculer l'angle entre les deux resultantes
+
+        return la valeur de l'angle entre les deuc resultantes en radians
         """
         norme_vent = np.sqrt(vecteur_vent[:,0] ** 2 + vecteur_vent[:,1] ** 2)
         norme_theta = np.sqrt(vecteur_theta[:,0] ** 2 + vecteur_theta[:,1] ** 2)
@@ -172,8 +177,8 @@ class Performance:
         """Calcule la valeur de la distance franchissable réelle en vol plané, c'est-à-dire en prenant en compte le vent.
 
         Paramètres d'entrée:
-        vecteur_vent -- A EXPLIQUER
-        vecteur_theta -- A EXPLIQUER
+        vecteur_vent -- vecteur vent en coordonnées cartesiennes (direction du vent par rapport au nord)
+        vecteur_theta -- vecteur en coordonnées cartesiennes (vecteur ayant pour module la range et pour direction de l'avion vers le point du cercle considéré)
         self.vitesse_plane
 
         Méthode utilisée:
@@ -196,8 +201,8 @@ class Performance:
         """Calcule la valeur de la distance franchissable réelle avec les moteurs fonctionnels, c'est-à-dire en prenant en compte le vent.
 
         Paramètres d'entrée:
-        vecteur_vent -- A EXPLIQUER
-        vecteur_theta -- A EXPLIQUER
+        vecteur_vent -- vecteur vent en coordonnées cartesiennes (direction du vent par rapport au nord)
+        vecteur_theta -- vecteur en coordonnées cartesiennes (vecteur ayant pour module la range et pour direction de l'avion vers le point du cercle considéré)
         self.vitesse
         self.carburant
 
