@@ -343,7 +343,7 @@ def distance_avec_virage(vitesse, x_avion, y_avion, x_aero, y_aero, cap):
         milieu_cercle = [rayon_virage_km * math.cos(math.radians(angle_cap) - math.pi/2) + x_avion,
                          rayon_virage_km * math.sin(math.radians(angle_cap) - math.pi/2) + y_avion]
 
-    print('milieu', milieu_cercle)
+    #print('milieu', milieu_cercle)
 
     #Calcul de la distance parcourue en virage
 

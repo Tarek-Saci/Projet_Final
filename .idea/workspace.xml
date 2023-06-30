@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b37657d5-1ca5-46a1-b22d-5fe3307eba12" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Projet_Finale.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Projet_Finale.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SolutionAtterrissage/affichage/fonctions_affichage.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/affichage/fonctions_affichage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SolutionAtterrissage/atmosphere/classes_atmosphere.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/atmosphere/classes_atmosphere.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SolutionAtterrissage/atmosphere/transforme_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/atmosphere/transforme_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SolutionAtterrissage/atmosphere/vent_windy.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/atmosphere/vent_windy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SolutionAtterrissage/avion/fonctions_avion.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/avion/fonctions_avion.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,14 +36,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "new__main__comm__bastien",
-    "last_opened_file_path": "C:/Users/natha/OneDrive/Documents/GitHub/Projet_Finale"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;new__main__comm__bastien&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/natha/OneDrive/Documents/GitHub/Projet_Finale&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\natha\OneDrive\Documents\GitHub\Projet_Finale" />
