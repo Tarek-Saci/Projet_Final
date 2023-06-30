@@ -5,34 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b37657d5-1ca5-46a1-b22d-5fe3307eba12" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/SolutionAtterrissage/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SolutionAtterrissage/aeroport/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SolutionAtterrissage/aeroport/classes_aerodrome.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SolutionAtterrissage/aeroport/fonctions_aerodrome.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SolutionAtterrissage/affichage/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SolutionAtterrissage/affichage/fonctions_affichage.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SolutionAtterrissage/atmosphere/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SolutionAtterrissage/atmosphere/classes_atmosphere.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SolutionAtterrissage/avion/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SolutionAtterrissage/avion/classes_avion.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SolutionAtterrissage/donnees/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SolutionAtterrissage/donnees/lecteur_yaml.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Projet_Finale.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Projet_Finale.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aeroport.csv" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/donnees/Aeroport.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Donnees.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/affichage/donnees_fixees.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/altitude_pression.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/atmosphere/altitude_pression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calcul_vent.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/atmosphere/fonctions_calcul_vent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deck.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/donnees/deck.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonction_range.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/avion/fonction_range.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/avion/fonctions_avion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/range_avec_virage.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/avion/range_avec_virage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transforme_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/atmosphere/transforme_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vent.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/atmosphere/vent_windy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SolutionAtterrissage/affichage/fonctions_affichage.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/affichage/fonctions_affichage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SolutionAtterrissage/atmosphere/classes_atmosphere.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/atmosphere/classes_atmosphere.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SolutionAtterrissage/atmosphere/transforme_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/atmosphere/transforme_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SolutionAtterrissage/atmosphere/vent_windy.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/atmosphere/vent_windy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SolutionAtterrissage/avion/fonctions_avion.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/avion/fonctions_avion.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +46,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "range__reel__integree",
+    "git-widget-placeholder": "new__main__comm__bastien",
     "last_opened_file_path": "C:/Users/natha/OneDrive/Documents/GitHub/Projet_Finale"
   }
 }]]></component>
