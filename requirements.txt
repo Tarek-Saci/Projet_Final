@@ -2,3 +2,5 @@ numpy
 pandas
 datetime
 matplotlib
+Basemap
+shapely
