@@ -119,7 +119,6 @@ class Performance:
         vitesse_vent = np.sqrt(vecteur_vent[:,0]**2 + vecteur_vent[:,1]**2 )
         vitesse_sol = self.vitesse + vitesse_vent * np.cos(angle_cap_vent_rad)  # il faut calculer le module du vecteur pour le remplacer dans vitese_vent
         temps_vol = self.carburant / self.conso_vitesse()
-        print(f'Temps vol : {temps_vol}')
         range_moteur_reel = vitesse_sol * temps_vol
         return range_moteur_reel
 
