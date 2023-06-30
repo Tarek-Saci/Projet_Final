@@ -1,14 +1,12 @@
-Projet Final
-
 # Projet spécial
 ## Développement d'un outil d'aide à la prise de décision pour un pilote d'avion en détresse
 ***
 ## Table des matières
 1. [Informations générales](#informations-générales)
-2. [Installation et execution de l'application](#installation-et-execution-de l'application)
-3. [Options ajoutées](#options-ajoutées)
-4. [Méthodes d'utilisation du fichier](#méthode-d'utilisation-du-fichier)
-5. [Méthodes d'utilisation des options](#méthode-d'utilisation-des-options)
+2. [Installation et exécution de l'application](#installation-et-exécution-de-l'application)
+3. [Détails des paramètres d'entrée et des résultats fournis](#détails-des-paramètres-d'entrée-et-des-résultats-fournis)
+4. [Structure du programme](#structure-du-programme)
+5. [Description des étapes du programme](#description-des-étapes-du-programme)
 6. [Références](#références)
 ***
 ### Informations générales
@@ -21,28 +19,27 @@ Pour cela, différents types de paramètres sont pris en compte :
 - Les paramètres des aéroports québécois.
 - Certains paramètres météorologiques.
 
-Vous retrouverez, dans ce fichier, une description des fonctionnalités qu'il présente, des données prises en compte, des hypothèses faites ainsi que la méthode de détermination des résultats.
+Vous retrouverez, dans ce fichier, une description des fonctionnalités que présente l'application, des données prises en compte, de la structure du programme ainsi que la méthode de détermination des résultats.
 ***
-### Installation et execution de l'application
+### Installation et exécution de l'application
 ***
 Dans ce dépôt, vous pouvez retrouver différents fichiers qui seront indispensables au bon fonctionnement de l'application :
 
 * Un fichier README.md, décrivant le projet et la méthode d'utilisation (que vous êtes en train de lire actuellement). 
-* Un dossier SolutionAtterrissage contenant tous les modules nécessaires pour l'utilisation du programme
-* Un fichier main.py faisant appel aux modules contenus dans le dossier SolutionAtterrissage permettant d'exécuter le programme
+* Un dossier SolutionAtterrissage contenant tous les modules nécessaires pour l'utilisation de l'application
+* Un fichier main.py faisant appel aux modules contenus dans le dossier SolutionAtterrissage permettant d'exécuter l'application
 * Un fichier requirements.txt répertoriant toutes les librairies utilisées par l'application
 * Un fichier LICENSE.md décrivant les conditions de la license 'MIT License' choisie
 
-Le projet a été réalisé et testé avec la version 3.9 de Python. Pour utiliser l'application, il faut suivre les étapes suivantes. 
-* Il faudra dans un premier temps créer un environnement virtuel avec Python 3.9 ou ultérieur.
+Le projet a été réalisé et testé avec la version 3.9 de Python. Pour utiliser l'application, il vous faudra suivre les étapes suivantes. 
+* Dans un premier temps créez un environnement virtuel avec Python 3.9 ou une version ultérieure.
 * Une fois l'environnement virtuel créé, exécutez la commande `pip install -r requirements.txt` dans le terminal afin d'installer les librairies utilisées par le programme.
 * Exécutez ensuite la commande `python main.py` dans le terminal pour lancer l'application.
 
 ***
-
 ### Détails des paramètres d'entrée et des résultats fournis
 ***
-Afin de fonctionner, ce programme utilise différents types de données. Il s'agit de bases de données ainsi que des paramètres utilisateurs intrinsèques à l'avion et à la situation. Pour faciliter l'utilisation, les paramètres utilisateurs seront à entrer par l'utilisateur dans un fichier YAML, dont l'utilisation est intuitive. 
+Cette application utilise différents types de données. Il s'agit de bases de données ainsi que des paramètres utilisateurs intrinsèques à l'avion et à la situation. Pour faciliter l'utilisation, les paramètres utilisateurs seront à entrer par l'utilisateur dans un fichier YAML, dont l'utilisation est intuitive. 
 
 Ces paramètres sont les suivants : 
 - La position GPS et l'altitude de l'avion
@@ -55,57 +52,45 @@ Ces paramètres sont les suivants :
 - La finesse de l'avion
 
 Les bases de données sont les suivantes : 
-- l'une contenant de nombreuses informations météorologiques en un point précis du globe généré par le site Windy.com
-- l'autre contenant de nombreuses informations sur tous les aérodromes du Québec obtenue sur le site donneesquebec.ca
+- Un fichier contenant de nombreuses informations météorologiques en un point précis du globe généré par le site Windy.com. Celle-ci permet d'obtenir le vent et la température en différents points pour le calcul du rayon d'action
+- Un fichier contenant de nombreuses informations sur tous les aérodromes du Québec obtenue sur le site donneesquebec.ca
 
 
+En retour, l'application fournit une carte annotée ainsi que des indications nécessaires pour le pilote. Sur cette carte du Québec, tous les aéroports seront localisés et un code couleur lui indique lesquels sont atteignables et lesquels possèdent une piste d'atterrissage assez longue pour atterrir en toute sécurité. Deux zones sont également délimitées par des ovoïdes vert et bleu, représentant respectivement le rayon d'action en prenant en compte l'action du vent et le rayon d'action sans prendre en compte le vent. 
 
-***
-### Options ajoutées
-***
-Le fichier python permet à l'utilisateur de rendre plus modulable et personnalisable la fabrication de pièces par l'imprimante 3D. Pour cela, cinq options ont été développées :
-* La possibilité d'avoir une température variable en fonction des couches (variabilité linéaire par morceaux).
 
-    ![image](https://github.com/NatGitEts/Mini_Projet_A_Groupe_L/assets/133153776/f0a53285-11b1-4793-9f37-c1f1c48f7dc5)
+Les indications qui s'affichent sur la gauche de la carte légendent la carte et indique les coordonnées GPS de l'aéroport optimal et le nouveau cap à prendre pour le rejoindre. L'application indique également la distance ajoutée par la prise en compte du virage afin que le pilote puisse se rendre compte de l'impact de la manoeuvre sur la distance à parcourir. 
 
-* La possibilité d'avoir une vitesse d'impression variable (variabilité en pourcentage de la vitesse de base).
-* La possibilité de sur-extruder ou sous-extrudersur des intervalles et cela dépendemment de la température et de la vitesse sur l'intervalle.
-* La possibilité de déplacer l'emplacement de début d'impression sur la zone disponible (déplacement du point d'origine X et Y).
-* La possibilité d'ajouter un deuxième passage sans extrusion, à chaque couche d'impression, afin de réchauffer la couche venant d'être imprimée et d'améliorer la consolidation de la pièce. 
-
-    ![image](https://github.com/NatGitEts/Mini_Projet_A_Groupe_L/assets/133153776/67887c39-be15-461e-b83e-17289f8c6aca)
+##############ajouter image####################
 
 ***
-### Méthodes d'utilisation du fichier
+### Structure du programme
 ***
-Le fichier ".py" que vous pouvez retrouver sur ce dépôt GitHub regroupe toutes les fonctions permettant de modifier le g-code voulu.
-Le fichier a besoin d'un fichier ".gcode" en entrée qui est celui auquel vous voulez apporter des modifications (ici : *"xyz-10mm-calibration-cube_0.4n_0.2mm_PLA_MK4_8m.gcode"*)
 
-Ensuite, le code va vous demander une suite de données à fournir qui seront essentielles pour que les modifications soient implémentées correctement dans votre g-code. Chaque donnée à fournir est décrite sur la manière et les unités à utiliser.
-
-La première entrée qui est demandée est le nombre de phase. Ce nombre correspond au nombre de différentes phases d'évolution des vitesses et températures.
-De plus, il est tout à fait possible pour vous de ne pas déplacer le lieu d'impression.
-
-Enfin, le code fournit en sortie un nouveau fichier ".gcode" comportant l'ensemble des modifications que vous avez voulu implémenter. 
 ***
-### Méthodes d'utilisation des options
+### Description des étapes du programme
 ***
-Les options présentées précédemment auront une influence sur le résultat d'impression. Afin que vous en fassiez le meilleur usage, voici des explications sur leur fonctionnement et sur leur méthode d'utilisation.
 
-* La variation de la température : Il est possible de faire varier la température linéairement de manière croissante ou décroissante sur plusieurs couches d'impression. Il est également possible de changer le type de variation pour chaque phase définie. Ainsi, il vous sera possible de fixer la température d'entrée et la température de sortie pour chacune des phases. 
+Cette partie décrit les étapes dans l'ordre d'exécution que réalise le programme pour obtenir les résultats attendus. 
 
-* La variation de vitesse : De la même manière que pour la température, il est possible de faire varier la vitesse d'un certain pourcentage en partant d'une vitesse d'entrée et allant jusqu'à une vitesse de sortie. Cette modification n'affecte que la vitesse lors de l'impression et non lors des mouvements sans sortie de matière. On peut effectuer des variations de vitesse différentes pour chaque phase créée.
+* Prise en compte des paramètres utilisateurs : l'utilisateur remplit le fichier YAML avec les données intrinsèques à l'avion et les paramètres au moment de l'avarie
+* Récupération de la température aux coordonnées et à l'altitude de l'avion : cette température est nécessaire car elle a une influence sur la consommation de carburant de l'avion
+* Calcul du rayon d'action théorique : un premier rayon d'action sans prise en compte du vent est calculé. Celui-ci dépend avant tout du type d'avarie : l'avion peut-il utiliser ses moteurs ou non ? La vitesse de l'avion, la quantité de carburant restante, l'altitude et la consommation sont également des paramètres pris en compte pour ce calcul.
+* Discrétisation du cercle atteignable et détermination des coordonnées des points de ce cercle : ce cercle a son centre à la position de l'avion et a pour rayon le rayon d'action calculé.  
+* Discrétisation des segments avion-point_du_cercle et détermination des coordonnées de tous ces points
+* Récupération des "vecteurs vent" en chaque point du cercle mais également aux points de dicrétisation des segments avion-point_du_cercle déterminés à l'étape précédente
+* Calcul des "vecteurs vent" moyens sur chaque segments avion-point_du_cercle
+* Correction du range théorique précédemment calculé en prenant en compte le vent : nous ne considérons plus que la vitesse au sol est égale à  la vitesse vraie de l'avion (c'est-à-dire sa vitesse sol à laquelle ajoute la vitesse de déplacement de la masse d'air dans laquelle il évolue). La vitesse vraie est donc déterminée et un nouveau rayon d'action est calculé pour chaque direction.
+* Détermination des aéroports atteignables : ce sont ceux inclus dans le nouveau rayon d'action de l'avion
+* Tri des aéroports atteignables : parmi tous les aéroports atteignables, seuls ceux possédant une piste de longueur suffisante sont conservés
+* Calcul du nouveau cap à emprunter et de la distance supplémentaire qui sera engendrée par un éventuel virage : ces informations seront utiles pour le pilote et seront affichées à côté de la carte
+* Affichage de la carte avec sa légende et des informations utiles pour le pilote
 
-* La variation de la quantité de matière extrudée : Dépendemment de la vitesse et de la température lors de l'impression, la buse va sortir plus ou moins de matière pour palier au phénomène de gonflement de l'extrudat. Par exemple, si la vitesse augmente pour une température fixe, il y aura un gonflement plus important et donc on fera en sorte que la buse envoie moins de matière (sous-extrusion) et inversement. Cette modification se réalise automatiquement en fonction des paramètres de température et de vitesse que vous aurez entrés initialement.
-
-* Le changement de l'origine : Initialement, l'impression centre l'objet d'impression au milieu du lit. Mais, il est possible de modifier la position du début de l'impression sur la zone à disposition. Pour cela, il vous sera demandé d'entrer les distances de décalage selon x et y par rapport à la position de base. Ces distances sont en millimètres. Il est recommandé de faire attention à ne pas dépasser les distances atteignables par la buse et à ne pas entrer des distances amenant en dehors des dimensions de la zone d'impression.
-  Si vous ne voulez pas décaler la position d'impression de votre pièce, c'est possible. Il suffit d'entrer "non" lorsqu'il vous est demandé.
-
-* Le deuxième passage sans extrusion : Par défaut, cette fonction n'est pas active. Ce code python vous permet donc d'ajouter automatiquement un second passage après chaque couche qui chauffe la couche tout juste imprimée. Ce second passage est automatiquement adapté à l'objet souhaitant être imprimé.
 ***
 ## Références
 ***
 Les lien pour accéder aux bases de données utilisées dans le code sont répertoriés ci-dessous : 
-• Aéroport - Piste - Aéroport - Piste - Données Québec. 
+* Aéroport - Piste - Aéroport - Piste - Données Québec. 
 https://www.donneesquebec.ca/recherche/dataset/aeroportpiste/resource/b66e3e23-10af-457d-b95e-b5011126fba
-• Windy.com. Wind map & weather forecast - https://www.windy.com
+* Windy.com. Wind map & weather forecast.
+https://www.windy.com
