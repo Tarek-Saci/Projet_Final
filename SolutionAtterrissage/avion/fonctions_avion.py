@@ -287,9 +287,20 @@ def calcul_new_cap (lat_avion, longi_avion, lat_aerodrome,longi_aerodrome) :
 
 def distance_avec_virage(vitesse, x_avion, y_avion, x_aero, y_aero, cap):
     """
+    Cette fonction permet de calculer la distance entre l'avion et l'aéroport le plus proche en prenant
+    en compte le potentiel virage que l'avion devra réaliser pour rejoindre l'aéroport
 
-    A COMMENTER EN SPHINX
+    Args:
+        vitesse (float) : La vitesse de l'avion (en kts)
+        x_avion (float) : La longitude de l'avion (un réel)
+        y_avion (float) : La latitude de l'avion (un réel compris entre -89.99° et 90°)
+        x_aéroport (float) : La longitude de l'aéroport (un réel)
+        y_aéroport (float) : La latitude de l'aéroport (un réel compris entre -89.99° et 90°)
+        cap (float) : Le cap de l'avion (un réel compris entre 0° et 360°)
 
+    Returns:
+        distance_cercle_nm (float) : La distance ajoutée par la prise en compte du virage (en nm)
+        angle_cap_aero (float) : L'angle entre le cap de l'avion et le vecteur avion-aéroport (en °)
     """
     #Angle du cap par rapport à l'horizontal en degré
 
@@ -332,7 +343,7 @@ def distance_avec_virage(vitesse, x_avion, y_avion, x_aero, y_aero, cap):
         milieu_cercle = [rayon_virage_km * math.cos(math.radians(angle_cap) - math.pi/2) + x_avion,
                          rayon_virage_km * math.sin(math.radians(angle_cap) - math.pi/2) + y_avion]
 
-    print('milieu', milieu_cercle)
+    #print('milieu', milieu_cercle)
 
     #Calcul de la distance parcourue en virage
 
@@ -344,17 +355,19 @@ def distance_avec_virage(vitesse, x_avion, y_avion, x_aero, y_aero, cap):
         distance_cercle = 2 * math.pi * rayon_virage_km * 0.375
     else:
         distance_cercle = 2 * math.pi * rayon_virage_km * 0.5
-    print('distance sur cercle',distance_cercle)
+    #print('distance sur cercle',distance_cercle)
 
     #Calcul de la distance en ligne droite restante après le virage distance_av
     distance_centrecercle_aero = ((x_aero_km-milieu_cercle[0])**2+(y_aero_km-milieu_cercle[1])**2)**0.5
     distance_av=(distance_centrecercle_aero**2-rayon_virage_km**2)**0.5
 
-    print('distance après virage', distance_av)
+    #print('distance après virage', distance_av)
 
-    distance_reelle = distance_cercle + distance_av
+    #distance_reelle = distance_cercle + distance_av
+    distance_cercle_nm = distance_cercle / 1.852
+    print('Distance ajoutée par la prise en compte du virage',distance_cercle_nm)
 
-    return distance_reelle, angle_cap_aero
+    return distance_cercle_nm, angle_cap_aero
 
 print(distance_avec_virage(100, -72.142587, 49.826251, -68.79560969, 53.17322831, 23))
 
