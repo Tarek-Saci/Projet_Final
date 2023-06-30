@@ -12,7 +12,7 @@ class Air:
 
     def calcul_altitude_pression(self):
         """
-        Cette fonction permet de calculer la pression (en hPa) à une altitude donnée selon
+        Cette méthode de la classe Air permet de calculer la pression (en hPa) à l'altitude donnée selon
         le modèle de l'atmosphère standard. En effet, les données météorologiques sont classées
         en niveaux de pression
 
@@ -31,7 +31,7 @@ class Air:
         return pression
 
     def calcul_vent(self):
-        """Cette fonction permet de déterminer le vecteur vitesse du vent à une position GPS et une altitude donnée
+        """Cette méthode de la classe Air permet de déterminer le vecteur vitesse du vent à la position GPS et l'altitude donnée
 
         Args:
             latitude (float): La latitude du point recherché compris entre -89.99° et 90°
@@ -93,7 +93,7 @@ class Air:
 
     def calcul_temperature(self):
         """
-        Cette fonction permet de déterminer la température à une position GPS et une altitude donnée
+        Cette méthode de la classe Air permet de déterminer la température à la position GPS et l'altitude donnée
 
         Args:
             latitude (float): La latitude du point recherché compris entre -89.99° et 90°
