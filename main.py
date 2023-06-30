@@ -1,21 +1,21 @@
 import pandas as pd
-import fonctions as fc
-import classes
-from Donnees import*
-from fonction_range import *
-import range_avec_virage
-
+import numpy as np
+from SolutionAtterrissage import aeroport
+from SolutionAtterrissage import affichage
+from SolutionAtterrissage import atmosphere
+from SolutionAtterrissage import avion
+from SolutionAtterrissage import donnees
 
 # ---------- YAML ---------- #
 
 # Création de l'objet YAML qui lit le fichier "deck.yamL"
-parser = classes.LecteurYAML('deck.yaml')
+parser = donnees.LecteurYAML('SolutionAtterrissage/donnees/deck.yaml')
 # Lecture du fichier avec la fonction read_yaml()
 parametres_init = parser.read_yaml()
 
 # ---------- INFORMATIONS AEROPORT.CSV ---------- #
 
-df = pd.read_csv("Aeroport.csv")
+df = pd.read_csv("SolutionAtterrissage/donnees/Aeroport.csv")
 colonnes_souhaitees = ['objectid', 'nomcarto', 'codeindic', 'typeinfras', 'nbrpiste', 'longpiste2',
                        'surface', 'latitude', 'longitude', 'acces']
 df_colonnes = df[colonnes_souhaitees]
@@ -34,7 +34,7 @@ acces_array = df_final['acces'].to_numpy()
 
 # ---------- CREATION DES AERODROMES ---------- #
 
-vecteur_creer_aerodrome = np.vectorize(classes.creer_aerodrome)
+vecteur_creer_aerodrome = np.vectorize(aeroport.creer_aerodrome)
 
 aerodromes = vecteur_creer_aerodrome(objectid_array, nomcarto_array, codeindic_array,
                                      typeinfras_array, nbrpiste_array, longpiste2_array,
@@ -42,12 +42,12 @@ aerodromes = vecteur_creer_aerodrome(objectid_array, nomcarto_array, codeindic_a
 
 # ---------- CALCUL PERFORMANCE DE L'AVION ---------- #
 
-air = Air(parametres_init["latitude"],parametres_init["longitude"],parametres_init["altitude"])
+mon_air = atmosphere.Air(parametres_init["latitude"],parametres_init["longitude"],parametres_init["altitude"])
 
-performance = Performance(parametres_init["finesse"],parametres_init["vitesse"],
+performance = avion.Performance(parametres_init["finesse"],parametres_init["vitesse"],
                           parametres_init["vitesse_plane"],parametres_init["altitude"],
                           parametres_init["dist_roulage_mini"],parametres_init["carburant_restant"],
-                          parametres_init["moteur_avion"],air)
+                          parametres_init["moteur_avion"],mon_air)
 
 # ---------- CALCUL RANGE THEORIQUE ---------- #
 
@@ -61,32 +61,34 @@ else:
 # ---------- CREATION DE L'AVION ---------- #
 
 coordonnees_avion = (parametres_init["latitude"],parametres_init["longitude"])
-avion = classes.Avion(coordonnees_avion,range_theorique,parametres_init["altitude"])
+avion_1 = avion.Avion(coordonnees_avion, range_theorique, parametres_init["altitude"])
 
-lons,lats = fc.cercle_range(range_theorique,avion)
+lons,lats = affichage.cercle_range(range_theorique,avion_1)
 
 list_coordonnes_sur_cercle = np.column_stack((lats, lons))
 
 # ---------- CREATION DES VENTS DES POINTS DU CERCLE ---------- #
 
-vents = np.zeros((nombre_points,discretisation+1,2))
-coordonnees = np.zeros((nombre_points,discretisation+1,2))
+vents = np.zeros((affichage.nombre_points,affichage.discretisation+1,2))
+coordonnees = np.zeros((affichage.nombre_points,affichage.discretisation+1,2))
 
-for i in range(0,nombre_points):
-    coordonnees_points_interieurs = fc.calcul_coordonnees_vents_trajet(discretisation,coordonnees_avion,list_coordonnes_sur_cercle[i][0],list_coordonnes_sur_cercle[i][1])
-    for y in range(0,discretisation):
+for i in range(0,affichage.nombre_points):
+    coordonnees_points_interieurs = atmosphere.calcul_coordonnees_vents_trajet(affichage.discretisation,coordonnees_avion,list_coordonnes_sur_cercle[i][0],list_coordonnes_sur_cercle[i][1])
+    for y in range(0,affichage.discretisation):
         coordonnees[i,y] = coordonnees_points_interieurs[y]
-    coordonnees[i,discretisation] = (list_coordonnes_sur_cercle[i,0],list_coordonnes_sur_cercle[i,1])
+    coordonnees[i,affichage.discretisation] = (list_coordonnes_sur_cercle[i,0],list_coordonnes_sur_cercle[i,1])
 
-for i in range(0,nombre_points):
-    for y in range(0,discretisation):
-        vents[i][y] = fc.calcul_vent(coordonnees[i][y][0], coordonnees[i][y][1],parametres_init["altitude"])
-    vents[i,discretisation] = fc.calcul_vent(coordonnees[i][discretisation][0], coordonnees[i][discretisation][1],parametres_init["altitude"])
+for i in range(0,affichage.nombre_points):
+    for y in range(0,affichage.discretisation):
+        vents[i][y] = mon_air.calcul_vent()
+       # vents[i][y] = atmosphere.calcul_vent(coordonnees[i][y][0], coordonnees[i][y][1],parametres_init["altitude"])
+    vents[i,affichage.discretisation] = mon_air.calcul_vent()
+    #vents[i,affichage.discretisation] = atmosphere.calcul_vent(coordonnees[i][affichage.discretisation][0], coordonnees[i][affichage.discretisation][1],parametres_init["altitude"])
 
 list_vents = []
 
-for i in range(0,nombre_points):
-    vent1 = fc.calcul_moyenne_vents_trajet(vents[i,:])
+for i in range(0,affichage.nombre_points):
+    vent1 = atmosphere.calcul_moyenne_vents_trajet(vents[i,:])
     list_vents.append(vent1)
 
 list_vents_array = np.array(list_vents)
@@ -94,15 +96,15 @@ list_vents_array = np.array(list_vents)
 # ---------- CALCUL RANGE REEL ---------- #
 
 if parametres_init["moteur_avion"]:
-    range_corrige = performance.range_moteur_reel(list_vents_array,vecteur_angle)
+    range_corrige = performance.range_moteur_reel(list_vents_array,affichage.vecteur_angle)
     print(f'Range avec moteurs corrigée en mille nautique : {range_corrige} [nm]')
 else:
-    range_corrige = performance.range_plane_reel(list_vents_array,vecteur_angle)
+    range_corrige = performance.range_plane_reel(list_vents_array,affichage.vecteur_angle)
     print(f'Range sans moteurs corrigée en mille nautique : {range_corrige} [nm]')
 
 # ---------- CALCUL RANGE AVEC VENT ---------- #
 
-lons_reel,lats_reel = fc.cercle_range_reel(range_corrige,avion)
+lons_reel,lats_reel = affichage.cercle_range_reel(range_corrige,avion_1)
 
 list_coordonnes_sur_cercle_reel = np.column_stack((lats_reel, lons_reel))
 list_coordonnes_sur_cercle_reel = np.concatenate((list_coordonnes_sur_cercle_reel, np.column_stack((lats_reel[0], lons_reel[0]))))
@@ -111,7 +113,7 @@ list_coordonnes_sur_cercle_reel = np.concatenate((list_coordonnes_sur_cercle_ree
 
 aerodromes_in_range = []
 for aerodrome in aerodromes:
-    wn = fc.winding_number((aerodrome.latitude,aerodrome.longitude), list_coordonnes_sur_cercle_reel)
+    wn = affichage.winding_number((aerodrome.latitude,aerodrome.longitude), list_coordonnes_sur_cercle_reel)
     if wn != 0:
         aerodromes_in_range.append(aerodrome)
 
@@ -121,7 +123,7 @@ lats_in_range = np.array([aerodrome.latitude for aerodrome in aerodromes_in_rang
 aerodromes_in_range_right_size = []
 
 for aerodrome in aerodromes_in_range:
-    resultat,numero_pistes = fc.cherche_longueur_piste(aerodrome,parametres_init["dist_roulage_mini"])
+    resultat,numero_pistes = aeroport.cherche_longueur_piste(aerodrome,parametres_init["dist_roulage_mini"])
     if resultat == True:
         aerodromes_in_range_right_size.append(aerodrome)
 
@@ -130,27 +132,27 @@ lats_in_range_in_size = np.array([aerodrome.latitude for aerodrome in aerodromes
 
 # ---------- AERODROME LE PLUS PROCHE ---------- #
 
-distance = np.array(fc.calcul_entre_deux_coordonnees(coordonnees_avion,lats_in_range_in_size,lons_in_range_in_size))
+distance = np.array(affichage.calcul_entre_deux_coordonnees(coordonnees_avion,lats_in_range_in_size,lons_in_range_in_size))
 if len(distance) != 0:
     min_value = np.min(distance)
     min_index = np.argmin(distance)
     lat_aerodrome_plus_proche = aerodromes_in_range_right_size[min_index].latitude
     lon_aerodrome_plus_proche = aerodromes_in_range_right_size[min_index].longitude
-    new_cap = fc.calcul_new_cap(avion.latitude,avion.longitude,lat_aerodrome_plus_proche,lon_aerodrome_plus_proche)
+    new_cap = avion.calcul_new_cap(avion_1.latitude,avion_1.longitude,lat_aerodrome_plus_proche,lon_aerodrome_plus_proche)
 else:
-    lat_aerodrome_plus_proche = avion.latitude
-    lon_aerodrome_plus_proche = avion.longitude
+    lat_aerodrome_plus_proche = avion_1.latitude
+    lon_aerodrome_plus_proche = avion_1.longitude
     new_cap = 0
 
 # ---------- AFFICHAGE DE LA CARTE FINALE ---------- #
 
-fc.affichage_carte(aerodromes,avion,parametres_init,
+affichage.affichage_carte(aerodromes,avion_1,parametres_init,
                    lons,lats,
                    lons_in_range,lats_in_range,
                    lons_in_range_in_size,lats_in_range_in_size,
                    lons_reel,lats_reel,
                    lon_aerodrome_plus_proche,lat_aerodrome_plus_proche,new_cap)
 
-distance_reelle, angle_cap_aero = range_avec_virage.distance_avec_virage(parametres_init["vitesse"],avion.longitude,avion.latitude,-68.79560969 ,53.17322831,parametres_init["cap"])
+distance_reelle, angle_cap_aero = avion.distance_avec_virage(parametres_init["vitesse"], avion_1.longitude, avion_1.latitude, -68.79560969, 53.17322831, parametres_init["cap"])
 print('angle', distance_reelle, angle_cap_aero)
 

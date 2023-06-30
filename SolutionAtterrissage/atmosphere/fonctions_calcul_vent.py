@@ -1,4 +1,6 @@
-import pandas as pd
+from shapely.geometry import LineString
+import numpy as np
+"""import pandas as pd
 import datetime
 from vent import get_windy_data
 from transforme_data import flatten_json
@@ -68,5 +70,26 @@ def calcul_vent(lat, lon, altitude):
     return vecteur_vent
 
 
-print('Vecteur vent : ', calcul_vent(-23,204,8000))
+print('Vecteur vent : ', calcul_vent(-23,204,8000))"""
+
+def calcul_coordonnees_vents_trajet(n,coordonnees_avion,latitude_point,longitude_point):
+
+    point1 = (coordonnees_avion[1], coordonnees_avion[0])
+    point2 = (longitude_point, latitude_point)
+
+    line = LineString([point1, point2])
+
+    points_interieurs = [line.interpolate(i / (n + 1), normalized=True) for i in range(1, n + 1)]
+
+    coordonnees_points_interieurs = [(point.y, point.x) for point in points_interieurs]
+
+    return coordonnees_points_interieurs
+
+def calcul_moyenne_vents_trajet(vents_a_moyenner):
+
+    moyenne_vent_x = np.mean(vents_a_moyenner[:,0])
+    moyenne_vent_y = np.mean(vents_a_moyenner[:,1])
+
+    return (moyenne_vent_x,moyenne_vent_y)
+
 

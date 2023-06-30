@@ -1,110 +1,8 @@
 from mpl_toolkits.basemap import Basemap
-from shapely.geometry import LineString
+from .donnees_fixees import *
 import matplotlib.pyplot as plt
 import math
-import pandas as pd
-import datetime
-import re
-from Donnees import*
 
-#Ce programme permet d'obtenir en temps réel les données météorologiques en un point donné
-#Ce point doit être repéré par ses coordonnées GPS (latitude, longitude). La latitude doit être un flottant
-# compris entre -89.99° et 90° tandis que la longitude peut être un flottant quelconque
-def get_windy_data(lat, lon):
-    url_base = "https://node.windy.com/forecast/meteogram/ecmwf/"
-    url_request = url_base + str(lat) + "/" + str(lon)
-    import urllib.request, json
-    with urllib.request.urlopen(url_request) as url:
-        data = json.load(url)
-        # data = pd.read_json(url)
-    return data
-
-# recursive function to flatten nested fields
-def flatten_json(data, prefix=''):
-    if isinstance(data, dict):
-        flattened = {}
-        for key, value in data.items():
-            flattened.update(flatten_json(value, prefix + key + '_'))
-        return flattened
-    elif isinstance(data, list):
-        flattened = {}
-        for i, item in enumerate(data):
-            flattened.update(flatten_json(item, prefix + str(i) + '_'))
-        return flattened
-    else:
-        return {prefix[:-1]: data}
-
-# L'argument doit être entré en mètres
-def calcul_altitude_pression(altitude):
-    #d'après l'ISA
-    altitude_m=altitude/3.28
-    if altitude_m<11000:
-        pression = 1013.25*(1-0.0065*altitude_m/288.15)**(9.81/(0.0065*287.04))
-    else:
-        pression = 226.32*math.exp(-9.81*(altitude_m-11000)/(287.04*216.65))
-    return pression
-
-# Fonction permettant de déterminer le vecteur vitesse du vent à une position et une altitude donnée
-# L'altitude doit être entrée en mètres
-# La position géographique doit être repérée par des coordonnées GPS (latitude, longitude).
-# La latitude doit être un flottant compris entre -89.99° et 90° tandis que la longitude peut être un flottant quelconque
-def calcul_vent(lat, lon, altitude):
-
-    # Récupération des données dans la base de données de Windy
-    meteo = get_windy_data(lat, lon)
-
-    # Détermination de l'heure de la requête
-    # En format POSIX
-    posix_time = datetime.datetime.now().timestamp()
-    #print(posix_time)
-    # En format classique
-    classical_time = datetime.datetime.fromtimestamp(posix_time)
-    #print(classical_time)
-
-    # Transformation du JSON en dataframe
-    # flatten the JSON
-    flattened = flatten_json(meteo)
-    df = pd.DataFrame([flattened])
-
-    # Détermination de l'heure répertoriée la plus proche de l'heure actuelle
-    data_hours = df.filter(like="data_hours")
-
-    i = 0
-    #print(data_hours.iloc[0, i] / 1000)
-    while posix_time > data_hours.iloc[0, i] / 1000:
-        i += 1
-    #print(i)
-    if abs(posix_time - data_hours.iloc[0,i]) > abs(posix_time - data_hours.iloc[0, i-1]):
-        i-=1
-
-    # Liste des altitudes pour lesquelles les données sont recensées
-    liste_altitude_pression = [150, 200, 250, 300, 400, 500, 600, 700, 800, 850, 900, 925, 950, 1000, 1013.25]
-
-    # Calcul de l'altitude pression de l'avion
-    altitude_pression_avion = calcul_altitude_pression(altitude)
-
-    # Détermination de l'altitude recensée la plus proche de l'altitude de l'avion
-    j = 0
-    while altitude_pression_avion > liste_altitude_pression[j]:
-        j += 1
-    #print(j)
-    if abs(altitude_pression_avion - liste_altitude_pression[j]) > abs(
-            altitude_pression_avion - liste_altitude_pression[j - 1]):
-        altitude_database = liste_altitude_pression[j - 1]
-    else:
-        altitude_database = liste_altitude_pression[j]
-    # print(altitude_database)
-
-    # Récupération des données recherchées dans la database
-    if altitude_database != 1013.25:
-        vecteur_vent_v = df[f'data_wind_v-{altitude_database}h_{i}']
-        vecteur_vent_u = df[f'data_wind_u-{altitude_database}h_{i}']
-    else:
-        vecteur_vent_v = df[f'data_wind_v-surface_{i}']
-        vecteur_vent_u = df[f'data_wind_u-surface_{i}']
-    vecteur_vent=[vecteur_vent_u.iloc[0],vecteur_vent_v.iloc[0]]
-
-    return vecteur_vent
 
 def affichage_carte(aerodromes,avion,parametres_init,lons,lats,
                     lons_in_range,lats_in_range,
@@ -179,6 +77,8 @@ def affichage_carte(aerodromes,avion,parametres_init,lons,lats,
 
     plt.show()
 
+
+
 def calcul_entre_deux_coordonnees(point1,lat2,lon2):
 
     lat1 = np.radians(point1[0])
@@ -247,53 +147,3 @@ def winding_number(point, sommets):
                 wn -= 1
 
     return wn
-
-def cherche_longueur_piste(aerodrome,dist_roulage_mini):
-
-    numero_pistes = []
-    resultat = False
-
-    for i in range(0,len(aerodrome.pistes)):
-        chiffres = re.findall(r'\d+', aerodrome.pistes[i].longeur)
-        chiffres_concatenes = ''.join(chiffres)
-        nombre = int(chiffres_concatenes)
-        if nombre > dist_roulage_mini:
-            resultat = True
-            numero_pistes.append(i)
-
-    return  resultat,numero_pistes
-
-def calcul_new_cap (lat_avion, longi_avion, lat_aerodrome,longi_aerodrome) :
-    lat_avion_rad = lat_avion * (np.pi / 180)
-    lat_aerodrome_rad = lat_aerodrome * (np.pi / 180)
-    longi_avion_rad = longi_avion * (np.pi / 180)
-    longi_aerodrome_rad = longi_aerodrome * (np.pi / 180)
-
-    diff_longi = longi_aerodrome_rad - longi_avion_rad
-
-    azimut_rad = np.arctan2(math.sin(diff_longi) *np.cos(lat_aerodrome_rad), np.cos(lat_avion_rad) *np.sin(lat_aerodrome_rad) - np.sin(lat_avion_rad) *np.cos(lat_aerodrome_rad) *np.cos(diff_longi))
-    azimut_deg = azimut_rad*(180/np.pi)
-    if azimut_deg < 0 :
-        azimut_deg += 360
-
-    return azimut_deg
-
-def calcul_coordonnees_vents_trajet(n,coordonnees_avion,latitude_point,longitude_point):
-
-    point1 = (coordonnees_avion[1], coordonnees_avion[0])
-    point2 = (longitude_point, latitude_point)
-
-    line = LineString([point1, point2])
-
-    points_interieurs = [line.interpolate(i / (n + 1), normalized=True) for i in range(1, n + 1)]
-
-    coordonnees_points_interieurs = [(point.y, point.x) for point in points_interieurs]
-
-    return coordonnees_points_interieurs
-
-def calcul_moyenne_vents_trajet(vents_a_moyenner):
-
-    moyenne_vent_x = np.mean(vents_a_moyenner[:,0])
-    moyenne_vent_y = np.mean(vents_a_moyenner[:,1])
-
-    return (moyenne_vent_x,moyenne_vent_y)

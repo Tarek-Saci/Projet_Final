@@ -1,100 +1,4 @@
-
-import numpy as np
-import math
-from Donnees import *
-from fonctions import *
-import datetime
-import pandas as pd
-
-class GPS:
-    def __init__(self, latitude, longitude, altitude, cap): #-------il faut ajouter la temperature a la position de l'avion---
-        self.latitude = latitude
-        self.longitude = longitude
-        self.altitude = altitude
-        self.cap = math.radians(cap)
-        # Rayon de la Terre en mètres
-        self.rayon_terre = 6371 * 1000  # En mètres
-
-    def distance_entre_2_points(self, lat2, lon2):
-
-        # Convertir les coordonnées degrés en radians
-        lat1 = math.radians(self.latitude)
-        lon1 = math.radians(self.longitude)
-        lat2 = math.radians(lat2)
-        lon2 = math.radians(lon2)
-
-        # Calcul des différences de latitude et de longitude
-        diff_lat = lat2 - lat1
-        diff_lon = lon2 - lon1
-
-        # Calcul de la distance
-        a = math.sin(diff_lat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(diff_lon / 2) ** 2
-        c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
-        distance = self.rayon_terre * c * 0.001  # *1000 pour avoir des kilomètres
-
-        return round(distance, 3)
-class Air:
-    def __init__(self,latitude,longitude, altitude):
-        self.latitude = latitude
-        self.longitude = longitude
-        self.altitude = altitude
-
-    def temperature(self):
-
-        # Récupération des données dans la base de données de Windy
-        meteo = get_windy_data(self.latitude, self.longitude)
-
-        # Détermination de l'heure de la requête
-        # En format POSIX
-        posix_time = datetime.datetime.now().timestamp()
-        # print(posix_time)
-        # En format classique
-        classical_time = datetime.datetime.fromtimestamp(posix_time)
-        # print(classical_time)
-
-        # Transformation du JSON en dataframe
-        # flatten the JSON
-        flattened = flatten_json(meteo)
-        df = pd.DataFrame([flattened])
-        #print(df)
-
-        # Détermination de l'heure répertoriée la plus proche de l'heure actuelle
-        data_hours = df.filter(like="data_hours")
-
-        i = 0
-        # print(data_hours.iloc[0, i] / 1000)
-        while posix_time > data_hours.iloc[0, i] / 1000:
-            i += 1
-        # print(i)
-        if abs(posix_time - data_hours.iloc[0, i]) > abs(posix_time - data_hours.iloc[0, i - 1]):
-            i -= 1
-
-        # Liste des altitudes pour lesquelles les données sont recensées
-        liste_altitude_pression = [150, 200, 250, 300, 400, 500, 600, 700, 800, 850, 900, 925, 950, 1000, 1013.25]
-
-        # Calcul de l'altitude pression de l'avion
-        altitude_pression_avion = calcul_altitude_pression(self.altitude)
-
-        # Détermination de l'altitude recensée la plus proche de l'altitude de l'avion
-        j = 0
-        while altitude_pression_avion > liste_altitude_pression[j]:
-            j += 1
-        # print(j)
-        if abs(altitude_pression_avion - liste_altitude_pression[j]) > abs(
-                altitude_pression_avion - liste_altitude_pression[j - 1]):
-            altitude_database = liste_altitude_pression[j - 1]
-        else:
-            altitude_database = liste_altitude_pression[j]
-        #print(altitude_database)
-
-        # Récupération des données recherchées dans la database
-        if altitude_database != 1013.25:
-            temperature = df[f'data_temp-{altitude_database}h_{i}']
-        else:
-            temperature = df[f'data_temp-surface_{i}']
-
-        temperature_vraie = temperature.iloc[0]
-        return temperature_vraie
+"""from fonctions import *
 
 class Performance:
     def __init__(self, finesse, vitesse, vitesse_plane, altitude, dist_roulage_mini, carburant_restant, moteur_avion, air):
@@ -211,5 +115,5 @@ class Performance:
         temps_vol = self.carburant / self.conso_vitesse()
         print(f'Temps vol : {temps_vol}')
         range_moteur_reel = vitesse_sol * temps_vol
-        return range_moteur_reel
+        return range_moteur_reel """
 

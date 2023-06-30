@@ -1,6 +1,5 @@
 import numpy as np 
 
-
 nombre_points = 40
 discretisation = 2
 nombre_segments = nombre_points+1

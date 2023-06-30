@@ -1,4 +1,4 @@
-import math
+"""import math
 
 def distance_avec_virage(vitesse, x_avion, y_avion, x_aero, y_aero, cap):
     #Angle du cap par rapport à l'horizontal en degré
@@ -67,3 +67,4 @@ def distance_avec_virage(vitesse, x_avion, y_avion, x_aero, y_aero, cap):
     return distance_reelle, angle_cap_aero
 
 print(distance_avec_virage(100, -72.142587, 49.826251, -68.79560969, 53.17322831, 23))
+"""
