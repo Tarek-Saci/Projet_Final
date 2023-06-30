@@ -42,9 +42,13 @@ Vous retrouverez, dans ce fichier, une description des fonctionnalités qu'il pr
 * Un dossier SolutionAtterrissage contenant tous les modules nécessaires pour l'utilisation du programme
 * Un fichier main.py faisant appel aux modules contenus dans le dossier SolutionAtterrissage permettant d'exécuter le programme
 
-Pour faire fonctionner le fichier, il faut télécharger (au minimum) les fichiers main.py et le dossier SolutionAtterrissage dans lequel se trouve tous les modules utilisés. 
+Le projet a été réalisé et testé avec la version 3.9 de Python. 
+* Il faudra dans un premier temps créer un environnement virtuel avec Python 3.9 ou ultérieur.
+* Une fois l'environnement virtuel créé, exécutez la commande `pip install -r requirements.txt` dans le terminal afin d'installer les librairies utilisées par le programme.
+* Exécutez ensuite la commande `python main.py` dans le terminal pour lancer l'application.
 
-Une fois l'installation de Prusa-Slicer terminée, il faut ouvrir le fichier '.STL' avec ce logiciel et générer le g-code correspondant. Puis, une fois que le g-code généré est enregistré sous un fichier '.gcode', vous pouvez ouvrir et exécuter le fichier python (des explications spécifiques sur l'utilisation du fichier python sont données par la suite). Enfin, une fois exécuté, vous aurez, dans le dossier où se trouve le fichier python, un nouveau fichier '.gcode' comportant les modifications et ayant la mention 'modifie'."""
+
+
 ***
 ### Options ajoutées
 ***
@@ -54,7 +58,7 @@ Le fichier python permet à l'utilisateur de rendre plus modulable et personnali
     ![image](https://github.com/NatGitEts/Mini_Projet_A_Groupe_L/assets/133153776/f0a53285-11b1-4793-9f37-c1f1c48f7dc5)
 
 * La possibilité d'avoir une vitesse d'impression variable (variabilité en pourcentage de la vitesse de base).
-* La possibilité de sur-extruder ou sous-extruder sur des intervalles et cela dépendemment de la température et de la vitesse sur l'intervalle.
+* La possibilité de sur-extruder ou sous-extrudersur des intervalles et cela dépendemment de la température et de la vitesse sur l'intervalle.
 * La possibilité de déplacer l'emplacement de début d'impression sur la zone disponible (déplacement du point d'origine X et Y).
 * La possibilité d'ajouter un deuxième passage sans extrusion, à chaque couche d'impression, afin de réchauffer la couche venant d'être imprimée et d'améliorer la consolidation de la pièce. 
 
