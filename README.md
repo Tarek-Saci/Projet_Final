@@ -37,7 +37,6 @@ Le projet a été réalisé et testé avec la version 3.9 de Python. Pour utilis
 * Une fois l'environnement virtuel créé, exécutez la commande `pip install -r requirements.txt` dans le terminal afin d'installer les librairies utilisées par le programme.
 * Exécutez ensuite la commande `python main.py` dans le terminal pour lancer l'application.
 
-* 
 
 ***
 ### Détails des paramètres d'entrée et des résultats fournis
@@ -63,8 +62,6 @@ En retour, l'application fournit une carte annotée ainsi que des indications n�
 
 
 Les indications qui s'affichent sur la gauche de la carte légendent la carte et indique les coordonnées GPS de l'aéroport optimal et le nouveau cap à prendre pour le rejoindre. L'application indique également la distance ajoutée par la prise en compte du virage afin que le pilote puisse se rendre compte de l'impact de la manoeuvre sur la distance à parcourir. 
-
-##############ajouter image####################
 
 ***
 ### Structure du programme
@@ -115,7 +112,21 @@ Cette partie décrit les étapes dans l'ordre d'exécution que réalise le progr
 ***
 ## Test
 ***
+Pour tester ce programme et vérifier son efficacité nous avons effectué une série de test.
+Tout d’abord, vérifier que les vents ont le bon effet sur le nouveau rayon d’action de l’avion.
 
+Nous pouvons voir que le vent se dirige peu vers l’est, donc selon les x, et beaucoup vers le nord, donc selon les y :
+![](Screenshot/vents.PNG)
+
+Résultat qui correspond bien à l’affichage (cercle vert déplacé vers le haut et un peu vers la droite par rapport au cercle bleu) :
+![](Screenshot/affichage.PNG)
+
+Par ailleurs, si l’avion ne peut pas se rendre à un aéroport (si par exemple l’avion n’a plus de moteurs opérationnels), l’affichage se modifie et la situation devient critique :
+![](Screenshot/affichage_sans_moteur.PNG)
+![](Screenshot/affichage_tout_seul.PNG)
+
+Il est par ailleurs possible de modifier la position de l’avion, qui va modifier le vent autour de celui-ci, modifier l’aéroport le plus proche et ainsi modifier le nouveau cap à prendre :
+![](Screenshot/affichage_nouvel_emplacement.PNG)
 
 ***
 ## Références
