@@ -26,6 +26,7 @@ def affichage_carte(aerodromes,avion,lons,lats,
         lon_aerodrome_plus_proche (float): La longitude de l'aérodrome le plus proche de l'avion
         lat_aerodrome_plus_proche (float): La latitude de l'aérodrome le plus proche de l'avion
         new_cap (float): Le nouveau cap à prendre pour rejoindre l'aérodrome le plus proche
+        distance_virage (float): La distance parcourue pendant le potentiel virage de l'avion
 
     Returns:
         0
@@ -44,6 +45,7 @@ def affichage_carte(aerodromes,avion,lons,lats,
         ax1.text(0, 0.35, f'Longitude aéroport le plus proche : {lon_aerodrome_plus_proche}°W ', fontsize=11, color='darkmagenta')
         ax1.text(0, 0.25, f'Nouveau cap à suivre : {new_cap}° ', fontsize=11, color='darkmagenta')
         ax1.text(0, 0.15, f'Distance engendrée par le virage : {distance_virage} nm ', fontsize=11, color='darkmagenta')
+
     else:
         ax1.text(0, 1.0, f'Légende et informations utiles ', fontsize=13, color='black')
         ax1.text(0, 0.9, f'Latitude avion :  {avion.latitude}°N ', fontsize=11, color='goldenrod')

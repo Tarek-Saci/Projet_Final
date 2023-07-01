@@ -95,12 +95,29 @@ altitude (int): L’altitude en mètres (un réel positif)</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="SolutionAtterrissage.atmosphere.fonctions_calcul_vent.calcul_coordonnees_vents_trajet">
 <span class="sig-prename descclassname"><span class="pre">SolutionAtterrissage.atmosphere.fonctions_calcul_vent.</span></span><span class="sig-name descname"><span class="pre">calcul_coordonnees_vents_trajet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordonnees_avion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude_point</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.atmosphere.fonctions_calcul_vent.calcul_coordonnees_vents_trajet" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Cette fonction permet de trouver les coordonnées des points à l’intérieur du cercle “range”.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>n (int): nombre de points de discrétisation
+coordonnees_avion (tuple de float): coordonnées de l’avion (latitude et longitude)
+latitude_point (float): latitude du point étudié sur le cercle
+longitude_point (float): longitude du point étudié sur le cercle</p>
+</dd>
+<dt>Returns:</dt><dd><p>coordonnees_points_interieurs (liste de tuples de float): coordonnées des points de discrétisation</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="SolutionAtterrissage.atmosphere.fonctions_calcul_vent.calcul_moyenne_vents_trajet">
 <span class="sig-prename descclassname"><span class="pre">SolutionAtterrissage.atmosphere.fonctions_calcul_vent.</span></span><span class="sig-name descname"><span class="pre">calcul_moyenne_vents_trajet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vents_a_moyenner</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.atmosphere.fonctions_calcul_vent.calcul_moyenne_vents_trajet" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Cette fonction permet de calculer la moyenne des vents sur le trajet potentiel</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>vents_a_moyenner (liste de tuples de float): liste des vents sur le trajet potentiel</p>
+</dd>
+<dt>Returns:</dt><dd><p>(moyenne_vent_x,moyenne_vent_y) (tuple de float) : vecteur vent moyen</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-SolutionAtterrissage.atmosphere.transforme_data">
