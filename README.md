@@ -66,6 +66,18 @@ Les indications qui s'affichent sur la gauche de la carte légendent la carte et
 ***
 ### Structure du programme
 ***
+Le programme est decomposé d'un module global et de plusieurs sous-modules. 
+
+Le module global : "SolutionAtterrissage" comporte l'ensemble des sous-modules et son fichier __init__ permettant d'importer chaque sous-modules
+
+les sous-modules : 
+- aerodrome : regroupe les fichiers .py des classes Aerodrome et Piste mais aussi les fonctions associées à ses classes ou les fonctions effectuant des operations utilisant ces classes.
+  
+- affichage : rassemble les fonctions permettant de realiser l'ensemble de l'affichage de la solution. Notamment les fonctions d'affichage de la carte du Quebec avec basemap mais aussi les fonctions de caculs permettant d'ajouter des éléments d'affichage.
+  
+-  atmosphere : ce module contient la classe Air qui est utile dans le module avion. Il contient aussi les fonctions permettant de recuperer les données du vent et de température et d'y faire les calculs associés.
+
+-  avion : le module avion contient les fichiers pythons permettant de créer l'objet Avion à l'aide d'une classe et servant à définir un avion à partir de certaines données récupérées du fichier yaml. Il contient aussi une classe Performance qui permet de regrouper les informations de performance de l'avion. Cette classe Performance possède l'ensemble des méthodes de cacul des distances franchissables théoriques et impactées par le vent 
 
 ***
 ### Description des étapes du programme
