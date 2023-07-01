@@ -361,22 +361,4 @@ def distance_avec_virage(vitesse, x_avion, y_avion, x_aero, y_aero, cap):
 
     return distance_cercle_nm, angle_cap_aero
 
-"""def calcul_coordonnees_vents_trajet(n,coordonnees_avion,latitude_point,longitude_point):
 
-    point1 = (coordonnees_avion[1], coordonnees_avion[0])
-    point2 = (longitude_point, latitude_point)
-
-    line = LineString([point1, point2])
-
-    points_interieurs = [line.interpolate(i / (n + 1), normalized=True) for i in range(1, n + 1)]
-
-    coordonnees_points_interieurs = [(point.y, point.x) for point in points_interieurs]
-
-    return coordonnees_points_interieurs
-
-def calcul_moyenne_vents_trajet(vents_a_moyenner):
-
-    moyenne_vent_x = np.mean(vents_a_moyenner[:,0])
-    moyenne_vent_y = np.mean(vents_a_moyenner[:,1])
-
-    return (moyenne_vent_x,moyenne_vent_y)"""

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>SolutionAtterrissage.affichage package &#8212; Projet_Final 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="SolutionAtterrissage.atmosphere package" href="SolutionAtterrissage.atmosphere.html" />
+    <link rel="prev" title="SolutionAtterrissage.aeroport package" href="SolutionAtterrissage.aeroport.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="solutionatterrissage-affichage-package">
+<h1>SolutionAtterrissage.affichage package<a class="headerlink" href="#solutionatterrissage-affichage-package" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-SolutionAtterrissage.affichage.donnees_fixees">
+<span id="solutionatterrissage-affichage-donnees-fixees-module"></span><h2>SolutionAtterrissage.affichage.donnees_fixees module<a class="headerlink" href="#module-SolutionAtterrissage.affichage.donnees_fixees" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-SolutionAtterrissage.affichage.fonctions_affichage">
+<span id="solutionatterrissage-affichage-fonctions-affichage-module"></span><h2>SolutionAtterrissage.affichage.fonctions_affichage module<a class="headerlink" href="#module-SolutionAtterrissage.affichage.fonctions_affichage" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="SolutionAtterrissage.affichage.fonctions_affichage.affichage_carte">
+<span class="sig-prename descclassname"><span class="pre">SolutionAtterrissage.affichage.fonctions_affichage.</span></span><span class="sig-name descname"><span class="pre">affichage_carte</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aerodromes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lons</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lons_in_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lats_in_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lons_in_range_in_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lats_in_range_in_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lons_reel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lats_reel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon_aerodrome_plus_proche</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat_aerodrome_plus_proche</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_cap</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.affichage.fonctions_affichage.affichage_carte" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cette fonction affiche les informations de l’avion et les nouvelles données de vol,
+elle affiche aussi la carte du Québec grâce à la bibliothèque basemap.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>aerodromes (liste d’objet de type Aerodrome): Les aérodromes et aéroports du Québec
+avion (Avion): L’avion
+lons (liste de float): Les longitudes des points du cercle de range théorique
+lats (liste de float): Les latitudes des points du cercle de range théorique
+lons_in_range (liste de float): Les longitudes des aérodromes dans la range réelle
+lats_in_range (liste de float): Les latitudes des aérodromes dans la range réelle
+lons_in_range_in_size (liste de float): Les longitudes des aérodromes dans la range réelle et avec une bonne longueur de piste
+lats_in_range_in_size (liste de float): Les latitudes des aérodromes dans la range réelle et avec une bonne longueur de piste
+lons_reel (liste de float): Les longitudes des points du cercle de range réelle
+lats_reel (liste de float): Les latitudes des points du cercle de range réelle
+lon_aerodrome_plus_proche (float): La longitude de l’aérodrome le plus proche de l’avion
+lat_aerodrome_plus_proche (float): La latitude de l’aérodrome le plus proche de l’avion
+new_cap (float): Le nouveau cap à prendre pour rejoindre l’aérodrome le plus proche</p>
+</dd>
+<dt>Returns:</dt><dd><p>0</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="SolutionAtterrissage.affichage.fonctions_affichage.calcul_entre_deux_coordonnees">
+<span class="sig-prename descclassname"><span class="pre">SolutionAtterrissage.affichage.fonctions_affichage.</span></span><span class="sig-name descname"><span class="pre">calcul_entre_deux_coordonnees</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.affichage.fonctions_affichage.calcul_entre_deux_coordonnees" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cette fonction calcule distance entre deux point géographique en prenant en compte la courbure de la Terre.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>point1 (tuple de deux float): Le premier point
+lat2 (float): La latitude du deuxième point
+lon2 (float): La longitude du deuxième point</p>
+</dd>
+<dt>Returns:</dt><dd><p>distance (float): La distance entre les deux points</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="SolutionAtterrissage.affichage.fonctions_affichage.cercle_range">
+<span class="sig-prename descclassname"><span class="pre">SolutionAtterrissage.affichage.fonctions_affichage.</span></span><span class="sig-name descname"><span class="pre">cercle_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">range_avion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avion</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.affichage.fonctions_affichage.cercle_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cette fonction calcul les coordonnées des points du cercle de la range de l’avion.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>range_avion (float): La range théorique de l’avion
+avion (Avion): L’avion</p>
+</dd>
+<dt>Returns:</dt><dd><p>lons (liste de float): Les longitudes des points du cercle de range théorique
+lats (liste de float): Les latitudes des points du cercle de range théorique</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="SolutionAtterrissage.affichage.fonctions_affichage.cercle_range_reel">
+<span class="sig-prename descclassname"><span class="pre">SolutionAtterrissage.affichage.fonctions_affichage.</span></span><span class="sig-name descname"><span class="pre">cercle_range_reel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">range_avion_reel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avion</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.affichage.fonctions_affichage.cercle_range_reel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cette fonction calcul les coordonnées des points du cercle de la range reel de l’avion.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>range_avion (float): La range réelle de l’avion
+avion (Avion): L’avion</p>
+</dd>
+<dt>Returns:</dt><dd><p>lons_reel (liste de float): Les longitudes des points du cercle de range réelle
+lats_reel (liste de float): Les latitudes des points du cercle de range réelle</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="SolutionAtterrissage.affichage.fonctions_affichage.est_dedans">
+<span class="sig-prename descclassname"><span class="pre">SolutionAtterrissage.affichage.fonctions_affichage.</span></span><span class="sig-name descname"><span class="pre">est_dedans</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.affichage.fonctions_affichage.est_dedans" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cette fonction permet de savoir si un point de se trouve à gauche de deux autres sommets.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>a (tuple de float): Le premier sommet du cercle de range réelle
+b (tuple de float): Le dexuième sommet du cercle de range réelle
+c (tuple de float): Le point qui contient la latitude et longitude de l’aérodrome à vérifier</p>
+</dd>
+<dt>Returns:</dt><dd><p>float : Le calcul de la valeur du produit en croix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="SolutionAtterrissage.affichage.fonctions_affichage.winding_number">
+<span class="sig-prename descclassname"><span class="pre">SolutionAtterrissage.affichage.fonctions_affichage.</span></span><span class="sig-name descname"><span class="pre">winding_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sommets</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.affichage.fonctions_affichage.winding_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cette fonction permet de savoir si oui ou non un aérodrome se trouve dans le cercle de range réelle.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>point (): Le point qui contient la latitude et longitude de l’aérodrome à vérifier
+sommets (): Les sommets avec lesquels on veut comparer la position du point</p>
+</dd>
+<dt>Returns:</dt><dd><p>wn (int): Le compteur qui permet de garder trace de la position du point à vérifier par rapport aux sommets</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-SolutionAtterrissage.affichage">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-SolutionAtterrissage.affichage" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Projet_Final</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Projet_Finale</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="SolutionAtterrissage.html">SolutionAtterrissage package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Projet_Finale</a><ul>
+  <li><a href="SolutionAtterrissage.html">SolutionAtterrissage package</a><ul>
+      <li>Previous: <a href="SolutionAtterrissage.aeroport.html" title="previous chapter">SolutionAtterrissage.aeroport package</a></li>
+      <li>Next: <a href="SolutionAtterrissage.atmosphere.html" title="next chapter">SolutionAtterrissage.atmosphere package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Group_L.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/SolutionAtterrissage.affichage.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>SolutionAtterrissage.atmosphere package &#8212; Projet_Final 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="SolutionAtterrissage.avion package" href="SolutionAtterrissage.avion.html" />
+    <link rel="prev" title="SolutionAtterrissage.affichage package" href="SolutionAtterrissage.affichage.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="solutionatterrissage-atmosphere-package">
+<h1>SolutionAtterrissage.atmosphere package<a class="headerlink" href="#solutionatterrissage-atmosphere-package" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="solutionatterrissage-atmosphere-altitude-pression-module">
+<h2>SolutionAtterrissage.atmosphere.altitude_pression module<a class="headerlink" href="#solutionatterrissage-atmosphere-altitude-pression-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-SolutionAtterrissage.atmosphere.classes_atmosphere">
+<span id="solutionatterrissage-atmosphere-classes-atmosphere-module"></span><h2>SolutionAtterrissage.atmosphere.classes_atmosphere module<a class="headerlink" href="#module-SolutionAtterrissage.atmosphere.classes_atmosphere" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="SolutionAtterrissage.atmosphere.classes_atmosphere.Air">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SolutionAtterrissage.atmosphere.classes_atmosphere.</span></span><span class="sig-name descname"><span class="pre">Air</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">altitude</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.atmosphere.classes_atmosphere.Air" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SolutionAtterrissage.atmosphere.classes_atmosphere.Air.calcul_altitude_pression">
+<span class="sig-name descname"><span class="pre">calcul_altitude_pression</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.atmosphere.classes_atmosphere.Air.calcul_altitude_pression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cette méthode de la classe Air permet de calculer la pression (en hPa) à l’altitude donnée selon
+le modèle de l’atmosphère standard. En effet, les données météorologiques sont classées
+en niveaux de pression</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>altitude (int): L’altitude en mètres (un réel positif)</p>
+</dd>
+<dt>Returns:</dt><dd><p>pression: La pression à l’altitude souhaitée (en hPa)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SolutionAtterrissage.atmosphere.classes_atmosphere.Air.calcul_temperature">
+<span class="sig-name descname"><span class="pre">calcul_temperature</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.atmosphere.classes_atmosphere.Air.calcul_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cette méthode de la classe Air permet de déterminer la température à la position GPS et l’altitude donnée</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>latitude (float): La latitude du point recherché compris entre -89.99° et 90°
+lon (float): La longitude du point recherché appartenant aux nombres réels
+altitude (int): L’altitude en mètres (un réel positif)</p>
+</dd>
+<dt>Returns:</dt><dd><p>température_vraie (float) : La valeur de la température recherchée exprimée (en K)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SolutionAtterrissage.atmosphere.classes_atmosphere.Air.calcul_vent">
+<span class="sig-name descname"><span class="pre">calcul_vent</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.atmosphere.classes_atmosphere.Air.calcul_vent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cette méthode de la classe Air permet de déterminer le vecteur vitesse du vent à la position GPS et l’altitude donnée</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>latitude (float): La latitude du point recherché compris entre -89.99° et 90°
+lon (float): La longitude du point recherché appartenant aux nombres réels
+altitude (int): L’altitude en mètres (un réel positif)</p>
+</dd>
+<dt>Returns:</dt><dd><p>vecteur_vent: Une liste de deux valeurs contenant la composante horizontale et la composante verticale du vent (en kts)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-SolutionAtterrissage.atmosphere.fonctions_calcul_vent">
+<span id="solutionatterrissage-atmosphere-fonctions-calcul-vent-module"></span><h2>SolutionAtterrissage.atmosphere.fonctions_calcul_vent module<a class="headerlink" href="#module-SolutionAtterrissage.atmosphere.fonctions_calcul_vent" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="SolutionAtterrissage.atmosphere.fonctions_calcul_vent.calcul_coordonnees_vents_trajet">
+<span class="sig-prename descclassname"><span class="pre">SolutionAtterrissage.atmosphere.fonctions_calcul_vent.</span></span><span class="sig-name descname"><span class="pre">calcul_coordonnees_vents_trajet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordonnees_avion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude_point</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.atmosphere.fonctions_calcul_vent.calcul_coordonnees_vents_trajet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="SolutionAtterrissage.atmosphere.fonctions_calcul_vent.calcul_moyenne_vents_trajet">
+<span class="sig-prename descclassname"><span class="pre">SolutionAtterrissage.atmosphere.fonctions_calcul_vent.</span></span><span class="sig-name descname"><span class="pre">calcul_moyenne_vents_trajet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vents_a_moyenner</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.atmosphere.fonctions_calcul_vent.calcul_moyenne_vents_trajet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-SolutionAtterrissage.atmosphere.transforme_data">
+<span id="solutionatterrissage-atmosphere-transforme-data-module"></span><h2>SolutionAtterrissage.atmosphere.transforme_data module<a class="headerlink" href="#module-SolutionAtterrissage.atmosphere.transforme_data" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="SolutionAtterrissage.atmosphere.transforme_data.flatten_json">
+<span class="sig-prename descclassname"><span class="pre">SolutionAtterrissage.atmosphere.transforme_data.</span></span><span class="sig-name descname"><span class="pre">flatten_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.atmosphere.transforme_data.flatten_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cette fonction permet de transformer la base de données obtenue par Windy en base
+de données plus facilement exploitable</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>data (json): la base de données à transformer</p>
+</dd>
+<dt>Returns:</dt><dd><p>flattened: la base de données transformée</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-SolutionAtterrissage.atmosphere.vent_windy">
+<span id="solutionatterrissage-atmosphere-vent-windy-module"></span><h2>SolutionAtterrissage.atmosphere.vent_windy module<a class="headerlink" href="#module-SolutionAtterrissage.atmosphere.vent_windy" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="SolutionAtterrissage.atmosphere.vent_windy.get_windy_data">
+<span class="sig-prename descclassname"><span class="pre">SolutionAtterrissage.atmosphere.vent_windy.</span></span><span class="sig-name descname"><span class="pre">get_windy_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lon</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.atmosphere.vent_windy.get_windy_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cette fonction permet d’obtenir en temps réel les données météorologiques en un point donné</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>lat (float): La latitude du point recherché compris entre -89.99° et 90°
+lon (float): La longitude du point recherché appartenant aux nombres réels</p>
+</dd>
+<dt>Returns:</dt><dd><p>data: base de données contenant les données sous forme json</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-SolutionAtterrissage.atmosphere">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-SolutionAtterrissage.atmosphere" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Projet_Final</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Projet_Finale</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="SolutionAtterrissage.html">SolutionAtterrissage package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Projet_Finale</a><ul>
+  <li><a href="SolutionAtterrissage.html">SolutionAtterrissage package</a><ul>
+      <li>Previous: <a href="SolutionAtterrissage.affichage.html" title="previous chapter">SolutionAtterrissage.affichage package</a></li>
+      <li>Next: <a href="SolutionAtterrissage.avion.html" title="next chapter">SolutionAtterrissage.avion package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Group_L.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/SolutionAtterrissage.atmosphere.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

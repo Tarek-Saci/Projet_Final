@@ -134,13 +134,15 @@ else:
 
 # ---------- AFFICHAGE DE LA CARTE FINALE ---------- #
 
+
+if parametres_init["moteur_avion"] == True :
+    distance_reelle, angle_cap_aero = avion.distance_avec_virage(parametres_init["vitesse"], avion_1.longitude, avion_1.latitude, -68.79560969, 53.17322831, parametres_init["cap"])
+else:
+    distance_reelle, angle_cap_aero = avion.distance_avec_virage(parametres_init["vitesse_plane"], avion_1.longitude, avion_1.latitude, -68.79560969, 53.17322831, parametres_init["cap"])
+
 affichage.affichage_carte(aerodromes,avion_1,
                    lons,lats,
                    lons_in_range,lats_in_range,
                    lons_in_range_in_size,lats_in_range_in_size,
                    lons_reel,lats_reel,
-                   lon_aerodrome_plus_proche,lat_aerodrome_plus_proche,new_cap)
-if parametres_init["moteur_avion"] == True :
-    distance_reelle, angle_cap_aero = avion.distance_avec_virage(parametres_init["vitesse"], avion_1.longitude, avion_1.latitude, -68.79560969, 53.17322831, parametres_init["cap"])
-else:
-    distance_reelle, angle_cap_aero = avion.distance_avec_virage(parametres_init["vitesse_plane"], avion_1.longitude, avion_1.latitude, -68.79560969, 53.17322831, parametres_init["cap"])
+                   lon_aerodrome_plus_proche,lat_aerodrome_plus_proche,new_cap,distance_reelle)

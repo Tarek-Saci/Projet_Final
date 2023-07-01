@@ -7,7 +7,7 @@ def affichage_carte(aerodromes,avion,lons,lats,
                     lons_in_range,lats_in_range,
                     lons_in_range_in_size,lats_in_range_in_size,
                     lons_reel,lats_reel,
-                    lon_aerodrome_plus_proche,lat_aerodrome_plus_proche,new_cap):
+                    lon_aerodrome_plus_proche,lat_aerodrome_plus_proche,new_cap,distance_virage):
     """
     Cette fonction affiche les informations de l'avion et les nouvelles données de vol,
     elle affiche aussi la carte du Québec grâce à la bibliothèque basemap.
@@ -43,6 +43,7 @@ def affichage_carte(aerodromes,avion,lons,lats,
         ax1.text(0, 0.40, f'Latitude aéroport le plus proche : {lat_aerodrome_plus_proche}°N ', fontsize=11, color='darkmagenta')
         ax1.text(0, 0.35, f'Longitude aéroport le plus proche : {lon_aerodrome_plus_proche}°W ', fontsize=11, color='darkmagenta')
         ax1.text(0, 0.25, f'Nouveau cap à suivre : {new_cap}° ', fontsize=11, color='darkmagenta')
+        ax1.text(0, 0.15, f'Distance engendrée par le virage : {new_cap}° ', fontsize=11, color='darkmagenta')
     else:
         ax1.text(0, 1.0, f'Légendes et informations utiles ', fontsize=13, color='black')
         ax1.text(0, 0.9, f'Latitude avion :  {avion.latitude}°N ', fontsize=11, color='goldenrod')

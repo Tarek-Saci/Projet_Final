@@ -4,7 +4,7 @@ from .classes_aerodrome import Aerodrome
 def creer_aerodrome(objectid, nomcarto, codeindic, typeinfras, nbrpiste,longpiste2,
                     surface,latitude, longitude, acces):
     """
-    Cette fonction permet de créer un aérodrome de type Aerodrome
+    Cette fonction permet de créer un aérodrome de type Aerodrome.
 
     Args:
         objectid (string): Le numéro de l'aérodrome dans la liste
