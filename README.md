@@ -122,6 +122,7 @@ Résultat qui correspond bien à l’affichage (cercle vert déplacé vers le ha
 ![](Screenshot/affichage.png)
 
 Par ailleurs, si l’avion ne peut pas se rendre à un aéroport (si par exemple l’avion n’a plus de moteurs opérationnels), l’affichage se modifie et la situation devient critique :
+
 ![](Screenshot/affichage_sans_moteur.png)
 ![](Screenshot/affichage_tout_seul.png)
 
