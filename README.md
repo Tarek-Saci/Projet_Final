@@ -116,17 +116,17 @@ Pour tester ce programme et vérifier son efficacité nous avons effectué une s
 Tout d’abord, vérifier que les vents ont le bon effet sur le nouveau rayon d’action de l’avion.
 
 Nous pouvons voir que le vent se dirige peu vers l’est, donc selon les x, et beaucoup vers le nord, donc selon les y :
-![](Screenshot/vents.PNG)
+![](Screenshot/vents.png)
 
 Résultat qui correspond bien à l’affichage (cercle vert déplacé vers le haut et un peu vers la droite par rapport au cercle bleu) :
-![](Screenshot/affichage.PNG)
+![](Screenshot/affichage.png)
 
 Par ailleurs, si l’avion ne peut pas se rendre à un aéroport (si par exemple l’avion n’a plus de moteurs opérationnels), l’affichage se modifie et la situation devient critique :
-![](Screenshot/affichage_sans_moteur.PNG)
-![](Screenshot/affichage_tout_seul.PNG)
+![](Screenshot/affichage_sans_moteur.png)
+![](Screenshot/affichage_tout_seul.png)
 
 Il est par ailleurs possible de modifier la position de l’avion, qui va modifier le vent autour de celui-ci, modifier l’aéroport le plus proche et ainsi modifier le nouveau cap à prendre :
-![](Screenshot/affichage_nouvel_emplacement.PNG)
+![](Screenshot/affichage_nouvel_emplacement.png)
 
 ***
 ## Références
