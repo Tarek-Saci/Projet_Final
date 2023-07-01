@@ -1,6 +1,6 @@
 import numpy as np 
 
-nombre_points = 40
+nombre_points = 30
 discretisation = 2
 nombre_segments = nombre_points+1
 vitesse_vent = np.random.uniform(0,100,nombre_points)  # homogène au reste de preference en [Kts]

@@ -33,7 +33,7 @@ def affichage_carte(aerodromes,avion,lons,lats,
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
 
     if avion.longitude != lon_aerodrome_plus_proche :
-        ax1.text(0, 1.0, f'Légendes et informations utiles ', fontsize=13, color='black')
+        ax1.text(0, 1.0, f'Légende et informations utiles ', fontsize=13, color='black')
         ax1.text(0, 0.9, f'Latitude avion :  {avion.latitude}°N ', fontsize=11, color='goldenrod')
         ax1.text(0, 0.85, f'Longitude avion : {avion.longitude}°W ', fontsize=11, color='goldenrod')
         ax1.text(0, 0.75, 'Aérodromes hors de portée', fontsize=11, color='red')
@@ -43,9 +43,9 @@ def affichage_carte(aerodromes,avion,lons,lats,
         ax1.text(0, 0.40, f'Latitude aéroport le plus proche : {lat_aerodrome_plus_proche}°N ', fontsize=11, color='darkmagenta')
         ax1.text(0, 0.35, f'Longitude aéroport le plus proche : {lon_aerodrome_plus_proche}°W ', fontsize=11, color='darkmagenta')
         ax1.text(0, 0.25, f'Nouveau cap à suivre : {new_cap}° ', fontsize=11, color='darkmagenta')
-        ax1.text(0, 0.15, f'Distance engendrée par le virage : {new_cap}° ', fontsize=11, color='darkmagenta')
+        ax1.text(0, 0.15, f'Distance engendrée par le virage : {distance_virage} nm ', fontsize=11, color='darkmagenta')
     else:
-        ax1.text(0, 1.0, f'Légendes et informations utiles ', fontsize=13, color='black')
+        ax1.text(0, 1.0, f'Légende et informations utiles ', fontsize=13, color='black')
         ax1.text(0, 0.9, f'Latitude avion :  {avion.latitude}°N ', fontsize=11, color='goldenrod')
         ax1.text(0, 0.85, f'Longitude avion : {avion.longitude}°W ', fontsize=11, color='goldenrod')
         ax1.text(0, 0.75, 'Aérodromes hors de portée', fontsize=11, color='red')

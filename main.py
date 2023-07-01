@@ -30,6 +30,9 @@ latitude_array = df_final['latitude'].to_numpy()
 longitude_array = df_final['longitude'].to_numpy()
 acces_array = df_final['acces'].to_numpy()
 
+print("! Situation d'urgence !")
+print("Calcul du cap vers l'aérodrome où vous pouvez atterrir le plus proche en cours...")
+
 # ---------- CREATION DES AERODROMES ---------- #
 
 vecteur_creer_aerodrome = np.vectorize(aeroport.creer_aerodrome)
@@ -86,6 +89,8 @@ for i in range(0,affichage.nombre_points):
 
 list_vents_array = np.array(list_vents)
 
+print(f"Vents dans le rayon d'action de l'avion : {list_vents}")
+
 # ---------- CALCUL RANGE AVEC VENT ---------- #
 
 if parametres_init["moteur_avion"]:
@@ -134,11 +139,10 @@ else:
 
 # ---------- AFFICHAGE DE LA CARTE FINALE ---------- #
 
-
 if parametres_init["moteur_avion"] == True :
-    distance_reelle, angle_cap_aero = avion.distance_avec_virage(parametres_init["vitesse"], avion_1.longitude, avion_1.latitude, -68.79560969, 53.17322831, parametres_init["cap"])
+    distance_reelle = avion.distance_avec_virage(parametres_init["vitesse"], avion_1.longitude, avion_1.latitude, -68.79560969, 53.17322831, parametres_init["cap"])
 else:
-    distance_reelle, angle_cap_aero = avion.distance_avec_virage(parametres_init["vitesse_plane"], avion_1.longitude, avion_1.latitude, -68.79560969, 53.17322831, parametres_init["cap"])
+    distance_reelle = avion.distance_avec_virage(parametres_init["vitesse_plane"], avion_1.longitude, avion_1.latitude, -68.79560969, 53.17322831, parametres_init["cap"])
 
 affichage.affichage_carte(aerodromes,avion_1,
                    lons,lats,

@@ -357,8 +357,7 @@ def distance_avec_virage(vitesse, x_avion, y_avion, x_aero, y_aero, cap):
 
     #distance_reelle = distance_cercle + distance_av
     distance_cercle_nm = distance_cercle / 1.852
-    print('Distance ajoutée par la prise en compte du virage',distance_cercle_nm)
 
-    return distance_cercle_nm, angle_cap_aero
+    return distance_cercle_nm
 
 
