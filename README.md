@@ -66,7 +66,7 @@ Les indications qui s'affichent sur la gauche de la carte légendent la carte et
 ***
 ### Structure du programme
 ***
-Le programme est decomposé d'un module global et de plusieurs sous-modules. 
+Le programme est décomposé en un module global et de plusieurs sous-modules. 
 
 Le module global : "SolutionAtterrissage" comporte l'ensemble des sous-modules et son fichier __init__ permettant d'importer chaque sous-modules
 
