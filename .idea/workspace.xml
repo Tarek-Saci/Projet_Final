@@ -8,11 +8,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/Projet_Finale.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Projet_Finale.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SolutionAtterrissage/aeroport/classes_aerodrome.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/aeroport/classes_aerodrome.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SolutionAtterrissage/aeroport/fonctions_aerodrome.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/aeroport/fonctions_aerodrome.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SolutionAtterrissage/affichage/donnees_fixees.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/affichage/donnees_fixees.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SolutionAtterrissage/affichage/fonctions_affichage.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/affichage/fonctions_affichage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SolutionAtterrissage/avion/classes_avion.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/avion/classes_avion.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SolutionAtterrissage/avion/fonctions_avion.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/avion/fonctions_avion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SolutionAtterrissage/donnees/deck.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/donnees/deck.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/html/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,8 +47,9 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;new__main__comm__nathan&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/natha/OneDrive/Documents/GitHub/Projet_Finale&quot;
+    &quot;git-widget-placeholder&quot;: &quot;new__main__sphinx&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/natha/OneDrive/Documents/GitHub/Projet_Finale&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -72,7 +73,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Users\natha\AppData\Local\Programs\Python\Python310\python.exe" />
-      <option name="SDK_NAME" value="Python 3.10" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />

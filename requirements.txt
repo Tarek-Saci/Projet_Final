@@ -4,3 +4,4 @@ datetime
 matplotlib
 Basemap
 shapely
+PyYAML

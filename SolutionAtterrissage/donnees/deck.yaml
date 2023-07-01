@@ -5,7 +5,7 @@ longitude: -72.142587 #(°)
 altitude: 8000 #ft
 
 # Cap en degrés
-cap: 243
+cap: 32
 
 # Vitesse en noeuds
 vitesse: 150

@@ -47,8 +47,6 @@ class Air:
         # Détermination de l'heure de la requête
         # En format POSIX
         posix_time = datetime.datetime.now().timestamp()
-        # En format classique
-        #classical_time = datetime.datetime.fromtimestamp(posix_time)
 
         # Transformation du JSON en dataframe pandas
         flattened = flatten_json(meteo)
@@ -109,8 +107,6 @@ class Air:
         # Détermination de l'heure de la requête
         # En format POSIX
         posix_time = datetime.datetime.now().timestamp()
-        # En format classique
-        #classical_time = datetime.datetime.fromtimestamp(posix_time)
 
         # Transformation du JSON en dataframe pandas
         flattened = flatten_json(meteo)

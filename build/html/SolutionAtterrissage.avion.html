@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>SolutionAtterrissage.avion package &#8212; Projet_Final 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="SolutionAtterrissage.donnees package" href="SolutionAtterrissage.donnees.html" />
+    <link rel="prev" title="SolutionAtterrissage.atmosphere package" href="SolutionAtterrissage.atmosphere.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="solutionatterrissage-avion-package">
+<h1>SolutionAtterrissage.avion package<a class="headerlink" href="#solutionatterrissage-avion-package" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-SolutionAtterrissage.avion.classes_avion">
+<span id="solutionatterrissage-avion-classes-avion-module"></span><h2>SolutionAtterrissage.avion.classes_avion module<a class="headerlink" href="#module-SolutionAtterrissage.avion.classes_avion" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="SolutionAtterrissage.avion.classes_avion.Avion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SolutionAtterrissage.avion.classes_avion.</span></span><span class="sig-name descname"><span class="pre">Avion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordonnees_avion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">range_avion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">altitude</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.avion.classes_avion.Avion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Défini un objet Avion ayant plusieurs caractéristiques.</p>
+<p>Paramètres initialisés :
+Des coordonnées: latitude, longitude en degrés
+Une distance franchissable (range) en mile nautique
+Une altitude en pied</p>
+<p>Cette classe ne possède pas de méthode spécifique</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SolutionAtterrissage.avion.classes_avion.Performance">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SolutionAtterrissage.avion.classes_avion.</span></span><span class="sig-name descname"><span class="pre">Performance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">finesse</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vitesse</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vitesse_plane</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">altitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist_roulage_mini</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">carburant_restant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">moteur_avion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">air</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.avion.classes_avion.Performance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Défini un objet Performance reprenant les paramètres clés liés à la performance d’un avion.
+Paramètres initialisés:
+Finesse de l’avion
+Vitesse de l’avion
+Vitesse plane – vitesse à laquelle peut planer l’avion sans moteur
+Altitude de l’avion
+Dist_roulage_mini – distance minimale dont à besoin l’avion lors de la phase de roulage à l’atterrissage
+carburant-restant – quantité de carburant qu’il reste à l’avion en gallon
+moteur-avion – booléen qui est vrai si les moteurs de l’avion sont encore fonctionnels et faux s’ils ont un problème
+air – objet de la classe Air (utile pour une méthode)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SolutionAtterrissage.avion.classes_avion.Performance.angle_cap_vent">
+<span class="sig-name descname"><span class="pre">angle_cap_vent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vecteur_vent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vecteur_theta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.avion.classes_avion.Performance.angle_cap_vent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calcule l’angle entre le cap de l’avion et le vecteur vent.</p>
+<p>Paramètres d’entrée:
+vecteur_vent – vecteur vent en coordonnées cartesiennes (direction du vent par rapport au nord)
+vecteur_theta – vecteur en coordonnées cartesiennes (vecteur ayant pour module la range et pour direction de l’avion vers le point du cercle considéré)</p>
+<p>la méthode prend les deux vecteurs en coordonnées cartesiennes pour calculer l’angle entre les deux resultantes</p>
+<p>return la valeur de l’angle entre les deuc resultantes en radians</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SolutionAtterrissage.avion.classes_avion.Performance.conso_vitesse">
+<span class="sig-name descname"><span class="pre">conso_vitesse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.avion.classes_avion.Performance.conso_vitesse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calcule la consommation de carburant de l’avion si ces moteurs sont fonctionnels.</p>
+<p>Paramètres d’entrée:
+self.altitude
+self.vitesse
+self.air</p>
+<p>Méthode utilisée:
+air.calcul_temperature() – récupère la température de l’air où se trouve l’avion</p>
+<p>La méthode se base sur une table de données qui donne des paramètres de calcul de consommation suivant l’altitude et la température
+Elle compare la température de l’air avec la température de l’atmosphère standard
+Suivant ces deux paramètres,la formule de la consommation change donc le résultat varie</p>
+<p>Return la valeur de la consommation de l’avion en gallon/heure</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SolutionAtterrissage.avion.classes_avion.Performance.range_moteur_reel">
+<span class="sig-name descname"><span class="pre">range_moteur_reel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vecteur_vent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vecteur_theta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.avion.classes_avion.Performance.range_moteur_reel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calcule la valeur de la distance franchissable réelle avec les moteurs fonctionnels, c’est-à-dire en prenant en compte le vent.</p>
+<p>Paramètres d’entrée:
+vecteur_vent – vecteur vent en coordonnées cartesiennes (direction du vent par rapport au nord)
+vecteur_theta – vecteur en coordonnées cartesiennes (vecteur ayant pour module la range et pour direction de l’avion vers le point du cercle considéré)
+self.vitesse
+self.carburant</p>
+<p>Méthode utilisée:
+angle_cap_vent() – permet d’avoir l’angle entre le cap et la direction du vent
+conso_vitesse() – permet d’avoir la consommation et donc le temps de vol que peut faire l’avion</p>
+<p>Return la valeur de la distance franchissable que peut réellement atteindre l’avion en vol plané suivant le vent</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SolutionAtterrissage.avion.classes_avion.Performance.range_moteur_theorique">
+<span class="sig-name descname"><span class="pre">range_moteur_theorique</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.avion.classes_avion.Performance.range_moteur_theorique" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calcule la distance franchissable théorique avec moteur en mile nautique (nm).</p>
+<p>Paramètres d’entrée:
+self.carburant – carburant restant
+self.vitesse – vitesse de l’avion</p>
+<p>Méthode utilisée:
+conso.vitesse()</p>
+<p>rapport entre la consommation de carburant et le carburant restant
+multiplication de ce rapport par la vitesse</p>
+<p>Return la valeur de la distance franchissable théorique avec les moteurs et le carburant restant</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SolutionAtterrissage.avion.classes_avion.Performance.range_plane_reel">
+<span class="sig-name descname"><span class="pre">range_plane_reel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vecteur_vent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vecteur_theta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.avion.classes_avion.Performance.range_plane_reel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calcule la valeur de la distance franchissable réelle en vol plané, c’est-à-dire en prenant en compte le vent.</p>
+<p>Paramètres d’entrée:
+vecteur_vent – vecteur vent en coordonnées cartesiennes (direction du vent par rapport au nord)
+vecteur_theta – vecteur en coordonnées cartesiennes (vecteur ayant pour module la range et pour direction de l’avion vers le point du cercle considéré)
+self.vitesse_plane</p>
+<p>Méthode utilisée:
+angle_cap_vent() – permet d’avoir l’angle entre le cap et la direction du vent
+range_plane_theorique()</p>
+<p>Return la valeur de la distance franchissable que peut réellement atteindre l’avion en vol plané suivant le vent</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SolutionAtterrissage.avion.classes_avion.Performance.range_plane_theorique">
+<span class="sig-name descname"><span class="pre">range_plane_theorique</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.avion.classes_avion.Performance.range_plane_theorique" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calcule la distance franchissable théorique en vol plané en mile nautique (nm).</p>
+<p>Paramètres d’entrée:
+self.altitude
+self.finesse</p>
+<p>multiplication de l’altitude par la finesse (la division concerne une conversion)</p>
+<p>Return la valeur de la distance franchissable théorique en vol plané</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="solutionatterrissage-avion-fonction-range-module">
+<h2>SolutionAtterrissage.avion.fonction_range module<a class="headerlink" href="#solutionatterrissage-avion-fonction-range-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-SolutionAtterrissage.avion.fonctions_avion">
+<span id="solutionatterrissage-avion-fonctions-avion-module"></span><h2>SolutionAtterrissage.avion.fonctions_avion module<a class="headerlink" href="#module-SolutionAtterrissage.avion.fonctions_avion" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="SolutionAtterrissage.avion.fonctions_avion.calcul_new_cap">
+<span class="sig-prename descclassname"><span class="pre">SolutionAtterrissage.avion.fonctions_avion.</span></span><span class="sig-name descname"><span class="pre">calcul_new_cap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lat_avion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longi_avion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lat_aerodrome</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longi_aerodrome</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.avion.fonctions_avion.calcul_new_cap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Défini la valeur du nouveau cap que doit suivre l’avion pour atteindre l’aéroport le plus proche.</p>
+<p>Paramètres d’entrée:
+lat_avion – latitude de l’avion
+longi_avion – longitude de l’avion
+lat_aerodrome – latitude de l’aérodrome le plus proche
+longi_aerodrome – longitude de l’aérodrome le plus proche</p>
+<p>Utilise la méthode de calcul de l’azimut afin de calculer un angle à suivre par rapport au nord géographique à partir de 2 positions géographiques
+Convertit au format de cap 0°-360° dans le cas d’un angle négatif</p>
+<p>Return la valeur du nouveau cap à suivre en degrés</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="SolutionAtterrissage.avion.fonctions_avion.distance_avec_virage">
+<span class="sig-prename descclassname"><span class="pre">SolutionAtterrissage.avion.fonctions_avion.</span></span><span class="sig-name descname"><span class="pre">distance_avec_virage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vitesse</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_avion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_avion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_aero</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_aero</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cap</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SolutionAtterrissage.avion.fonctions_avion.distance_avec_virage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cette fonction permet de calculer la distance entre l’avion et l’aéroport le plus proche en prenant
+en compte le potentiel virage que l’avion devra réaliser pour rejoindre l’aéroport</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>vitesse (float) : La vitesse de l’avion (en kts)
+x_avion (float) : La longitude de l’avion (un réel)
+y_avion (float) : La latitude de l’avion (un réel compris entre -89.99° et 90°)
+x_aéroport (float) : La longitude de l’aéroport (un réel)
+y_aéroport (float) : La latitude de l’aéroport (un réel compris entre -89.99° et 90°)
+cap (float) : Le cap de l’avion (un réel compris entre 0° et 360°)</p>
+</dd>
+<dt>Returns:</dt><dd><p>distance_cercle_nm (float) : La distance ajoutée par la prise en compte du virage (en nm)
+angle_cap_aero (float) : L’angle entre le cap de l’avion et le vecteur avion-aéroport (en °)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="solutionatterrissage-avion-range-avec-virage-module">
+<h2>SolutionAtterrissage.avion.range_avec_virage module<a class="headerlink" href="#solutionatterrissage-avion-range-avec-virage-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-SolutionAtterrissage.avion">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-SolutionAtterrissage.avion" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Projet_Final</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Projet_Finale</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="SolutionAtterrissage.html">SolutionAtterrissage package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Projet_Finale</a><ul>
+  <li><a href="SolutionAtterrissage.html">SolutionAtterrissage package</a><ul>
+      <li>Previous: <a href="SolutionAtterrissage.atmosphere.html" title="previous chapter">SolutionAtterrissage.atmosphere package</a></li>
+      <li>Next: <a href="SolutionAtterrissage.donnees.html" title="next chapter">SolutionAtterrissage.donnees package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Group_L.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/SolutionAtterrissage.avion.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
