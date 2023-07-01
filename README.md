@@ -7,7 +7,8 @@
 3. [Détails des paramètres d'entrée et des résultats fournis](#détails-des-paramètres-d'entrée-et-des-résultats-fournis)
 4. [Structure du programme](#structure-du-programme)
 5. [Description des étapes du programme](#description-des-étapes-du-programme)
-6. [Références](#références)
+6. [Test](#test)
+7. [Références](#références)
 ***
 ### Informations générales
 ***
@@ -35,6 +36,8 @@ Le projet a été réalisé et testé avec la version 3.9 de Python. Pour utilis
 * Dans un premier temps créez un environnement virtuel avec Python 3.9 ou une version ultérieure.
 * Une fois l'environnement virtuel créé, exécutez la commande `pip install -r requirements.txt` dans le terminal afin d'installer les librairies utilisées par le programme.
 * Exécutez ensuite la commande `python main.py` dans le terminal pour lancer l'application.
+
+* 
 
 ***
 ### Détails des paramètres d'entrée et des résultats fournis
@@ -108,6 +111,11 @@ Cette partie décrit les étapes dans l'ordre d'exécution que réalise le progr
 * Tri des aéroports atteignables : parmi tous les aéroports atteignables, seuls ceux possédant une piste de longueur suffisante sont conservés
 * Calcul du nouveau cap à emprunter et de la distance supplémentaire qui sera engendrée par un éventuel virage : ces informations seront utiles pour le pilote et seront affichées à côté de la carte
 * Affichage de la carte avec sa légende et des informations utiles pour le pilote
+
+***
+## Test
+***
+
 
 ***
 ## Références
