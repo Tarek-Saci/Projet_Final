@@ -5,9 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b37657d5-1ca5-46a1-b22d-5fe3307eba12" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Projet_Finale.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Projet_Finale.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SolutionAtterrissage/affichage/fonctions_affichage.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/affichage/fonctions_affichage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SolutionAtterrissage/avion/fonctions_avion.py" beforeDir="false" afterPath="$PROJECT_DIR$/SolutionAtterrissage/avion/fonctions_avion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/doctrees/SolutionAtterrissage.aeroport.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/build/doctrees/SolutionAtterrissage.aeroport.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/doctrees/SolutionAtterrissage.affichage.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/build/doctrees/SolutionAtterrissage.affichage.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/doctrees/SolutionAtterrissage.atmosphere.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/build/doctrees/SolutionAtterrissage.atmosphere.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/doctrees/SolutionAtterrissage.avion.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/build/doctrees/SolutionAtterrissage.avion.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/doctrees/SolutionAtterrissage.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/build/doctrees/SolutionAtterrissage.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/doctrees/SolutionAtterrissage.donnees.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/build/doctrees/SolutionAtterrissage.donnees.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/build/doctrees/environment.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/doctrees/index.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/build/doctrees/index.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/doctrees/main.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/build/doctrees/main.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/doctrees/modules.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/build/doctrees/modules.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/doctrees/setup.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/build/doctrees/setup.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/html/SolutionAtterrissage.aeroport.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/html/SolutionAtterrissage.aeroport.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/html/SolutionAtterrissage.affichage.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/html/SolutionAtterrissage.affichage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/html/SolutionAtterrissage.atmosphere.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/html/SolutionAtterrissage.atmosphere.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/html/_static/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/build/html/_static/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/html/_static/doctools.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/html/_static/doctools.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/html/_static/searchtools.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/html/_static/searchtools.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/html/_static/sphinx_highlight.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/html/_static/sphinx_highlight.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/html/searchindex.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +65,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "new__main__sphinx",
     "last_opened_file_path": "C:/Users/natha/OneDrive/Documents/GitHub/Projet_Finale",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PythonContentEntriesConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
