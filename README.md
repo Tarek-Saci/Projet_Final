@@ -70,14 +70,25 @@ Le programme est decomposé d'un module global et de plusieurs sous-modules.
 
 Le module global : "SolutionAtterrissage" comporte l'ensemble des sous-modules et son fichier __init__ permettant d'importer chaque sous-modules
 
-les sous-modules : 
-- aerodrome : regroupe les fichiers .py des classes Aerodrome et Piste mais aussi les fonctions associées à ses classes ou les fonctions effectuant des operations utilisant ces classes.
+Les sous-modules : 
+- aerodrome : il regroupe les fichiers .py des classes Aerodrome et Piste mais aussi les fonctions associées à ses classes ou les fonctions effectuant des operations utilisant ces classes.
   
-- affichage : rassemble les fonctions permettant de realiser l'ensemble de l'affichage de la solution. Notamment les fonctions d'affichage de la carte du Quebec avec basemap mais aussi les fonctions de caculs permettant d'ajouter des éléments d'affichage.
+- affichage : ce module rassemble les fonctions permettant de realiser l'ensemble de l'affichage de la solution. Notamment les fonctions d'affichage de la carte du Quebec avec basemap mais aussi les fonctions de caculs permettant d'ajouter des éléments d'affichage.
   
 -  atmosphere : ce module contient la classe Air qui est utile dans le module avion. Il contient aussi les fonctions permettant de recuperer les données du vent et de température et d'y faire les calculs associés.
 
--  avion : le module avion contient les fichiers pythons permettant de créer l'objet Avion à l'aide d'une classe et servant à définir un avion à partir de certaines données récupérées du fichier yaml. Il contient aussi une classe Performance qui permet de regrouper les informations de performance de l'avion. Cette classe Performance possède l'ensemble des méthodes de cacul des distances franchissables théoriques et impactées par le vent 
+-  avion : le module avion contient les fichiers pythons permettant de créer l'objet Avion à l'aide d'une classe et servant à définir un avion à partir de certaines données récupérées du fichier yaml. Il contient aussi une classe Performance qui permet de regrouper les informations de performance de l'avion. Cette classe Performance possède l'ensemble des méthodes de cacul des distances franchissables théoriques et impactées par le vent ainsi que la méthode pour calculer la consommation de carburant.
+
+-  donnees : ce module rassemble les fichiers de données qui sont utiles au fonctionnement de notre programme. C'est-à-dire, le fichier csv de la base de donnée des aérodromes et des pistes, le fichier de données de l'avion au format yaml. Dans ce module est présent le fichier de la classe LecteurYAML qui permet de créer un lecteur pouvant lire n'importe quel fichier .yaml.
+
+En dehors du module global se situent le fichier main.py qui permet de réaliser toute la procédure de calcul et d'affichage de la solution.
+L'ensemble des fichiers permettant l'installation du modules sont aussi présent à ce niveau :
+- LICENSE.md
+- setup.cfg
+- setup.py
+- requirements.txt
+
+Enfin, ce fichier README.md qui décrit l'ensemble du projet.
 
 ***
 ### Description des étapes du programme
